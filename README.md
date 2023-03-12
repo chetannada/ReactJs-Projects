@@ -1,5 +1,5 @@
 # ❤️ ReactJS-Practice-Updates 🚀
-Welcome to `ReactJS-Practice-Update`s, a repository dedicated to improving your `ReactJS skills` through hands-on `exercises and practical examples`.
+Welcome to `ReactJS-Practice-Updates` uses `ReactJs` and `TailwindCSS`, a repository dedicated to improving your `ReactJS skills` through hands-on `exercises and practical examples`.
 
 Whether you are a `beginner or an experienced React developer`, this repository is designed to help you stay up-to-date with the latest developments in the React community and enhance your understanding of the framework.
 
@@ -11,7 +11,7 @@ This repository contains a `collection of ReactJS practice topics`, `challenges`
 - [🚀 Live Code Link 😍](https://ex-01-react-fetch-get.netlify.app/)
 
 # Prerequisites
-Before getting started with the exercises, you should have a basic understanding of `JavaScript, HTML, and CS`S. Familiarity with `ReactJS concept`s such as `components`, `props`, `state`, and `hooks` is also recommended.
+Before getting started with the exercises, you should have a basic understanding of `JavaScript, HTML, and CSS`. Familiarity with `ReactJS concepts` such as `components`, `props`, `state`, and `hooks` is also recommended.
 
 # How to Use
 To get the most out of this repository, we recommend that you `try each exercise` on your own before looking at the solutions. Use the solutions as a reference and compare your approach with the provided solution. This will help you identify areas for improvement and solidify your understanding of ReactJS.
