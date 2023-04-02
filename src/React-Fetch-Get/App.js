@@ -7,15 +7,17 @@ import GetRequestSetHeaders from "./GetRequestSetHeaders";
 
 const App = () => {
   return (
-    <div>
+    <>
       <h1 className="text-center text-3xl p-5">
-        React HTTP GET Requests with Fetch
+        React HTTP GET Requests with Fetch using NPM API
       </h1>
+      <div className="my-5 space-y-5">
         <GetRequestHooks />
         <GetRequestAsyncAwait />
         <GetRequestErrorHandling />
         <GetRequestSetHeaders />
-    </div>
+      </div>
+    </>
   );
 };
 
