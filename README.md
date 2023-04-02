@@ -10,6 +10,10 @@ This repository contains a `collection of ReactJS practice topics`, `challenges`
 - 👨‍💻 [_Code for this Exercise_](./src/React-Fetch-Get/)
 - [🚀 Live Code Link 😍](https://ex-01-react-fetch-get.netlify.app/)
 
+## 📚 _Exercise 02 - React HTTP POST Requests with Fetch using Reqres API_
+- 👨‍💻 [_Code for this Exercise_](./src/React-Fetch-Post/)
+- [🚀 Live Code Link 😍](https://ex-02-react-fetch-post.netlify.app/)
+
 # Prerequisites
 Before getting started with the exercises, you should have a basic understanding of `JavaScript, HTML, and CSS`. Familiarity with `ReactJS concepts` such as `components`, `props`, `state`, and `hooks` is also recommended.
 
