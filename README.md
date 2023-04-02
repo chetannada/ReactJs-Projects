@@ -6,7 +6,7 @@ Whether you are a `beginner or an experienced React developer`, this repository 
 # Contents
 This repository contains a `collection of ReactJS practice topics`, `challenges`, and `solutions`, organized by `difficulty and relevance`. Each exercise is accompanied by a comprehensive explanation and examples to help you understand the concepts and apply them to real-world scenarios.
 
-## 📚 _Exercise 01 - React HTTP GET Requests with Fetch_
+## 📚 _Exercise 01 - React HTTP GET Requests with Fetch using NPM API_
 - 👨‍💻 [_Code for this Exercise_](./src/React-Fetch-Get/)
 - [🚀 Live Code Link 😍](https://ex-01-react-fetch-get.netlify.app/)
 
