@@ -14,6 +14,10 @@ This repository contains a `collection of ReactJS practice topics`, `challenges`
 - 👨‍💻 [_Code for this Exercise_](./src/React-Fetch-Post/)
 - [🚀 Live Code Link 😍](https://ex-02-react-fetch-post.netlify.app/)
 
+## 📚 _Exercise 03 - React Redux Counter App_
+- 👨‍💻 [_Code for this Exercise_](./src/Redux-Counter-App//)
+- [🚀 Live Code Link 😍](https://ex-03-react-redux-counter-app.netlify.app/)
+
 # Prerequisites
 Before getting started with the exercises, you should have a basic understanding of `JavaScript, HTML, and CSS`. Familiarity with `ReactJS concepts` such as `components`, `props`, `state`, and `hooks` is also recommended.
 
