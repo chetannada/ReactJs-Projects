@@ -6,11 +6,11 @@ Whether you are a `beginner or an experienced React.js developer`, this reposito
 # Contents
 This repository contains a `collection of Cool React.js Projects`, which help you understand the concepts and apply them to real-world scenarios.
 
-## 📚 _Project 01 - React HTTP GET Requests with Fetch using NPM API_
+## 📚 _Project 01 - React HTTP GET Requests for NPM API using Fetch in Different way_
 - 💻 [_Code for this Project_](./src/React-Fetch-Get/)
 - [🚀 Live Code Link 😍](https://ex-01-react-fetch-get.netlify.app/)
 
-## 📚 _Project 02 - React HTTP POST Requests with Fetch using Reqres API_
+## 📚 _Project 02 - React HTTP POST Requests for Reqres API using Fetch in Different way_
 - 💻 [_Code for this Project_](./src/React-Fetch-Post/)
 - [🚀 Live Code Link 😍](https://ex-02-react-fetch-post.netlify.app/)
 
