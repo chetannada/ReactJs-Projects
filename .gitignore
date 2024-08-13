@@ -45,9 +45,6 @@ Thumbs.db
 .parcel-cache
 .cache/
 
-# Netlify 404 Error file
-_redirects
-
 # Extra files
 .env
 .DS_Store
