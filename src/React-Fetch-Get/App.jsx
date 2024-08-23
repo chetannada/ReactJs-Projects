@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import GetRequestHooks from "./GetRequestHooks";
 import GetRequestAsyncAwait from "./GetRequestAsyncAwait";
 import GetRequestErrorHandlingWithTryCatch from "./GetRequestErrorHandling";
 import GetRequestSetHeaders from "./GetRequestSetHeaders";
+import GetRequestHooks from "./GetRequestHooks";
 
 const App = () => {
   return (
