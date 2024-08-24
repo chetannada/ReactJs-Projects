@@ -1,11 +1,10 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import GetRequestAsyncAwait from "./GetRequestAsyncAwait";
 import GetRequestErrorHandlingWithTryCatch from "./GetRequestErrorHandling";
 import GetRequestSetHeaders from "./GetRequestSetHeaders";
 import GetRequestHooks from "./GetRequestHooks";
 
-const App = () => {
+export const App = () => {
   return (
     <>
       <h1 className="text-center text-3xl p-5">

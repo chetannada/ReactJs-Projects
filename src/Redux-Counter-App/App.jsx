@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { store } from "./Store/store";
 import { Provider } from "react-redux";
 import { Counter } from "./counter/Counter";
 
-const App = () => {
+export const App = () => {
   return (
     <>
       <div className="p-2 flex justify-center items-center">

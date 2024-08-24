@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { npm_API_React } from "../config";
 
 const GetRequestAsyncAwait = () => {
