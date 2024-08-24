@@ -7,7 +7,7 @@ import { Counter } from "./counter/Counter";
 export const App = () => {
   return (
     <>
-      <div className="p-2 flex justify-center items-center">
+      <div className="m-4 flex justify-center items-center">
         <Counter />
       </div>
     </>
