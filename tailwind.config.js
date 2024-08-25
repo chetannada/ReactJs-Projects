@@ -25,6 +25,9 @@ module.exports = {
       // => @media (max-width: 360px) { ... }
     },
     extend: {
+      colors: {
+        primary: "#0f172a",
+      },
       width: {
         108: "28rem",
         128: "32rem",
