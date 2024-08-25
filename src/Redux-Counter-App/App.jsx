@@ -1,24 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { store } from "./Store/store";
-import { Provider } from "react-redux";
-import { Counter } from "./counter/Counter";
+import Counter from "./Counter";
 
-export const App = () => {
+const ReduxCounterApp = () => {
   return (
     <>
-      <div className="m-4 flex justify-center items-center">
+      <main className="mt-4 m-2 flex justify-center items-center">
         <Counter />
-      </div>
+      </main>
     </>
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+export default ReduxCounterApp;

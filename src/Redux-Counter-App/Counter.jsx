@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
   increment,
   decrement,
   incrementByValue,
   decrementByValue,
-} from "../features/counterSlice";
-import { useState } from "react";
+} from "./counterSlice";
 
-export const Counter = () => {
+const Counter = () => {
   const [inputValue, setInputValue] = useState(null);
   const dispatch = useDispatch();
   const countValue = useSelector((item) => item?.show?.value);
@@ -18,8 +18,8 @@ export const Counter = () => {
 
   return (
     <>
-      <div className="py-10 p-2 space-y-6 w-152 rounded-xl overflow-hidden shadow-lg bg-orange-200">
-        <h1 className="text-center text-4xl">React Redux Counter App</h1>
+      <div className="py-10 p-2 space-y-6 w-152 rounded-xl overflow-hidden border border-gray-200 shadow bg-orange-200">
+        <h1 className="text-center text-4xl ">React Redux Counter App</h1>
         <div className="px-4 space-y-4 flex flex-col justify-center items-center">
           <div className="w-140 xsm:w-72 break-words">
             <h2 className="mb-2 text-center text-3xl">
@@ -28,8 +28,10 @@ export const Counter = () => {
             </h2>
           </div>
 
-          <div className="pb-4
-           flex flex-row flex-wrap justify-center items-center gap-6">
+          <div
+            className="pb-4
+           flex flex-row flex-wrap justify-center items-center gap-6 "
+          >
             <button
               className=" bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-md"
               onClick={() => dispatch(increment())}
@@ -73,3 +75,5 @@ export const Counter = () => {
     </>
   );
 };
+
+export default Counter;
