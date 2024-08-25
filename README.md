@@ -2,9 +2,15 @@
 
 Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding React.js Projects` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
 
-# Contents
+# Projects
 
 This repository contains a `Collection of Cool Coding React.js Projects` with Code and Live URL, which helps you to practice yourself in React.js
+
+### Structure of this Project
+
+- index.html - _Root index file of Project_
+- index.css - _Global CSS file of Project_
+- Main.jsx - _Root js/jsx file of Project_
 
 ## 📚 Project 01 - React HTTP GET Requests for NPM API using Fetch in Different way
 
