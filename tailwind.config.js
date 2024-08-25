@@ -6,23 +6,17 @@ module.exports = {
       "2xl": { max: "1535px" },
       // => @media (max-width: 1535px) { ... }
 
-      xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
+      xl: { max: "1280px" },
 
-      lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
+      lg: { max: "1024px" },
 
-      md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
+      md: { max: "900px" },
 
-      sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
+      sm: { max: "640px" },
 
       xsm: { max: "480px" },
-      // => @media (max-width: 480px) { ... }
 
       mob: { max: "360px" },
-      // => @media (max-width: 360px) { ... }
     },
     extend: {
       colors: {
