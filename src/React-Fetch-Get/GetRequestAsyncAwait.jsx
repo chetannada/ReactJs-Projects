@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { npm_API_React } from "../config";
 
 const GetRequestAsyncAwait = () => {
   const [npmReactData, setNpmReactData] = useState("");
+  const API_NPM = import.meta.env.VITE_API_NPM;
+
   // GET request using fetch with async/await
   useEffect(() => {
     async function getData() {
-      await fetch(npm_API_React)
+      await fetch(API_NPM)
         .then((response) => response.json())
         .then((json) => setNpmReactData(json));
     }
     getData();
-  }, []);
+  }, [API_NPM]);
 
   return (
     <>

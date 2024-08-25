@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { reqres_API } from "../config";
 
 const PostRequestSetHeaders = () => {
   const [reqresData, setReqresData] = useState("");
+  const API_REQRES = import.meta.env.VITE_API_REQRES;
+
   // POST request using fetch with set headers
   useEffect(() => {
     async function postData() {
@@ -15,12 +16,12 @@ const PostRequestSetHeaders = () => {
         },
         body: JSON.stringify({ first_name: "Chetan", last_name: "Nada" }),
       };
-      const response = await fetch(reqres_API, reqOptions);
+      const response = await fetch(API_REQRES, reqOptions);
       const json = await response.json();
       setReqresData(json);
     }
     postData();
-  }, []);
+  }, [API_REQRES]);
 
   return (
     <>

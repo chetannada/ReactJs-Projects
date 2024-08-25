@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { reqres_API } from "../config";
 
 const PostRequestHooks = () => {
   const [reqresData, setReqresData] = useState("");
+  const API_REQRES = import.meta.env.VITE_API_REQRES;
+
   // Simple POST request with a JSON body using fetch
   useEffect(() => {
     const reqOptions = {
@@ -10,10 +11,11 @@ const PostRequestHooks = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ first_name: "Chetan", last_name: "Nada" }),
     };
-    fetch(reqres_API, reqOptions)
+    fetch(API_REQRES, reqOptions)
       .then((response) => response.json())
       .then((data) => setReqresData(data));
-  }, []);
+  }, [API_REQRES]);
+  
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-center text-center">

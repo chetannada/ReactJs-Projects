@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { npm_API_React } from "../config";
 
 const GetRequestSetHeaders = () => {
   const [npmReactData, setNpmReactData] = useState("");
+  const API_NPM = import.meta.env.VITE_API_NPM;
+
   // GET request using fetch with set headers
   useEffect(() => {
     async function getData() {
@@ -13,12 +14,12 @@ const GetRequestSetHeaders = () => {
         },
         mode: "cors",
       };
-      const response = await fetch(npm_API_React, reqOptions);
+      const response = await fetch(API_NPM, reqOptions);
       const json = await response.json();
       setNpmReactData(json);
     }
     getData();
-  }, []);
+  }, [API_NPM]);
 
   return (
     <>

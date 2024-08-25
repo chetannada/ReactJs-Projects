@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { reqres_API } from "../config";
 
 const PostRequestAsyncAwait = () => {
   const [reqresData, setReqresData] = useState("");
+  const API_REQRES = import.meta.env.VITE_API_REQRES;
+
   // POST request using fetch with async/await
   useEffect(() => {
     const reqOptions = {
@@ -11,12 +12,12 @@ const PostRequestAsyncAwait = () => {
       body: JSON.stringify({ first_name: "Chetan", last_name: "Nada" }),
     };
     async function postData() {
-      await fetch(reqres_API, reqOptions)
+      await fetch(API_REQRES, reqOptions)
         .then((response) => response.json())
         .then((json) => setReqresData(json));
     }
     postData();
-  }, []);
+  }, [API_REQRES]);
 
   return (
     <>

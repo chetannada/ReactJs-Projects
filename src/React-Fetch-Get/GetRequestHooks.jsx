@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { npm_API_React } from "../config";
 
 const GetRequestHooks = () => {
   const [npmReactData, setNpmReactData] = useState("");
+  const API_NPM = import.meta.env.VITE_API_NPM;
+
   // Simple GET request using fetch
   useEffect(() => {
-    fetch(npm_API_React)
+    fetch(API_NPM)
       .then((response) => response.json())
       .then((data) => setNpmReactData(data));
-  }, []);
+  }, [API_NPM]);
+
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-center text-center">
