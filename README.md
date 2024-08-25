@@ -2,11 +2,11 @@
 
 Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding React.js Projects` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
 
-# Projects
+# 🌻 Projects
 
 This repository contains a `Collection of Cool Coding React.js Projects` with Code and Live URL, which helps you to practice yourself in React.js
 
-### Structure of this Project
+### 🌱 Structure of this Project
 
 - index.html - _Root index file of Project_
 - index.css - _Global CSS file of Project_
@@ -27,11 +27,11 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - 💻 [_Code for this Project_](./src/Redux-Counter-App//)
 - [🚀 _Live Project App Link_ 😍](https://ex-03-react-redux-counter-app.netlify.app/)
 
-# Prerequisites
+# 🎻 Prerequisites
 
 Before getting started with the Practicing Projects, you should have a basic understanding of `HTML, CSS and JavaScript`.
 
-# Contribute
+# ✏️ Contribute
 
 This repository is an `Open-Source` and `Contributions` are always welcome! If you find an issue in any Projects then create an issue under the Issue section and then create a `Pull Request`. Your contribution will help make this repository a valuable resource for the `React.js Community`.
 
