@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import AppLayout from "./src/Layout/AppLayout";
+import AppLayout from "./src/App/AppLayout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
