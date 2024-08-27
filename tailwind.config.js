@@ -3,28 +3,28 @@ module.exports = {
   content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      "2xl": { max: "1535px" },
-      // => @media (max-width: 1535px) { ... }
+      "2xl": { max: "1536px" },
+      // => @media (max-width: 1536px) { ... }
 
-      xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
+      xl: { max: "1280px" },
 
-      lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
+      lg: { max: "1024px" },
 
-      md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
+      md: { max: "900px" },
 
-      sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
+      sm: { max: "640px" },
 
       xsm: { max: "480px" },
-      // => @media (max-width: 480px) { ... }
 
-      mob: { max: "360px" },
-      // => @media (max-width: 360px) { ... }
+      mob: { max: "420px" },
+
+      xmob: { max: "360px" },
     },
     extend: {
+      colors: {
+        primary: "#0f172a",
+        logo: "#61dbfb",
+      },
       width: {
         108: "28rem",
         128: "32rem",
@@ -33,6 +33,10 @@ module.exports = {
         164: "44rem",
         176: "48rem",
         180: "52rem",
+      },
+      margin: {
+        13: "52px",
+        15: "60px",
       },
     },
   },
