@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-logo text-white">
+      <header className="fixed top-0 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-logo text-white">
         <nav className="flex flex-row justify-between items-center">
           {/* Project title-logo */}
           <a href="/">
@@ -50,7 +50,7 @@ const Header = () => {
           {/* Hamburgfer Menu Icon */}
           <div
             onClick={handleSidebar}
-            className="hidden lg:block p-4 text-3xl mob:text-2xl items-center cursor-pointer"
+            className="hidden lg:block p-4 -mr-4 text-3xl mob:text-2xl items-center cursor-pointer"
           >
             {sidebarOpen ? <IoMdClose /> : <IoMdMenu />}
           </div>
