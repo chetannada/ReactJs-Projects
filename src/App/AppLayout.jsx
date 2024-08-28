@@ -17,7 +17,7 @@ const AppLayout = () => {
           <Header />
 
           {/* Body Component */}
-          <div className="min-h-[calc(100vh-2.5rem)] mob:min-h-[calc(100vh-2rem)] mx-8 mob:mx-4 ">
+          <div className="min-h-[calc(100vh-2.5rem)] mob:min-h-[calc(100vh-2rem)] mx-8 mob:mx-4 pt-20 pb-4">
             {/* <ReactFetchGetApp /> */}
           </div>
 

@@ -30,18 +30,18 @@ const Header = () => {
           <div className="lg:hidden flex flex-row justify-end items-center text-lg">
             {/* Github Repository Star Count */}
             <iframe
-              className="m-4 -mr-44"
+              className="m-4"
               src="https://ghbtns.com/github-btn.html?user=chetannada&repo=ReactJs-Projects&type=star&count=true&size=large"
-              width="170"
+              width="120"
               height="30"
               title="GitHub"
             ></iframe>
 
             {/* Github Follower Count */}
             <iframe
-              className="m-4 -mr-8"
+              className="m-4 -mr-0.5"
               src="https://ghbtns.com/github-btn.html?user=chetannada&type=follow&count=true&size=large"
-              width="170"
+              width="260"
               height="30"
               title="GitHub"
             ></iframe>
