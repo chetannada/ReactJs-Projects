@@ -42,7 +42,7 @@ const appRouter = createBrowserRouter([
         ), // React HTTP Fetch Get App Project
       },
       {
-        path: "react-fetch-post",
+        path: "/react-fetch-post",
         element: (
           <BodyContentLayer>
             <ReactFetchPostApp />
