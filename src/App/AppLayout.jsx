@@ -1,5 +1,5 @@
+import { store } from "../utils/Redux-Store/store";
 import { Provider } from "react-redux";
-import { store } from "../utils/Redux-Store/Store";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
