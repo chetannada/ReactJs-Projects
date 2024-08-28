@@ -5,7 +5,7 @@ import { projectDetails } from "../utils/constant";
 const Body = () => {
   return (
     <>
-      <div className="h-full flex flex-row justify-start items-stretch gap-6 flex-wrap">
+      <div className="h-full flex flex-row justify-start items-stretch gap-x-10 gap-y-8 flex-wrap">
         {projectDetails.map((item, index) => {
           return (
             <div
