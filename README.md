@@ -2,6 +2,8 @@
 
 Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding React.js Projects` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
 
+- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/)
+
 # 🌻 Projects
 
 This repository contains a `Collection of Cool Coding React.js Projects` with Code and Live URL, which helps you to practice yourself in React.js
@@ -12,20 +14,20 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - index.css - _Global CSS file of Project_
 - Main.jsx - _Root js/jsx file of Project_
 
-## 📚 Project 01 - React HTTP GET Requests for NPM API using Fetch in Different way
-
-- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Get/)
-- [🚀 _Live Project App Link_ 😍](https://ex-01-react-fetch-get.netlify.app/)
-
-## 📚 Project 02 - React HTTP POST Requests for Reqres API using Fetch in Different way
-
-- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Post/)
-- [🚀 _Live Project App Link_ 😍](https://ex-02-react-fetch-post.netlify.app/)
-
-## 📚 Project 03 - React Redux Counter App
+## 📚 Project 01 - React Redux Counter App
 
 - 💻 [_Code for this Project_](./src/Projects/Redux-Counter-App/)
-- [🚀 _Live Project App Link_ 😍](https://ex-03-react-redux-counter-app.netlify.app/)
+- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/redux-counter-app)
+
+## 📚 Project 02 - React HTTP GET Requests for NPM API using Fetch in Different way
+
+- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Get/)
+- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
+
+## 📚 Project 03 - React HTTP POST Requests for Reqres API using Fetch in Different way
+
+- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Post/)
+- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
 
 # 🎻 Prerequisites
 
