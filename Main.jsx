@@ -4,6 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./src/App/AppLayout";
 import Body from "./src/App/Body";
 import Error from "./src/App/Error";
+import ReactFetchGetApp from "./src/Projects/React-Fetch-Get/App";
+import ReactFetchPostApp from "./src/Projects/React-Fetch-Post/App";
+import ReduxCounterApp from "./src/Projects/Redux-Counter-App/App";
+import BodyContentLayer from "./src/App/BodyContentLayer";
 
 // call createBrowserRouter for routing different pages
 const appRouter = createBrowserRouter([
@@ -15,8 +19,35 @@ const appRouter = createBrowserRouter([
       // show children component for routing
       {
         path: "/",
-        element: <Body />,
-        // All Projects are inside Body Component
+        element: (
+          <BodyContentLayer>
+            <Body />
+          </BodyContentLayer>
+        ), // All Projects are inside Body Component
+      },
+      {
+        path: "/redux-counter-app",
+        element: (
+          <BodyContentLayer>
+            <ReduxCounterApp />
+          </BodyContentLayer>
+        ), // Redux Counter App Project
+      },
+      {
+        path: "/react-fetch-get",
+        element: (
+          <BodyContentLayer>
+            <ReactFetchGetApp />
+          </BodyContentLayer>
+        ), // React HTTP Fetch Get App Project
+      },
+      {
+        path: "react-fetch-post",
+        element: (
+          <BodyContentLayer>
+            <ReactFetchPostApp />
+          </BodyContentLayer>
+        ), // React HTTP Fetch Post App Project
       },
     ],
   },
