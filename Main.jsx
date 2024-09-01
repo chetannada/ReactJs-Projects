@@ -4,10 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./src/App/AppLayout";
 import Body from "./src/App/Body";
 import Error from "./src/App/Error";
+import BodyContentLayer from "./src/App/BodyContentLayer";
 import ReactFetchGetApp from "./src/Projects/React-Fetch-Get/App";
 import ReactFetchPostApp from "./src/Projects/React-Fetch-Post/App";
 import ReduxCounterApp from "./src/Projects/Redux-Counter-App/App";
-import BodyContentLayer from "./src/App/BodyContentLayer";
+import ReactGoogleAuth from "./src/Projects/React-Google-Auth/App";
 
 // call createBrowserRouter for routing different pages
 const appRouter = createBrowserRouter([
@@ -48,6 +49,14 @@ const appRouter = createBrowserRouter([
             <ReactFetchPostApp />
           </BodyContentLayer>
         ), // React HTTP Fetch Post App Project
+      },
+      {
+        path: "/react-google-auth",
+        element: (
+          <BodyContentLayer>
+            <ReactGoogleAuth />
+          </BodyContentLayer>
+        ), // React Google Auth Project
       },
     ],
   },
