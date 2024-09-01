@@ -24,4 +24,12 @@ export const projectDetails = [
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-Fetch-Post",
     liveUrl: "/react-fetch-post",
   },
+  {
+    id: 4,
+    title: "React Google Auth Project",
+    description: "Allows to login securely via Google account",
+    codeUrl:
+      "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-Google-Auth",
+    liveUrl: "/react-google-auth",
+  },
 ];
