@@ -63,3 +63,4 @@ coverage/
 .env.development
 .env.production.local
 .env.production
+.env

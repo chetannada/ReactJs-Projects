@@ -13,6 +13,7 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - index.html - _Root index file of Project_
 - index.css - _Global CSS file of Project_
 - Main.jsx - _Root js/jsx file of Project_
+- .env.example - _environment variables for this project to run in development environment (create a new .env file and copy all values from .env.example and fill the actual values)_
 
 ## 📚 Project 01 - React Redux Counter App
 
