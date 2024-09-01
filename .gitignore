@@ -53,7 +53,6 @@ Thumbs.db
 .cache/
 
 # Extra files
-.env
 .DS_Store
 coverage/
 .vscode/
