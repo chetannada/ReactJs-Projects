@@ -30,6 +30,11 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - 💻 [_Code for this Project_](./src/Projects/React-Fetch-Post/)
 - [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
 
+## 📚 Project 04 - React Google Auth App
+
+- 💻 [_Code for this Project_](./src/Projects/React-Google-Auth/)
+- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-google-auth)
+
 # 🎻 Prerequisites
 
 Before getting started with the Practicing Projects, you should have a basic understanding of `HTML, CSS and JavaScript`.
