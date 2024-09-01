@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 
 const GetRequestSetHeaders = () => {
   const [npmReactData, setNpmReactData] = useState("");
-  const API_NPM = import.meta.env.VITE_API_NPM;
 
   // GET request using fetch with set headers
   useEffect(() => {
+    const API_NPM = import.meta.env.VITE_API_NPM;
     async function getData() {
       const reqOptions = {
         method: "GET",
@@ -19,7 +19,7 @@ const GetRequestSetHeaders = () => {
       setNpmReactData(json);
     }
     getData();
-  }, [API_NPM]);
+  }, []);
 
   return (
     <>

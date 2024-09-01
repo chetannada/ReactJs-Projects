@@ -57,3 +57,9 @@ Thumbs.db
 coverage/
 .vscode/
 
+# env development/production local
+.env.development.local
+.env.local
+.env.development
+.env.production.local
+.env.production

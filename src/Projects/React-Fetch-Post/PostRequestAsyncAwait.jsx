@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 const PostRequestAsyncAwait = () => {
   const [reqresData, setReqresData] = useState("");
-  const API_REQRES = import.meta.env.VITE_API_REQRES;
 
   // POST request using fetch with async/await
   useEffect(() => {
+    const API_REQRES = import.meta.env.VITE_API_REQRES;
     const reqOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -17,7 +17,7 @@ const PostRequestAsyncAwait = () => {
         .then((json) => setReqresData(json));
     }
     postData();
-  }, [API_REQRES]);
+  }, []);
 
   return (
     <>

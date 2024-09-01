@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 
 const GetRequestAsyncAwait = () => {
   const [npmReactData, setNpmReactData] = useState("");
-  const API_NPM = import.meta.env.VITE_API_NPM;
 
   // GET request using fetch with async/await
   useEffect(() => {
+    const API_NPM = import.meta.env.VITE_API_NPM;
     async function getData() {
       await fetch(API_NPM)
         .then((response) => response.json())
         .then((json) => setNpmReactData(json));
     }
     getData();
-  }, [API_NPM]);
+  }, []);
 
   return (
     <>

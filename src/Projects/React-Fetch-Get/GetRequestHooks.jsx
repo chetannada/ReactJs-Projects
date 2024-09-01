@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 const GetRequestHooks = () => {
   const [npmReactData, setNpmReactData] = useState("");
-  const API_NPM = import.meta.env.VITE_API_NPM;
 
   // Simple GET request using fetch
   useEffect(() => {
+    const API_NPM = import.meta.env.VITE_API_NPM;
     fetch(API_NPM)
       .then((response) => response.json())
       .then((data) => setNpmReactData(data));
-  }, [API_NPM]);
+  }, []);
 
   return (
     <>
