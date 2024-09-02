@@ -10,7 +10,7 @@ const Body = () => {
           return (
             <div
               key={index.toString() + 1}
-              className="max-w-sm py-4 px-6 flex flex-col justify-between items-start bg-white hover:bg-sky-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              className="max-w-sm py-4 px-6 flex flex-col justify-between items-start bg-white hover:shadow-2xl border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
                 {item.title}

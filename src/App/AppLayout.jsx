@@ -1,4 +1,4 @@
-import { store } from "../utils/Redux-Store/store";
+import { store } from "../Redux-Store/store";
 import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";

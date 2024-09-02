@@ -19,12 +19,12 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-logo text-white">
+      <header className="fixed top-0 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
         <nav className="flex flex-row justify-between items-center">
           {/* Project title-logo */}
           <a href="/">
             <h1 className="text-3xl mob:text-xl font-semibold">
-              <span className="text-logo">React.js</span> Projects
+              <span className="text-secondary">React.js</span> Projects
             </h1>
           </a>
           <div className="lg:hidden flex flex-row justify-end items-center text-lg">

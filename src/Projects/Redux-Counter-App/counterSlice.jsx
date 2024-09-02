@@ -22,7 +22,6 @@ export const counterSlice = createSlice({
 });
 
 export const {
-  showdata,
   increment,
   decrement,
   incrementByValue,

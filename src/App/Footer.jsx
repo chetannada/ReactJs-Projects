@@ -23,7 +23,7 @@ const Footer = () => {
           target="_blank"
           title="ReactJs Projects Github Repository"
         >
-          <span className="text-logo font-bold mr-2">React.js</span>Projects
+          <span className="text-cyan-800 font-bold mr-2">React.js</span>Projects
         </a>
       </footer>
     </>

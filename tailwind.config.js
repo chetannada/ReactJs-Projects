@@ -23,7 +23,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#0f172a",
-        logo: "#61dbfb",
+        secondary: "#61dbfb",
       },
       width: {
         108: "28rem",
