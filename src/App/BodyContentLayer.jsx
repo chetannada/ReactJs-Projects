@@ -13,7 +13,7 @@ const BodyContentLayer = ({ children }) => {
             <div className="flex justify-start items-center -mt-4 pb-4 mob:pb-4">
               <Link
                 to={"/"}
-                className="flex flex-row gap-1 justify-center items-center p-1 hover:text-cyan-800"
+                className="flex flex-row gap-1 justify-center items-center p-1 text-red-800 hover:text-sky-800 hover:font-medium"
               >
                 <FaAnglesLeft /> Go Back
               </Link>

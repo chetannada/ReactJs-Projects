@@ -14,7 +14,7 @@ const GetRequestSetHeaders = () => {
         },
         mode: "cors",
       };
-      const response = await fetch(API_NPM, reqOptions);
+      const response = await fetch(API_NPM + "react", reqOptions);
       const json = await response.json();
       setNpmReactData(json);
     }
@@ -24,11 +24,12 @@ const GetRequestSetHeaders = () => {
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-center text-center">
-        <h1 className="h-auto w-128 sm:w-72 mob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl">
+        <h1 className="h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl font-medium">
           GET request using Fetch with Set Headers
         </h1>
-        <h2 className="max-sm h-auto w-128 sm:w-72 mob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
-          Total React Packages in NPM: {npmReactData?.total}
+        <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
+          Total React Packages in NPM:
+          <span className="text-red-800">{npmReactData?.total}</span>
         </h2>
       </div>
     </>
