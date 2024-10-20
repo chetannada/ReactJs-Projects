@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { FaAnglesLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const BodyContentLayer = ({ children }) => {
+const BodyLayout = ({ children }) => {
   const location = useLocation();
 
   return (
@@ -27,4 +27,4 @@ const BodyContentLayer = ({ children }) => {
   );
 };
 
-export default BodyContentLayer;
+export default BodyLayout;

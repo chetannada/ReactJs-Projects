@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const AppLayout = () => {
+const App = () => {
   return (
     <>
       {/* Provide store for managing state */}
@@ -24,4 +24,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default App;
