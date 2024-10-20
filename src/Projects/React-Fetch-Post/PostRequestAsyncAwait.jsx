@@ -12,7 +12,7 @@ const PostRequestAsyncAwait = () => {
       body: JSON.stringify({ first_name: "Chetan", last_name: "Nada" }),
     };
     async function postData() {
-      await fetch(API_REQRES, reqOptions)
+      await fetch(API_REQRES + "api/users", reqOptions)
         .then((response) => response.json())
         .then((json) => setReqresData(json));
     }
@@ -22,11 +22,11 @@ const PostRequestAsyncAwait = () => {
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-center text-center">
-        <h1 className="h-auto w-128 sm:w-72 mob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl">
+        <h1 className="h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl font-medium">
           Post request using Fetch async/await
         </h1>
-        <h2 className="max-sm h-auto w-128 sm:w-72 mob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
-          UserId: {reqresData?.id}
+        <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
+          UserId: <span className="text-red-800">{reqresData?.id}</span>
         </h2>
       </div>
     </>
