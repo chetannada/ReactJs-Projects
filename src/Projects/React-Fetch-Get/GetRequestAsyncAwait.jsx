@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-const GetRequestAsyncAwait = () => {
+const GetRequestAsyncAwait = (props) => {
+  const { searchdPackageName } = props;
+
   const [npmReactData, setNpmReactData] = useState("");
 
   // GET request using fetch with async/await
@@ -8,12 +10,13 @@ const GetRequestAsyncAwait = () => {
     const API_NPM = import.meta.env.VITE_API_NPM;
 
     async function getData() {
-      await fetch(API_NPM + "v2/search?q=react")
+      await fetch(API_NPM + `v2/search?q=${searchdPackageName}`)
         .then((response) => response.json())
         .then((json) => setNpmReactData(json));
     }
+
     getData();
-  }, []);
+  }, [searchdPackageName]);
 
   return (
     <>
@@ -22,7 +25,7 @@ const GetRequestAsyncAwait = () => {
           Get request using Fetch async/await
         </h1>
         <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
-          Total React Packages in NPM:
+          Total {searchdPackageName} Packages in NPM:
           <span className="text-red-800">{npmReactData?.total}</span>
         </h2>
       </div>

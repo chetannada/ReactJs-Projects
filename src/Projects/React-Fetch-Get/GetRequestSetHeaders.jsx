@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-const GetRequestSetHeaders = () => {
+const GetRequestSetHeaders = (props) => {
+  const { searchdPackageName } = props;
+
   const [npmReactData, setNpmReactData] = useState("");
 
   // GET request using fetch with set headers
@@ -15,12 +17,16 @@ const GetRequestSetHeaders = () => {
         },
         mode: "cors",
       };
-      const response = await fetch(API_NPM + "v2/search?q=react", reqOptions);
+      const response = await fetch(
+        API_NPM + `v2/search?q=${searchdPackageName}`,
+        reqOptions
+      );
       const json = await response.json();
       setNpmReactData(json);
     }
+
     getData();
-  }, []);
+  }, [searchdPackageName]);
 
   return (
     <>
@@ -29,7 +35,7 @@ const GetRequestSetHeaders = () => {
           GET request using Fetch with Set Headers
         </h1>
         <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl">
-          Total React Packages in NPM:
+          Total {searchdPackageName} Packages in NPM:
           <span className="text-red-800">{npmReactData?.total}</span>
         </h2>
       </div>
