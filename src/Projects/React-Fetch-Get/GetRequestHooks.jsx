@@ -6,7 +6,8 @@ const GetRequestHooks = () => {
   // Simple GET request using fetch
   useEffect(() => {
     const API_NPM = import.meta.env.VITE_API_NPM;
-    fetch(API_NPM + "react")
+
+    fetch(API_NPM + "v2/search?q=react")
       .then((response) => response.json())
       .then((data) => setNpmReactData(data));
   }, []);

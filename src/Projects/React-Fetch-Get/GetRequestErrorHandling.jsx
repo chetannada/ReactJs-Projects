@@ -6,9 +6,11 @@ const GetRequestErrorHandlingWithTryCatch = () => {
 
   // GET request using fetch with Error Handling using async/await and try/catch block
   useEffect(() => {
+    const API_NPM = import.meta.env.VITE_API_NPM;
+
     async function getData() {
       try {
-        const response = await fetch("https://api.npms.io/v2/invalid_url");
+        const response = await fetch(API_NPM + "v2/invalid_url");
         const json = await response.json();
         if (!response.ok) {
           const error = `${response.status} - ` + json.message;
@@ -27,7 +29,7 @@ const GetRequestErrorHandlingWithTryCatch = () => {
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-center text-center">
-      <h1 className="h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl font-medium">
+        <h1 className="h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 bg-slate-200 border-4 rounded-xl mt-3 text-2xl font-medium">
           Get request using Fetch with Error Handling using async/await and
           try/catch block
         </h1>

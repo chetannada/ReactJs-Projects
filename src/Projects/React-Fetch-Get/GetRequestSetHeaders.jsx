@@ -6,6 +6,7 @@ const GetRequestSetHeaders = () => {
   // GET request using fetch with set headers
   useEffect(() => {
     const API_NPM = import.meta.env.VITE_API_NPM;
+
     async function getData() {
       const reqOptions = {
         method: "GET",
@@ -14,7 +15,7 @@ const GetRequestSetHeaders = () => {
         },
         mode: "cors",
       };
-      const response = await fetch(API_NPM + "react", reqOptions);
+      const response = await fetch(API_NPM + "v2/search?q=react", reqOptions);
       const json = await response.json();
       setNpmReactData(json);
     }

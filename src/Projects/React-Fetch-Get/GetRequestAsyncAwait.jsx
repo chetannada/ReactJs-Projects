@@ -6,8 +6,9 @@ const GetRequestAsyncAwait = () => {
   // GET request using fetch with async/await
   useEffect(() => {
     const API_NPM = import.meta.env.VITE_API_NPM;
+
     async function getData() {
-      await fetch(API_NPM + "react")
+      await fetch(API_NPM + "v2/search?q=react")
         .then((response) => response.json())
         .then((json) => setNpmReactData(json));
     }
