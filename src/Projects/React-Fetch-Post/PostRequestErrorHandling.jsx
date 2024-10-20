@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-const PostRequestErrorHandlingWithTryCatch = () => {
+const PostRequestErrorHandlingWithTryCatch = (props) => {
+  const { searchedUserName } = props;
+
   const [reqresData, setReqresData] = useState("");
   const [errorData, setErrorData] = useState("");
 
@@ -10,8 +12,9 @@ const PostRequestErrorHandlingWithTryCatch = () => {
     const reqOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ first_name: "Chetan", last_name: "Nada" }),
+      body: JSON.stringify({ name: searchedUserName }),
     };
+
     async function postData() {
       try {
         const response = await fetch(API_REQRES + "invalid_url", reqOptions);
@@ -28,6 +31,7 @@ const PostRequestErrorHandlingWithTryCatch = () => {
         console.error(error);
       }
     }
+
     postData();
   }, []);
 
@@ -39,7 +43,7 @@ const PostRequestErrorHandlingWithTryCatch = () => {
           try/catch block
         </h1>
         <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl text-red-600">
-          {reqresData && `UserId: ${reqresData?.id}`}
+          {reqresData && `UserId for ${searchedUserName}: ${reqresData?.id}`}
           {errorData}
         </h2>
       </div>
