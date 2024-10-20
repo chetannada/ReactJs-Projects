@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const GetRequestErrorHandlingWithTryCatch = (props) => {
-  const { searchdPackageName } = props;
+  const { searchedPackageName } = props;
 
   const [npmReactData, setNpmReactData] = useState("");
   const [errorData, setErrorData] = useState("");
@@ -38,7 +38,7 @@ const GetRequestErrorHandlingWithTryCatch = (props) => {
         </h1>
         <h2 className="flex flex-row justify-center flex-wrap gap-2 max-sm h-auto w-164 md:w-128 sm:w-96 xsm:w-72 mob:w-60 xmob:w-56 p-4 border-4 text-2xl bg-slate-50 rounded-xl text-red-600">
           {npmReactData &&
-            `Total ${searchdPackageName} Packages in NPM: ${npmReactData?.total}`}
+            `Total ${searchedPackageName} Packages in NPM: ${npmReactData?.total}`}
           {errorData}
         </h2>
       </div>

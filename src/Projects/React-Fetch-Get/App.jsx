@@ -6,11 +6,11 @@ import GetRequestHooks from "./GetRequestHooks";
 
 const ReactFetchGetApp = () => {
   const [packageName, setPackageName] = useState("React");
-  const [searchdPackageName, setsearchdPackageName] = useState("React");
+  const [searchedPackageName, setSearchedPackageName] = useState("React");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setsearchdPackageName(packageName);
+    setSearchedPackageName(packageName);
   };
 
   const handleChange = (event) => {
@@ -51,12 +51,12 @@ const ReactFetchGetApp = () => {
       </form>
 
       <div className="my-5 space-y-5">
-        <GetRequestHooks searchdPackageName={searchdPackageName} />
-        <GetRequestAsyncAwait searchdPackageName={searchdPackageName} />
+        <GetRequestHooks searchedPackageName={searchedPackageName} />
+        <GetRequestAsyncAwait searchedPackageName={searchedPackageName} />
         <GetRequestErrorHandlingWithTryCatch
-          searchdPackageName={searchdPackageName}
+          searchedPackageName={searchedPackageName}
         />
-        <GetRequestSetHeaders searchdPackageName={searchdPackageName} />
+        <GetRequestSetHeaders searchedPackageName={searchedPackageName} />
       </div>
     </>
   );
