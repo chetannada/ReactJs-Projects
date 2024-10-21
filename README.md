@@ -17,6 +17,7 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 
 ## 📚 Project 01 - React Redux Counter App
 
+- 👨‍💻 [_Coding Challenge_](./src/Projects/Redux-Counter-App/CodingChallenge.md)
 - 💻 [_Code for this Project_](./src/Projects/Redux-Counter-App/)
 - [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/redux-counter-app)
 
