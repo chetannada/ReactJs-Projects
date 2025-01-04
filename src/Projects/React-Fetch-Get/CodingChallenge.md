@@ -1,7 +1,7 @@
 ## 📚 React HTTP GET Requests for NPM API Using Fetch (Unique Approach)
 
-- 💻 [_Code for this Project_](/src/Projects/React-Fetch-Get/)
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
+- 💻 [_Source Code_](/src/Projects/React-Fetch-Get/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
 
 ### 📋 Coding Challenge: React HTTP GET Requests with Fetch Method
 
