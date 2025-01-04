@@ -9,7 +9,7 @@
 
 #### 🛠️ Task Overview:
 
-Develop a React application that features a search interface to fetch and display NPM Package API data using the Fetch API in an innovative way. This project emphasizes component-based architecture, responsive design, and adherence to frontend development best practices.
+Develop a React application that features a search interface to fetch and display NPM Package data using the NPM API in different way. This project emphasizes component-based architecture, responsive design, and adherence to frontend development best practices.
 
 #### 📌 Requirements:
 
