@@ -33,7 +33,7 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - 💻 [_Source Code_](./src/Projects/React-Fetch-Post/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
 
-## 📚 Project 04 - React Google Auth App
+## 📚 Project 04 - React Google Authentication App
 
 - 👨‍💻 [_Coding Challenge_](./src/Projects/React-Google-Auth/CodingChallenge.md)
 - 💻 [_Source Code_](./src/Projects/React-Google-Auth/)
@@ -70,7 +70,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
 This application should now be running on `localhost`. If you want to Fork repository and want to run locally, follow this guidelines [Fork and Clone Github Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
