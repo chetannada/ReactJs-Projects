@@ -1,8 +1,8 @@
 # ❤️ React.js Projects 🚀
 
-Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding React.js Projects` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
+Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding Projects using React.js` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
 
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/)
+- [🚀 _Live Project Demo_ 😍](https://reactjs-projects-app.netlify.app/)
 
 # 🌻 Projects
 
@@ -18,23 +18,26 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 ## 📚 Project 01 - React Redux Counter App
 
 - 👨‍💻 [_Coding Challenge_](./src/Projects/Redux-Counter-App/CodingChallenge.md)
-- 💻 [_Code for this Project_](./src/Projects/Redux-Counter-App/)
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/redux-counter-app)
+- 💻 [_Source Code_](./src/Projects/Redux-Counter-App/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/redux-counter-app)
 
 ## 📚 Project 02 - React HTTP GET Requests for NPM API using Fetch in Different way
 
-- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Get/)
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Fetch-Get/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/React-Fetch-Get/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
 
 ## 📚 Project 03 - React HTTP POST Requests for Reqres API using Fetch in Different way
 
-- 💻 [_Code for this Project_](./src/Projects/React-Fetch-Post/)
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Fetch-Post/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/React-Fetch-Post/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
 
 ## 📚 Project 04 - React Google Auth App
 
-- 💻 [_Code for this Project_](./src/Projects/React-Google-Auth/)
-- [🚀 _Live Project App Link_ 😍](https://reactjs-projects-app.netlify.app/react-google-auth)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Google-Auth/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/React-Google-Auth/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-google-auth)
 
 # 🎻 Prerequisites
 
