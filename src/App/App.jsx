@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
 
           {/* Footer Component */}
           <Footer />
+
+          {/* Manage all Toast notifications */}
+          <Toaster position="top-right" />
         </div>
       </Provider>
     </>
