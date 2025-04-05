@@ -4,12 +4,7 @@ import toast from "react-hot-toast";
 
 const ReactGoogleAuth = () => {
   const currentTime = new Date().getTime();
-  const storedDetails = JSON.parse(localStorage.getItem("userDetails")) ?? {
-    displayName: "",
-    email: "",
-    photoURL: "",
-    expirationTime: currentTime,
-  };
+  const storedDetails = JSON.parse(localStorage.getItem("userDetails")) ?? {};
 
   const [userDetails, setUserDetails] = useState(storedDetails);
 
@@ -44,11 +39,11 @@ const ReactGoogleAuth = () => {
           their identity through their Google account, ensuring both ease of
           access and enhanced security.
         </h3>
-        {userDetails.expirationTime - currentTime > 0 ? (
+        {userDetails?.expirationTime - currentTime > 0 ? (
           <div className="flex sm:flex-col justify-center items-center flex-row gap-8">
-            <img className="w-20 rounded-full" src={userDetails.photoURL} />
+            <img className="w-20 rounded-full" src={userDetails?.photoURL} />
             <h1 className="text-blue-950 font-bold">
-              Welcome {userDetails.displayName} !!
+              Welcome {userDetails?.displayName} !!
             </h1>
             <button
               className="flex flex-row gap-1 justify-center items-center text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-1"
