@@ -8,7 +8,6 @@ import ReactFetchGetApp from "./src/Projects/React-Fetch-Get/App";
 import ReactFetchPostApp from "./src/Projects/React-Fetch-Post/App";
 import ReduxCounterApp from "./src/Projects/Redux-Counter-App/App";
 import ReactGoogleAuth from "./src/Projects/React-Google-Auth/App";
-import ReactToDoApp from "./src/Projects/React-ToDo-App/App";
 
 // call createBrowserRouter for routing different pages
 const appRouter = createBrowserRouter([
@@ -57,14 +56,6 @@ const appRouter = createBrowserRouter([
             <ReactGoogleAuth />
           </BodyLayout>
         ), // React Google Auth Project
-      },
-      {
-        path: "/react-todo-app",
-        element: (
-          <BodyLayout>
-            <ReactToDoApp />
-          </BodyLayout>
-        ), // React ToDo Project
       },
     ],
   },
