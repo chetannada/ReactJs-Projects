@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
+      <header className="fixed top-0 z-50 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
         <nav className="flex flex-row justify-between items-center">
           {/* Project title-logo */}
           <a href="/">
