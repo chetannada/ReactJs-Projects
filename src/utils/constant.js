@@ -35,13 +35,4 @@ export const projectDetails = [
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-Google-Auth",
     liveUrl: "/react-google-auth",
   },
-  {
-    id: 5,
-    title: "React To-Do App",
-    description:
-      "A sleek and intuitive React based to-do app that helps users efficiently organize tasks, prioritize activities, and stay productive.",
-    codeUrl:
-      "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-ToDo-App",
-    liveUrl: "/react-todo-app",
-  },
 ];
