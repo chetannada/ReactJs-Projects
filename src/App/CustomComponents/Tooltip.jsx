@@ -5,10 +5,10 @@ const CustomTooltip = (props) => {
     <div className="relative flex items-center group">
       {children}
       <div
-        className={`absolute bottom-full ${className} transform -translate-x-1/2 mb-2 hidden group-hover:block z-10`}
+        className={`absolute bottom-full ${className} transform -translate-x-1/2 mb-3 hidden group-hover:block z-10`}
       >
         {/* Tooltip container */}
-        <div className="bg-gray-800 text-white text-xs rounded py-2 px-3 relative max-w-sm break-words shadow-lg">
+        <div className="bg-gray-800 text-white text-xs rounded py-2 px-3 relative max-w-sm break-words">
           {text}
           {/* Arrow pointer */}
           <div
