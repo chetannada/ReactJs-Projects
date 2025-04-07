@@ -1,9 +1,15 @@
 import { FaCheckCircle, FaRegCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import CustomTooltip from "../../App/CustomComponents/Tooltip";
+import { TbEdit } from "react-icons/tb";
 
 const ListItem = (props) => {
-  const { todoList, setTodoList } = props;
+  const { todoList, setTodoList, setAddTask } = props;
+
+  // Function to edit task
+  const handleEdit = (list) => {
+    setAddTask(list);
+  };
 
   // Function to delete task
   const handleDelete = (listId) => {
@@ -33,8 +39,8 @@ const ListItem = (props) => {
               <CustomTooltip
                 text={`${
                   list?.isCompleted
-                    ? `${list?.item} - Task completed!`
-                    : `${list?.item} - Task not completed!`
+                    ? `${list?.todoValue} - Task completed!`
+                    : `${list?.todoValue} - Task not completed!`
                 }`}
               >
                 <div
@@ -54,19 +60,29 @@ const ListItem = (props) => {
                       list?.isCompleted ? "line-through" : "no-underline"
                     }`}
                   >
-                    {list?.item}
+                    {list?.todoValue}
                   </span>
                 </div>
               </CustomTooltip>
 
-              <CustomTooltip text="Delete task!">
-                <div
-                  className="h-5 w-5 cursor-pointer text-gray-500 hover:text-red-600"
-                  onClick={() => handleDelete(list?.id)}
-                >
-                  <RiDeleteBin6Line size={20} />
-                </div>
-              </CustomTooltip>
+              <div className="flex flex-row gap-3">
+                <CustomTooltip text="Edit task!">
+                  <div
+                    className="h-5 w-5 cursor-pointer text-blue-900 hover:text-blue-950"
+                    onClick={() => handleEdit(list)}
+                  >
+                    <TbEdit size={20} />
+                  </div>
+                </CustomTooltip>
+                <CustomTooltip text="Delete task!">
+                  <div
+                    className="h-5 w-5 cursor-pointer text-gray-500 hover:text-red-600"
+                    onClick={() => handleDelete(list?.id)}
+                  >
+                    <RiDeleteBin6Line size={20} />
+                  </div>
+                </CustomTooltip>
+              </div>
             </div>
           );
         })}

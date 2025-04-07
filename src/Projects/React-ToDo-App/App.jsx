@@ -3,23 +3,42 @@ import { RiCalendarTodoLine } from "react-icons/ri";
 import ListItem from "./ListItem";
 
 const ReactToDoApp = () => {
-  const [addTask, setAddTask] = useState("");
+  // initial value for addTask
+  const initialValue = {
+    id: null,
+    todoValue: "",
+    isCompleted: false,
+  };
+
+  const [addTask, setAddTask] = useState(initialValue);
   const [todoList, setTodoList] = useState([]);
 
   // Function to handle the input onChange
   const handleChange = (event) => {
-    setAddTask(event.target.value);
+    const { name, value } = event.target;
+    setAddTask({ ...addTask, [name]: value });
   };
 
   // Function to handle the task list
   const handleAddTask = (event) => {
     event.preventDefault();
-    if (addTask) {
+    if (addTask?.id) {
+      let updatedList = todoList.map((element) =>
+        element.id === addTask?.id ? addTask : element
+      );
+
+      setTodoList(updatedList);
+      setAddTask(initialValue);
+    } else if (addTask?.todoValue) {
       setTodoList((prev) => [
         ...prev,
-        { id: prev.length + 1, item: addTask, isCompleted: false },
+        {
+          id: prev.length + 1,
+          todoValue: addTask?.todoValue,
+          isCompleted: false,
+        },
       ]);
-      setAddTask("");
+      setAddTask(initialValue);
     }
   };
 
@@ -41,10 +60,11 @@ const ReactToDoApp = () => {
 
           <form className="w-full mx-auto relative">
             <input
-              id="todoSearch"
+              id="todoValue"
+              name="todoValue"
               type="text"
               className="block w-full p-4 ps-4 pe-24 text-sm text-black border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value={addTask}
+              value={addTask?.todoValue}
               onChange={(event) => handleChange(event)}
               onKeyDown={(event) => handleKeyPress(event)}
               placeholder="Add your task..."
@@ -56,13 +76,17 @@ const ReactToDoApp = () => {
               className={`text-white absolute end-2.5 bottom-2.5 focus:outline-none font-semibold rounded-lg text-sm px-4 py-2 bg-green-600 hover:bg-green-700 `}
               onClick={(event) => handleAddTask(event)}
             >
-              ADD +
+              {addTask?.id ? "UPDATE +" : "ADD +"}
             </button>
           </form>
 
           {/* List Item Component */}
           {todoList.length > 0 && (
-            <ListItem todoList={todoList} setTodoList={setTodoList} />
+            <ListItem
+              todoList={todoList}
+              setTodoList={setTodoList}
+              setAddTask={setAddTask}
+            />
           )}
         </div>
       </div>
