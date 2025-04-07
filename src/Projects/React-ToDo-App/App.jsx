@@ -12,28 +12,34 @@ const ReactToDoApp = () => {
   };
 
   // Function to handle the task list
-  const handleAddTask = () => {
-    setTodoList((prev) => [...prev, { id: prev.length + 1, item: addTask }]);
-    setAddTask("");
+  const handleAddTask = (event) => {
+    event.preventDefault();
+    if (addTask) {
+      setTodoList((prev) => [
+        ...prev,
+        { id: prev.length + 1, item: addTask, isCompleted: false },
+      ]);
+      setAddTask("");
+    }
   };
 
   // Function to handle the keypress
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleAddTask();
+      handleAddTask(event);
     }
   };
 
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className="w-152 min-h-96 flex flex-col justify-start items-start p-6 space-y-6 rounded-xl overflow-hidden border border-gray-200 shadow bg-amber-100">
+        <div className="w-128 min-h-96 flex flex-col justify-start items-start px-8 py-6 space-y-6 rounded-xl overflow-hidden border border-gray-200 shadow bg-orange-200">
           <div className="flex gap-3 justify-center items-center text-3xl font-medium">
             <RiCalendarTodoLine />
             <h1>To-Do List</h1>
           </div>
 
-          <div className="w-full mx-auto relative">
+          <form className="w-full mx-auto relative">
             <input
               id="todoSearch"
               type="text"
@@ -42,24 +48,22 @@ const ReactToDoApp = () => {
               onChange={(event) => handleChange(event)}
               onKeyDown={(event) => handleKeyPress(event)}
               placeholder="Add your task..."
-              required
+              autoComplete="off"
             />
+
             <button
-              type="button"
-              className={`text-white absolute end-2.5 bottom-2.5  focus:outline-none font-semibold rounded-lg text-sm px-4 py-2 ${
-                addTask
-                  ? "bg-orange-600 hover:bg-orange-700"
-                  : "bg-slate-400 cursor-not-allowed"
-              }`}
-              onClick={() => handleAddTask()}
-              disabled={!addTask}
+              type="submit"
+              className={`text-white absolute end-2.5 bottom-2.5 focus:outline-none font-semibold rounded-lg text-sm px-4 py-2 bg-green-600 hover:bg-green-700 `}
+              onClick={(event) => handleAddTask(event)}
             >
               ADD +
             </button>
-          </div>
+          </form>
 
           {/* List Item Component */}
-          {todoList.length > 0 && <ListItem todoList={todoList} />}
+          {todoList.length > 0 && (
+            <ListItem todoList={todoList} setTodoList={setTodoList} />
+          )}
         </div>
       </div>
     </>
