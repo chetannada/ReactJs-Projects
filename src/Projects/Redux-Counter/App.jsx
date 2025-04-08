@@ -1,6 +1,6 @@
 import Counter from "./Counter";
 
-const ReduxCounterApp = () => {
+const ReduxCounter = () => {
   return (
     <>
       <div className="flex justify-center items-center">
@@ -10,4 +10,4 @@ const ReduxCounterApp = () => {
   );
 };
 
-export default ReduxCounterApp;
+export default ReduxCounter;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RiCalendarTodoLine } from "react-icons/ri";
 import ListItem from "./ListItem";
 
-const ReactToDoApp = () => {
+const ToDoList = () => {
   // initial value for addTask
   const initialValue = {
     id: null,
@@ -94,4 +94,4 @@ const ReactToDoApp = () => {
   );
 };
 
-export default ReactToDoApp;
+export default ToDoList;

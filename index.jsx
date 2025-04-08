@@ -4,11 +4,11 @@ import App from "./src/App/App";
 import Body from "./src/App/Body";
 import Error from "./src/App/Error";
 import BodyLayout from "./src/App/BodyLayout";
-import ReactFetchGetApp from "./src/Projects/React-Fetch-Get/App";
-import ReactFetchPostApp from "./src/Projects/React-Fetch-Post/App";
-import ReduxCounterApp from "./src/Projects/Redux-Counter-App/App";
-import ReactGoogleAuth from "./src/Projects/React-Google-Auth/App";
-import ReactToDoApp from "./src/Projects/React-ToDo-App/App";
+import ToDoList from "./src/Projects/ToDo-List/App";
+import ReduxCounter from "./src/Projects/Redux-Counter/App";
+import GoogleAuth from "./src/Projects/Google-Auth/App";
+import HttpGetRequest from "./src/Projects/Http-Get-Request/App";
+import HttpPostRequest from "./src/Projects/Http-Post-Request/App";
 
 // call createBrowserRouter for routing different pages
 const appRouter = createBrowserRouter([
@@ -27,44 +27,44 @@ const appRouter = createBrowserRouter([
         ), // All Projects are inside Body Component
       },
       {
-        path: "/redux-counter-app",
+        path: "/todo-list",
         element: (
           <BodyLayout>
-            <ReduxCounterApp />
+            <ToDoList />
           </BodyLayout>
-        ), // Redux Counter App Project
+        ), // To-Do List Project
       },
       {
-        path: "/react-fetch-get",
+        path: "/redux-counter",
         element: (
           <BodyLayout>
-            <ReactFetchGetApp />
+            <ReduxCounter />
           </BodyLayout>
-        ), // React HTTP Fetch Get App Project
+        ), // Redux Counter Project
       },
       {
-        path: "/react-fetch-post",
+        path: "/google-auth",
         element: (
           <BodyLayout>
-            <ReactFetchPostApp />
+            <GoogleAuth />
           </BodyLayout>
-        ), // React HTTP Fetch Post App Project
+        ), // Google Auth Project
       },
       {
-        path: "/react-google-auth",
+        path: "/http-get-request",
         element: (
           <BodyLayout>
-            <ReactGoogleAuth />
+            <HttpGetRequest />
           </BodyLayout>
-        ), // React Google Auth Project
+        ), // HTTP Get Request Project
       },
       {
-        path: "/react-todo-app",
+        path: "/http-post-request",
         element: (
           <BodyLayout>
-            <ReactToDoApp />
+            <HttpPostRequest />
           </BodyLayout>
-        ), // React ToDo Project
+        ), // HTTP Post Request Project
       },
     ],
   },

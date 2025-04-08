@@ -4,7 +4,7 @@ import PostRequestAsyncAwait from "./PostRequestAsyncAwait";
 import PostRequestErrorHandlingWithTryCatch from "./PostRequestErrorHandling";
 import PostRequestSetHeaders from "./PostRequestSetHeaders";
 
-const ReactFetchPostApp = () => {
+const HttpPostRequest = () => {
   const [userName, setUserName] = useState("Chetan");
   const [searchedUserName, setSearchedUserName] = useState("Chetan");
 
@@ -62,4 +62,4 @@ const ReactFetchPostApp = () => {
   );
 };
 
-export default ReactFetchPostApp;
+export default HttpPostRequest;
