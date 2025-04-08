@@ -15,29 +15,35 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - index.jsx - _Root js/jsx file of Project_
 - .env - _environment variables for this project to run in development environment (fill the actual values for environment variable that are empty)_
 
-## 📚 Project 01 - React Redux Counter App
+## 📚 Project 01 - To-Do List App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/Redux-Counter-App/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/Redux-Counter-App/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/redux-counter-app)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/ToDo-List/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/ToDo-List/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/todo-list)
 
-## 📚 Project 02 - React HTTP GET Requests for NPM API using Fetch in Different way
+## 📚 Project 02 - Redux Counter App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Fetch-Get/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/React-Fetch-Get/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-get)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/Redux-Counter/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/Redux-Counter/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/redux-counter)
 
-## 📚 Project 03 - React HTTP POST Requests for Reqres API using Fetch in Different way
+## 📚 Project 03 - Google Authentication App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Fetch-Post/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/React-Fetch-Post/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/Google-Auth/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/Google-Auth/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/google-auth)
 
-## 📚 Project 04 - React Google Authentication App
+## 📚 Project 04 - HTTP GET Request App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Google-Auth/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/React-Google-Auth/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-google-auth)
+- 👨‍💻 [_Coding Challenge_](./src/Projects/Http-Get-Request/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/Http-Get-Request/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-get-request)
+
+## 📚 Project 05 - HTTP POST Request App
+
+- 👨‍💻 [_Coding Challenge_](./src/Projects/Http-Post-Request/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/Http-Post-Request/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-post-request)
 
 # 🎻 Prerequisites
 

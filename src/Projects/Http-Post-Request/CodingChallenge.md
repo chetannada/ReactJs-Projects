@@ -1,7 +1,7 @@
-## 📚 React HTTP POST Requests for Reqres API Using Fetch (Unique Approach)
+## 📚 HTTP POST Request App
 
-- 💻 [_Source Code_](/src/Projects/React-Fetch-Post/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-fetch-post)
+- 💻 [_Source Code_](/src/Projects/Http-Post-Request/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-post-request)
 
 ### 📋 Coding Challenge: React HTTP POST Requests with Fetch Method
 
