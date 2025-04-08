@@ -1,83 +1,84 @@
 import { FaCheckCircle, FaRegCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import CustomTooltip from "../../App/CustomComponents/Tooltip";
 import { TbEdit } from "react-icons/tb";
+import CustomTooltip from "../../App/components/Tooltip";
+import toast from "react-hot-toast";
 
 const ListItem = (props) => {
   const { todoList, setTodoList, setAddTask } = props;
 
   // Function to edit task
-  const handleEdit = (list) => {
-    setAddTask(list);
+  const handleEdit = (taskList) => {
+    setAddTask(taskList);
   };
 
   // Function to delete task
-  const handleDelete = (listId) => {
-    let filterdTodoList = todoList.filter((ele) => ele.id !== listId);
+  const handleDelete = (taskId) => {
+    let filterdTodoList = todoList.filter((ele) => ele.id !== taskId);
 
     setTodoList(filterdTodoList);
   };
 
   // Function to handle completed task
-  const handleComplete = (listId) => {
+  const handleComplete = (taskId, taskValue, taskCompleted) => {
     let completedTodoList = todoList.map((ele) =>
-      ele.id === listId ? { ...ele, isCompleted: !ele?.isCompleted } : ele
+      ele.id === taskId ? { ...ele, isCompleted: !ele?.isCompleted } : ele
     );
 
     setTodoList(completedTodoList);
+
+    toast.success(
+      taskCompleted
+        ? `${taskValue} - Task not completed`
+        : `${taskValue} - Task completed`
+    );
   };
 
   return (
     <>
       <div className="w-full space-y-4 ">
-        {todoList.map((list, index) => {
+        {todoList.map((task, index) => {
           return (
             <div
               key={index.toString() + 1}
               className="flex flex-row justify-between items-start gap-x-3"
             >
-              <CustomTooltip
-                text={`${
-                  list?.isCompleted
-                    ? `${list?.todoValue} - Task completed!`
-                    : `${list?.todoValue} - Task not completed!`
-                }`}
+              <div
+                className="flex flex-row justify-start items-start gap-x-4 cursor-pointer"
+                onClick={() =>
+                  handleComplete(task?.id, task?.todoValue, task?.isCompleted)
+                }
               >
-                <div
-                  className="flex flex-row justify-start items-start gap-x-4 cursor-pointer"
-                  onClick={() => handleComplete(list?.id)}
-                >
-                  <span className="h-5 w-5">
-                    {list?.isCompleted ? (
-                      <FaCheckCircle color="#16a34a" size={22} />
-                    ) : (
-                      <FaRegCircle color="#adadad" size={22} />
-                    )}
-                  </span>
+                <span className="h-5 w-5">
+                  {task?.isCompleted ? (
+                    <FaCheckCircle color="#16a34a" size={22} />
+                  ) : (
+                    <FaRegCircle color="#adadad" size={22} />
+                  )}
+                </span>
 
-                  <span
-                    className={`break-all ${
-                      list?.isCompleted ? "line-through" : "no-underline"
-                    }`}
-                  >
-                    {list?.todoValue}
-                  </span>
-                </div>
-              </CustomTooltip>
+                <span
+                  className={`break-all ${
+                    task?.isCompleted ? "line-through" : "no-underline"
+                  }`}
+                >
+                  {task?.todoValue}
+                </span>
+              </div>
 
               <div className="flex flex-row gap-3">
-                <CustomTooltip text="Edit task!">
+                <CustomTooltip text="Edit">
                   <div
                     className="h-5 w-5 cursor-pointer text-blue-900 hover:text-blue-950"
-                    onClick={() => handleEdit(list)}
+                    onClick={() => handleEdit(task)}
                   >
                     <TbEdit size={20} />
                   </div>
                 </CustomTooltip>
-                <CustomTooltip text="Delete task!">
+                <CustomTooltip text="Delete">
                   <div
                     className="h-5 w-5 cursor-pointer text-gray-500 hover:text-red-600"
-                    onClick={() => handleDelete(list?.id)}
+                    onClick={() => handleDelete(task?.id)}
                   >
                     <RiDeleteBin6Line size={20} />
                   </div>
