@@ -4,7 +4,7 @@ import GetRequestErrorHandlingWithTryCatch from "./GetRequestErrorHandling";
 import GetRequestSetHeaders from "./GetRequestSetHeaders";
 import GetRequestHooks from "./GetRequestHooks";
 
-const ReactFetchGetApp = () => {
+const HttpGetRequest = () => {
   const [packageName, setPackageName] = useState("React");
   const [searchedPackageName, setSearchedPackageName] = useState("React");
 
@@ -62,4 +62,4 @@ const ReactFetchGetApp = () => {
   );
 };
 
-export default ReactFetchGetApp;
+export default HttpGetRequest;

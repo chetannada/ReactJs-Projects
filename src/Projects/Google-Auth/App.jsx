@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { signInWithGoogle } from "./FirebaseConfig";
 import toast from "react-hot-toast";
 
-const ReactGoogleAuth = () => {
+const GoogleAuth = () => {
   const currentTime = new Date().getTime();
   const storedDetails = JSON.parse(localStorage.getItem("userDetails")) ?? {};
 
@@ -33,7 +33,9 @@ const ReactGoogleAuth = () => {
   return (
     <div className="mt-16 p-2 flex justify-center items-center">
       <div className="flex flex-col justify-center items-center py-10 p-2 space-y-6 w-152 rounded-xl overflow-hidden border border-gray-200 shadow bg-orange-200">
-        <h1 className="text-center text-4xl">React Google Authentication App</h1>
+        <h1 className="text-center text-4xl">
+          React Google Authentication App
+        </h1>
         <h3 className="text-center text-base">
           Facilitates a secure login process by allowing users to authenticate
           their identity through their Google account, ensuring both ease of
@@ -65,4 +67,4 @@ const ReactGoogleAuth = () => {
   );
 };
 
-export default ReactGoogleAuth;
+export default GoogleAuth;

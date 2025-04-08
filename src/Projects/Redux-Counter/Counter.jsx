@@ -9,7 +9,7 @@ import {
 } from "./counterSlice";
 
 const Counter = () => {
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const countValue = useSelector((item) => item?.counter?.value);
 

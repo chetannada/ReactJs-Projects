@@ -1,7 +1,7 @@
-## 📚 React Google Authentication App
+## 📚 Google Authentication App
 
-- 💻 [_Source Code_](/src/Projects/React-Google-Auth/)
-- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/react-google-auth)
+- 💻 [_Source Code_](/src/Projects/Google-Auth/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/google-auth)
 
 ### 📋 Coding Challenge: Implementing Google Authentication with Firebase
 
