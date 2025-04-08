@@ -53,7 +53,7 @@ const ListItem = (props) => {
                   {task?.isCompleted ? (
                     <FaCheckCircle color="#16a34a" size={22} />
                   ) : (
-                    <FaRegCircle color="#adadad" size={22} />
+                    <FaRegCircle color="#484d5c" size={22} />
                   )}
                 </span>
 
@@ -69,7 +69,7 @@ const ListItem = (props) => {
               <div className="flex flex-row gap-3">
                 <CustomTooltip text="Edit">
                   <div
-                    className="h-5 w-5 cursor-pointer text-blue-900 hover:text-blue-950"
+                    className="h-5 w-5 cursor-pointer text-green-700 hover:text-green-900"
                     onClick={() => handleEdit(task)}
                   >
                     <TbEdit size={20} />
@@ -77,7 +77,7 @@ const ListItem = (props) => {
                 </CustomTooltip>
                 <CustomTooltip text="Delete">
                   <div
-                    className="h-5 w-5 cursor-pointer text-gray-500 hover:text-red-600"
+                    className="h-5 w-5 cursor-pointer text-gray-700 hover:text-rose-800"
                     onClick={() => handleDelete(task?.id)}
                   >
                     <RiDeleteBin6Line size={20} />
