@@ -20,7 +20,8 @@
         "review",
         "bug",
         "ideas",
-        "maintenance"
+        "maintenance",
+        "research"
       ]
     }
   ],
@@ -28,5 +29,6 @@
   "contributorsPerLine": 7,
   "repoHost": "https://github.com",
   "commitConvention": "angular",
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs"
 }
