@@ -44,4 +44,13 @@ export const projectDetails = [
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/Http-Post-Request",
     liveUrl: "/http-post-request",
   },
+  {
+    id: 6,
+    title: "React Image Generation App",
+    description:
+      "A React application that allows users to generate images using AI, powered by the Flux API using Hagging Face.",
+    codeUrl:
+      "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-Image-Generation",
+    liveUrl: "/image-generation",
+  },
 ];
