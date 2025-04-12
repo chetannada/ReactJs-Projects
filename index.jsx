@@ -9,6 +9,7 @@ import ReduxCounter from "./src/Projects/Redux-Counter/App";
 import GoogleAuth from "./src/Projects/Google-Auth/App";
 import HttpGetRequest from "./src/Projects/Http-Get-Request/App";
 import HttpPostRequest from "./src/Projects/Http-Post-Request/App";
+import ReactImageGeneration from "./src/Projects/React-Image-Generation/App";
 
 // call createBrowserRouter for routing different pages
 const appRouter = createBrowserRouter([
@@ -65,6 +66,14 @@ const appRouter = createBrowserRouter([
             <HttpPostRequest />
           </BodyLayout>
         ), // HTTP Post Request Project
+      },
+      {
+        path: "/image-generation",
+        element: (
+          <BodyLayout>
+            <ReactImageGeneration />
+          </BodyLayout>
+        ),
       },
     ],
   },
