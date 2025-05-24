@@ -45,6 +45,12 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - 💻 [_Source Code_](./src/Projects/Http-Post-Request/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-post-request)
 
+## 📚 Project 06 - Image Generation
+
+- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Image-Generation/CodingChallenge.md)
+- 💻 [_Source Code_](./src/Projects/React-Image-Generation/)
+- [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/image-generation)
+
 # 🎻 Prerequisites
 
 Before getting started with the Practicing Projects, you should have a basic understanding of `HTML, CSS and JavaScript`.
