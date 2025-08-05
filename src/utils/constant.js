@@ -1,7 +1,7 @@
 export const projectDetails = [
   {
     id: 1,
-    title: "To-Do List App",
+    title: "Todo List App",
     description:
       "A sleek and intuitive React based to-do app that helps users efficiently organize tasks, prioritize activities, and stay productive.",
     codeUrl:

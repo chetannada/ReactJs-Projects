@@ -1,18 +1,36 @@
 import { projectDetails } from "../utils/constant";
 import { useState } from "react";
 import ProjectCard from "./components/ProjectCard";
+import SearchProject from "./components/SearchProject";
+import NoResults from "./components/NoResults";
 
 const Body = () => {
   const [activeTab, setActiveTab] = useState("crafted");
+  const [filteredProjects, setFilteredProjects] = useState(projectDetails);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const result = projectDetails.filter((item) =>
+      item.title.toLowerCase().includes(query)
+    );
+    setFilteredProjects(result);
+  };
+
+  const handleTabs = (tab) => {
+    setActiveTab(tab);
+    setFilteredProjects(projectDetails);
+  };
 
   return (
     <>
-      <div className="flex justify-start items-center mb-6">
+      <div className="flex justify-between items-center mb-6 gap-4 flex-wrap">
+        {/* Tabs */}
         <div className="flex gap-2 p-1 rounded-xl bg-gray-100 border border-purple-300">
           {["crafted", "curated"].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleTabs(tab)}
               className={`px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border-2 ${
                 activeTab === tab
                   ? "bg-white text-purple-700 border-purple-700"
@@ -23,12 +41,23 @@ const Body = () => {
             </button>
           ))}
         </div>
+
+        {/* Search */}
+        <SearchProject handleSearch={handleSearch} />
       </div>
 
-      <div className="h-full flex flex-row justify-start content-center items-stretch gap-8 flex-wrap">
+      <div
+        className={`h-full flex flex-row ${
+          filteredProjects.length > 0 ? "justify-start" : "justify-center"
+        } content-center items-stretch gap-8 flex-wrap`}
+      >
         {activeTab === "crafted" &&
-          projectDetails.map((item, index) => (
-            <ProjectCard key={index.toString() + 1} item={item} />
+          (filteredProjects.length > 0 ? (
+            filteredProjects.map((item) => (
+              <ProjectCard key={item.id} item={item} />
+            ))
+          ) : (
+            <NoResults searchQuery={searchQuery} />
           ))}
 
         {activeTab === "curated" && (

@@ -8,12 +8,10 @@ const ProjectCard = (props) => {
   return (
     <>
       <div className="max-w-sm py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:shadow-xl border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
-          {item?.title}
-        </h5>
-        <p className="mb-3.5 font-normal text-gray-700 dark:text-gray-400">
-          {item?.description}
-        </p>
+        <div className="flex flex-col gap-2 mb-5">
+          <h5 className="text-2xl font-bold dark:text-white">{item?.title}</h5>
+          <p className="font-normal dark:text-gray-400">{item?.description}</p>
+        </div>
         <div className="flex flex-row mob:flex-col gap-4 mob:gap-2 flex-wrap justify-start items-start">
           <Link
             to={item?.codeUrl}
