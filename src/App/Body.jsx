@@ -43,13 +43,13 @@ const Body = () => {
         </div>
 
         {/* Search */}
-        <SearchProject handleSearch={handleSearch} />
+        <SearchProject handleSearch={handleSearch} activeTab={activeTab} />
       </div>
 
       <div
         className={`h-full flex flex-row ${
           filteredProjects.length > 0 ? "justify-start" : "justify-center"
-        } content-center items-stretch gap-8 flex-wrap`}
+        } content-center items-stretch gap-10 flex-wrap`}
       >
         {activeTab === "crafted" &&
           (filteredProjects.length > 0 ? (

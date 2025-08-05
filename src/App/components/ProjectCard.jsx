@@ -7,7 +7,7 @@ const ProjectCard = (props) => {
 
   return (
     <>
-      <div className="max-w-sm py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:shadow-xl border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-xl border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="flex flex-col gap-2 mb-5">
           <h5 className="text-2xl font-bold dark:text-white">{item?.title}</h5>
           <p className="font-normal dark:text-gray-400">{item?.description}</p>

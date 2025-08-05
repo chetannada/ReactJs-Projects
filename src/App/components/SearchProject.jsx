@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchProject = ({ handleSearch }) => {
+const SearchProject = ({ handleSearch, activeTab }) => {
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
@@ -14,6 +14,11 @@ const SearchProject = ({ handleSearch }) => {
       handleSearch(query);
     }
   }, [query]);
+
+  useEffect(() => {
+    setQuery("");
+    handleSearch("");
+  }, [activeTab]);
 
   return (
     <form
