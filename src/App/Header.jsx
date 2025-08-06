@@ -19,33 +19,14 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-50 px-8 mob:px-4 h-16 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
+      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
         <nav className="flex flex-row justify-between items-center">
           {/* Project title-logo */}
-          <a href="/">
-            <h1 className="text-3xl mob:text-xl font-semibold">
+          <a href="/" className="2xl:mt-3 lg:-mt-1">
+            <h1 className="text-2xl mob:text-xl font-semibold">
               <span className="text-purple-400">React.js</span> Projects
             </h1>
           </a>
-          <div className="lg:hidden flex flex-row justify-end items-center text-lg">
-            {/* Github Repository Star Count */}
-            <iframe
-              className="m-4"
-              src="https://ghbtns.com/github-btn.html?user=chetannada&repo=ReactJs-Projects&type=star&count=true&size=large"
-              width="120"
-              height="30"
-              title="GitHub"
-            ></iframe>
-
-            {/* Github Follower Count */}
-            <iframe
-              className="m-4 -mr-0.5"
-              src="https://ghbtns.com/github-btn.html?user=chetannada&type=follow&count=true&size=large"
-              width="260"
-              height="30"
-              title="GitHub"
-            ></iframe>
-          </div>
 
           {/* Hamburgfer Menu Icon */}
           <div

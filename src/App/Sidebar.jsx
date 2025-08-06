@@ -1,7 +1,7 @@
 const Sidebar = () => {
   return (
     <>
-      <ul className="hidden lg:block fixed top-16 mob:top-14 left-0 w-[60%] h-full bg-primary ease-in-out duration-500">
+      <ul className="hidden lg:block fixed top-14 left-0 w-[60%] h-full bg-primary ease-in-out duration-500">
         <li className="p-4">
           {/* Github Repository Star Count */}
           <iframe

@@ -42,7 +42,29 @@ const Body = () => {
           ))}
         </div>
 
-        {/* Search */}
+        {/* Github Repository Star Count and Follower Count */}
+        <div className="flex flex-row flex-wrap gap-4 justify-end sm:justify-start items-center text-lg">
+          <div className="bg-gray-100 p-2 rounded-md shadow-sm">
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=chetannada&repo=ReactJs-Projects&type=star&count=true&size=large"
+              width="120"
+              height="30"
+              title="GitHub"
+            />
+          </div>
+          <div className="bg-gray-100 p-2 rounded-md shadow-sm">
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=chetannada&type=follow&count=true&size=large"
+              width="260"
+              height="30"
+              title="GitHub"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      {/* Search box */}
+      <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
         <SearchProject handleSearch={handleSearch} activeTab={activeTab} />
       </div>
 

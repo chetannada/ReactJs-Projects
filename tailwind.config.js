@@ -37,6 +37,9 @@ module.exports = {
       maxWidth: {
         108: "28rem",
       },
+      minWidth: {
+        108: "28rem",
+      },
       margin: {
         13: "52px",
         15: "60px",
