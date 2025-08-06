@@ -7,7 +7,7 @@ const BodyLayout = ({ children }) => {
 
   return (
     <>
-      <main className="min-h-[calc(100vh-2.5rem)] mob:min-h-[calc(100vh-2rem)] mx-8 mob:mx-4 pt-24 mob:pt-20 pb-8">
+      <main className="min-h-[calc(100vh-2.6rem)] mob:min-h-[calc(100vh-2.1rem)] mx-8 mob:mx-4 pt-24 mob:pt-20 pb-8">
         {location.pathname.length > 1 && (
           <>
             <div className="flex justify-start items-center -mt-4 pb-4 mob:pb-4">
@@ -20,8 +20,7 @@ const BodyLayout = ({ children }) => {
             </div>
           </>
         )}
-
-        <div className="">{children}</div>
+        <>{children}</>
       </main>
     </>
   );

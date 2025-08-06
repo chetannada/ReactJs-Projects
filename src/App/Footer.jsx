@@ -6,13 +6,13 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="p-2 flex flex-row flex-wrap justify-center items-center gap-2 bg-zinc-100 shadow-lg">
+      <footer className="p-2 flex flex-row flex-wrap justify-center items-center gap-2 bg-white border-t border-purple-300 shadow-lg">
         Created By <IoMdHeart color="darkred" />
         <a
           href="https://www.linkedin.com/in/chetannada/"
           target="_blank"
           title="Chetan Nada's Linkedin Profile"
-          className="!text-blue-950 font-bold"
+          className="text-purple-900 font-bold hover:underline"
         >
           Chetan Nada
         </a>
@@ -22,8 +22,9 @@ const Footer = () => {
           href="https://github.com/chetannada/ReactJs-Projects"
           target="_blank"
           title="ReactJs Projects Github Repository"
+          className="text-purple-900 font-bold hover:underline"
         >
-          <span className="text-cyan-800 font-bold mr-2">React.js</span>Projects
+          React.js Projects
         </a>
       </footer>
     </>

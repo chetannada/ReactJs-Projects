@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./src/App/App";
 import Body from "./src/App/Body";
 import Error from "./src/App/Error";
-import BodyLayout from "./src/App/BodyLayout";
 import ToDoList from "./src/Projects/ToDo-List/App";
 import ReduxCounter from "./src/Projects/Redux-Counter/App";
 import GoogleAuth from "./src/Projects/Google-Auth/App";
@@ -21,59 +20,31 @@ const appRouter = createBrowserRouter([
       // show children component for routing
       {
         path: "/",
-        element: (
-          <BodyLayout>
-            <Body />
-          </BodyLayout>
-        ), // All Projects are inside Body Component
+        element: <Body />, // All Projects are inside Body Component
       },
       {
         path: "/todo-list",
-        element: (
-          <BodyLayout>
-            <ToDoList />
-          </BodyLayout>
-        ), // To-Do List Project
+        element: <ToDoList />, // To-Do List Project
       },
       {
         path: "/redux-counter",
-        element: (
-          <BodyLayout>
-            <ReduxCounter />
-          </BodyLayout>
-        ), // Redux Counter Project
+        element: <ReduxCounter />, // Redux Counter Project
       },
       {
         path: "/google-auth",
-        element: (
-          <BodyLayout>
-            <GoogleAuth />
-          </BodyLayout>
-        ), // Google Auth Project
+        element: <GoogleAuth />, // Google Auth Project
       },
       {
         path: "/http-get-request",
-        element: (
-          <BodyLayout>
-            <HttpGetRequest />
-          </BodyLayout>
-        ), // HTTP Get Request Project
+        element: <HttpGetRequest />, // HTTP Get Request Project
       },
       {
         path: "/http-post-request",
-        element: (
-          <BodyLayout>
-            <HttpPostRequest />
-          </BodyLayout>
-        ), // HTTP Post Request Project
+        element: <HttpPostRequest />, // HTTP Post Request Project
       },
       {
         path: "/image-generation",
-        element: (
-          <BodyLayout>
-            <ReactImageGeneration />
-          </BodyLayout>
-        ),
+        element: <ReactImageGeneration />, // Image Generation Project
       },
     ],
   },

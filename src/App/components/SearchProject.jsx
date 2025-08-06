@@ -30,7 +30,7 @@ const SearchProject = ({ handleSearch, activeTab }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search Projects..."
-        className="px-4 py-3 outline-none w-full min-w-72 text-sm text-gray-700 placeholder-gray-400"
+        className="px-4 py-3 outline-none w-full min-w-72 xsm:min-w-52 text-sm text-gray-700 placeholder-gray-400"
       />
       <button
         type="submit"

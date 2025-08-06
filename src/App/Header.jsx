@@ -24,7 +24,7 @@ const Header = () => {
           {/* Project title-logo */}
           <a href="/">
             <h1 className="text-3xl mob:text-xl font-semibold">
-              <span className="text-secondary">React.js</span> Projects
+              <span className="text-purple-400">React.js</span> Projects
             </h1>
           </a>
           <div className="lg:hidden flex flex-row justify-end items-center text-lg">
