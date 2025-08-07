@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";
 import useWindowSize from "../hooks/useWindowSize";
+import LoginModal from "./components/LoginModal";
+import LoginButton from "./components/LoginButton";
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const windowSize = useWindowSize();
 
   useEffect(() => {
@@ -17,31 +21,67 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleLoginClick = () => {
+    setShowModal(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <>
-      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 mob:h-14 w-full mx-auto bg-primary shadow-lg border-b-4 border-b-secondary text-white">
-        <nav className="flex flex-row justify-between items-center">
-          {/* Project title-logo */}
-          <a href="/" className="2xl:mt-3 lg:-mt-1">
+      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-primary shadow-lg border-b-4 border-b-secondary text-white">
+        <nav className="flex justify-between items-center h-full">
+          {/* Logo */}
+          <a href="/">
             <h1 className="text-2xl mob:text-xl font-semibold">
               <span className="text-purple-400">React.js</span> Projects
             </h1>
           </a>
 
-          {/* Hamburgfer Menu Icon */}
-          <div
-            onClick={handleSidebar}
-            className="hidden lg:block p-4 -mr-4 text-3xl mob:text-2xl items-center cursor-pointer"
-          >
-            {sidebarOpen ? <IoMdClose /> : <IoMdMenu />}
+          {/* Right Side Controls */}
+          <div className="flex items-center gap-4">
+            {/* Login/Logout Button */}
+            <div className="block lg:hidden">
+              <LoginButton
+                isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
+                handleLoginClick={handleLoginClick}
+              />
+            </div>
+
+            {/* Hamburger Menu */}
+            <div
+              onClick={handleSidebar}
+              className="hidden lg:block p-4 -mr-4 text-3xl mob:text-2xl cursor-pointer"
+            >
+              {sidebarOpen ? <IoMdClose /> : <IoMdMenu />}
+            </div>
           </div>
 
-          {/* Sidebar Component */}
-          {sidebarOpen && <Sidebar />}
+          {/* Sidebar */}
+          {sidebarOpen && (
+            <Sidebar
+              isLoggedIn={isLoggedIn}
+              handleLogout={handleLogout}
+              handleLoginClick={handleLoginClick}
+            />
+          )}
         </nav>
       </header>
+
+      {/* Modal */}
+      {showModal && (
+        <LoginModal
+          onClose={() => setShowModal(false)}
+          onLogin={() => {
+            setIsLoggedIn(true);
+            setShowModal(false);
+          }}
+        />
+      )}
     </>
   );
 };
-
 export default Header;
