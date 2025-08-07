@@ -7,6 +7,9 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/ToDo-List",
     liveUrl: "/todo-list",
+    contributor: "Chetan Nada",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/83969719?v=4",
+    contributorUrl: "https://github.com/chetannada",
   },
   {
     id: 2,
@@ -16,6 +19,9 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/Redux-Counter",
     liveUrl: "/redux-counter",
+    contributor: "Chetan Nada",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/83969719?v=4",
+    contributorUrl: "https://github.com/chetannada",
   },
   {
     id: 3,
@@ -25,6 +31,9 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/Google-Auth",
     liveUrl: "/google-auth",
+    contributor: "Kaushik Teraiya",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/113781417?v=4",
+    contributorUrl: "https://github.com/kdteraiya",
   },
   {
     id: 4,
@@ -34,6 +43,9 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/Http-Get-Request",
     liveUrl: "/http-get-request",
+    contributor: "Chetan Nada",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/83969719?v=4",
+    contributorUrl: "https://github.com/chetannada",
   },
   {
     id: 5,
@@ -43,6 +55,9 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/Http-Post-Request",
     liveUrl: "/http-post-request",
+    contributor: "Chetan Nada",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/83969719?v=4",
+    contributorUrl: "https://github.com/chetannada",
   },
   {
     id: 6,
@@ -52,5 +67,8 @@ export const projectDetails = [
     codeUrl:
       "https://github.com/chetannada/ReactJs-Projects/tree/main/src/Projects/React-Image-Generation",
     liveUrl: "/image-generation",
+    contributor: "Sankalp Haritash",
+    contributorAvatar: "https://avatars.githubusercontent.com/u/110713125?v=4",
+    contributorUrl: "https://github.com/SankalpHaritash21",
   },
 ];

@@ -11,6 +11,7 @@
 
 body {
   min-height: 100vh;
+  background-color: rgb(244, 244, 244)
 }
 
 @layer utilities {
