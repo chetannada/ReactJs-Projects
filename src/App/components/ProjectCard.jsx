@@ -1,16 +1,34 @@
 import { FaGithub } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { IoOpenOutline } from "react-icons/io5";
+import { useState } from "react";
 
-const ProjectCard = (props) => {
-  const { item } = props;
+const ProjectCard = ({ item }) => {
+  const [showMore, setShowMore] = useState(false);
+  const characterLimit = 80;
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   return (
     <div className="max-w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
       {/* Title & Description */}
       <div className="flex flex-col gap-2 mb-5">
         <h5 className="text-2xl font-bold dark:text-white">{item?.title}</h5>
-        <p className="font-normal dark:text-gray-400">{item?.description}</p>
+        <p className="font-normal dark:text-gray-400">
+          {showMore || item?.description?.length <= characterLimit
+            ? item?.description
+            : `${item?.description?.substring(0, characterLimit)}...`}
+          {item?.description?.length > characterLimit && (
+            <button
+              onClick={toggleShowMore}
+              className="text-blue-600 dark:text-blue-400 hover:underline ml-1"
+            >
+              {showMore ? "see less" : "see more"}
+            </button>
+          )}
+        </p>
       </div>
 
       <div>

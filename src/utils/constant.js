@@ -1,7 +1,7 @@
 export const projectDetails = [
   {
     id: 1,
-    title: "Todo List App",
+    title: "Todo List",
     description:
       "A sleek and intuitive React based to-do app that helps users efficiently organize tasks, prioritize activities, and stay productive.",
     codeUrl:
@@ -13,7 +13,7 @@ export const projectDetails = [
   },
   {
     id: 2,
-    title: "Redux Counter App",
+    title: "Redux Counter",
     description:
       "A simple and interactive counter application built with React and Redux. It demonstrates state management with Redux Toolkit, allowing users to increment, decrement, and reset the counter efficiently.",
     codeUrl:
@@ -25,7 +25,7 @@ export const projectDetails = [
   },
   {
     id: 3,
-    title: "Google Authentication App",
+    title: "Google Authentication",
     description:
       "A React application that integrates Google Sign-In for secure user authentication.",
     codeUrl:
@@ -37,7 +37,7 @@ export const projectDetails = [
   },
   {
     id: 4,
-    title: "HTTP GET Request App",
+    title: "HTTP GET Request",
     description:
       "Fetch the NPM API using HTTP Get method in Different way and display the data dynamically.",
     codeUrl:
@@ -49,7 +49,7 @@ export const projectDetails = [
   },
   {
     id: 5,
-    title: "HTTP POST Request App",
+    title: "HTTP POST Request",
     description:
       "Fetch the Reqres API using HTTP post method in Different way and display the data dynamically.",
     codeUrl:
@@ -61,7 +61,7 @@ export const projectDetails = [
   },
   {
     id: 6,
-    title: "React Image Generation App",
+    title: "React Image Generation",
     description:
       "A React application that allows users to generate images using AI, powered by the Flux API using Hagging Face.",
     codeUrl:
