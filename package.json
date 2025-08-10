@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
+    "dev:local": "vite --port 3000 --mode development",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
