@@ -1,5 +1,4 @@
-import { FiX, FiLogIn } from "react-icons/fi";
-import { MdCancel } from "react-icons/md";
+import { FiX } from "react-icons/fi";
 
 const LoginModal = ({ onClose, onLogin }) => {
   return (
@@ -8,7 +7,7 @@ const LoginModal = ({ onClose, onLogin }) => {
         {/* Cross Icon at Top Right */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 text-gray-500 hover:text-red-500 hover:scale-110 hover:shadow-md transition-all duration-200"
+          className="absolute top-4 right-6 text-gray-500 hover:text-red-500 hover:shadow-md hover:bg-grey-100 transition-all duration-200 rounded-full p-2 flex items-center justify-center"
           aria-label="Close"
         >
           <FiX size={22} />
@@ -29,16 +28,15 @@ const LoginModal = ({ onClose, onLogin }) => {
         <div className="flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 hover:shadow-md rounded-md text-sm text-gray-800 transition-all duration-200"
+            className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg text-sm shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
           >
-            <MdCancel size={18} />
             Cancel
           </button>
+
           <button
             onClick={onLogin}
-            className="flex items-center gap-2 px-4 py-2 bg-black hover:bg-green-700 hover:shadow-lg text-white rounded-md text-sm transition-all duration-200"
+            className="text-sm px-5 py-2.5 text-white bg-gradient-to-br from-fuchsia-500 to-blue-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none font-medium rounded-lg"
           >
-            <FiLogIn size={18} />
             Login with GitHub
           </button>
         </div>

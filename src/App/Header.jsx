@@ -4,12 +4,33 @@ import Sidebar from "./Sidebar";
 import useWindowSize from "../hooks/useWindowSize";
 import LoginModal from "./components/LoginModal";
 import LoginButton from "./components/LoginButton";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 const Header = () => {
+  const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
   const windowSize = useWindowSize();
+
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(`${API_BACKEND_URL}/api/me`);
+      setUser(res.data.user);
+      setIsLoggedIn(true);
+    } catch {
+      setUser(null);
+      setIsLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     if (windowSize.width > 1024) {
@@ -25,8 +46,14 @@ const Header = () => {
     setShowModal(true);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await axios.post(`${API_BACKEND_URL}/api/logout`);
+    setUser(null);
     setIsLoggedIn(false);
+  };
+
+  const hanldeOnLogin = () => {
+    window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
   return (
@@ -42,6 +69,18 @@ const Header = () => {
 
           {/* Right Side Controls */}
           <div className="flex items-center gap-4">
+            {/* User Info */}
+            {isLoggedIn && user && (
+              <div className="flex items-center gap-2">
+                <img
+                  src={user.userAvatarUrl}
+                  alt={user.userName}
+                  className="w-8 h-8 rounded-full border-2 border-white"
+                />
+                <span className="text-sm font-medium">{user.userName}</span>
+              </div>
+            )}
+
             {/* Login/Logout Button */}
             <div className="block lg:hidden">
               <LoginButton
@@ -75,10 +114,7 @@ const Header = () => {
       {showModal && (
         <LoginModal
           onClose={() => setShowModal(false)}
-          onLogin={() => {
-            setIsLoggedIn(true);
-            setShowModal(false);
-          }}
+          onLogin={hanldeOnLogin}
         />
       )}
     </>
