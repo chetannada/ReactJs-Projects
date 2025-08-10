@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { signInWithGoogle } from "./FirebaseConfig";
 import toast from "react-hot-toast";
 
@@ -43,7 +43,12 @@ const GoogleAuth = () => {
         </h3>
         {userDetails?.expirationTime - currentTime > 0 ? (
           <div className="flex sm:flex-col justify-center items-center flex-row gap-8">
-            <img className="w-20 rounded-full" src={userDetails?.photoURL} />
+            <img
+              src={userDetails?.photoURL}
+              alt={userDetails?.displayName || "User Avatar"}
+              className="w-14 h-14 object-cover rounded-full border border-gray-300"
+            />
+
             <h1 className="text-blue-950 font-bold">
               Welcome {userDetails?.displayName} !!
             </h1>
