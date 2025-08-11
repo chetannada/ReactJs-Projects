@@ -15,10 +15,11 @@ const PostRequestSetHeaders = (props) => {
           "Content-Type": "application/json",
           Authorization: "Bearer my-token",
           "My-Custom-Header": "foobar",
+          "x-api-key": "reqres-free-v1",
         },
         body: JSON.stringify({ name: searchedUserName }),
       };
-      const response = await fetch(API_REQRES + "api/users", reqOptions);
+      const response = await fetch(API_REQRES + "/api/users", reqOptions);
       const json = await response.json();
       setReqresData(json);
     }

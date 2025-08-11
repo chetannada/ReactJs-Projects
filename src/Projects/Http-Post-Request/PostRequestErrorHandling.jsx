@@ -11,13 +11,16 @@ const PostRequestErrorHandlingWithTryCatch = (props) => {
     const API_REQRES = import.meta.env.VITE_API_REQRES;
     const reqOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1",
+      },
       body: JSON.stringify({ name: searchedUserName }),
     };
 
     async function postData() {
       try {
-        const response = await fetch(API_REQRES + "invalid_url", reqOptions);
+        const response = await fetch(API_REQRES + "/invalid_url", reqOptions);
 
         if (!response.ok) {
           const error = response.status;

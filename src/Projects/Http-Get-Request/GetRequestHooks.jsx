@@ -9,7 +9,7 @@ const GetRequestHooks = (props) => {
   useEffect(() => {
     const API_NPM = import.meta.env.VITE_API_NPM;
 
-    fetch(API_NPM + `v2/search?q=${searchedPackageName}`)
+    fetch(API_NPM + `/v2/search?q=${searchedPackageName}`)
       .then((response) => response.json())
       .then((data) => setNpmReactData(data));
   }, [searchedPackageName]);

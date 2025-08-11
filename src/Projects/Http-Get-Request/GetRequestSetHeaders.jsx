@@ -18,7 +18,7 @@ const GetRequestSetHeaders = (props) => {
         mode: "cors",
       };
       const response = await fetch(
-        API_NPM + `v2/search?q=${searchedPackageName}`,
+        API_NPM + `/v2/search?q=${searchedPackageName}`,
         reqOptions
       );
       const json = await response.json();

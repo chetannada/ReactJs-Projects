@@ -10,10 +10,13 @@ const PostRequestHooks = (props) => {
     const API_REQRES = import.meta.env.VITE_API_REQRES;
     const reqOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1",
+      },
       body: JSON.stringify({ name: searchedUserName }),
     };
-    fetch(API_REQRES + "api/users", reqOptions)
+    fetch(API_REQRES + "/api/users", reqOptions)
       .then((response) => response.json())
       .then((data) => setReqresData(data));
   }, [searchedUserName]);

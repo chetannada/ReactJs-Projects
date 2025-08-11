@@ -12,7 +12,7 @@ const GetRequestErrorHandlingWithTryCatch = (props) => {
 
     async function getData() {
       try {
-        const response = await fetch(API_NPM + "v2/invalid_url");
+        const response = await fetch(API_NPM + "/v2/invalid_url");
         const json = await response.json();
         if (!response.ok) {
           const error = `${response.status} - ` + json.message;

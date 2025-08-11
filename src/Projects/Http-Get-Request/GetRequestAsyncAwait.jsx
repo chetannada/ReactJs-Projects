@@ -10,7 +10,7 @@ const GetRequestAsyncAwait = (props) => {
     const API_NPM = import.meta.env.VITE_API_NPM;
 
     async function getData() {
-      await fetch(API_NPM + `v2/search?q=${searchedPackageName}`)
+      await fetch(API_NPM + `/v2/search?q=${searchedPackageName}`)
         .then((response) => response.json())
         .then((json) => setNpmReactData(json));
     }
