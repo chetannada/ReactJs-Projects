@@ -22,7 +22,8 @@ const Header = () => {
       const res = await axios.get(`${API_BACKEND_URL}/api/me`);
       setUser(res.data.user);
       setIsLoggedIn(true);
-    } catch {
+    } catch (err) {
+      console.error("User fetch failed:", err);
       setUser(null);
       setIsLoggedIn(false);
     }
@@ -47,9 +48,13 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    await axios.post(`${API_BACKEND_URL}/api/logout`);
-    setUser(null);
-    setIsLoggedIn(false);
+    try {
+      await axios.post(`${API_BACKEND_URL}/api/logout`);
+      setUser(null);
+      setIsLoggedIn(false);
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
   };
 
   const hanldeOnLogin = () => {
