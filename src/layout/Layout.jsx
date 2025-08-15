@@ -2,9 +2,9 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
-import BodyLayout from "./BodyLayout";
+import ContentWrapper from "./ContentWrapper";
 
-const App = () => {
+const Layout = () => {
   return (
     <>
       <div className="min-h-screen">
@@ -12,9 +12,9 @@ const App = () => {
         <Header />
 
         {/* Outlet is for render Body and it's Children Component */}
-        <BodyLayout>
+        <ContentWrapper>
           <Outlet />
-        </BodyLayout>
+        </ContentWrapper>
 
         {/* Footer Component */}
         <Footer />
@@ -26,4 +26,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Layout;

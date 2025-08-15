@@ -1,8 +1,8 @@
 import { FaCheckCircle, FaRegCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
-import CustomTooltip from "../../App/components/Tooltip";
 import toast from "react-hot-toast";
+import Tooltip from "../../components/Tooltip";
 
 const ListItem = ({ todoList, setTodoList, setAddTask }) => {
   // Set task for editing
@@ -61,22 +61,22 @@ const ListItem = ({ todoList, setTodoList, setAddTask }) => {
           </div>
 
           <div className="flex flex-row gap-3">
-            <CustomTooltip text="Edit">
+            <Tooltip text="Edit">
               <div
                 className="h-5 w-5 cursor-pointer text-green-700 hover:text-green-900"
                 onClick={() => handleEdit(task)}
               >
                 <TbEdit size={20} />
               </div>
-            </CustomTooltip>
-            <CustomTooltip text="Delete">
+            </Tooltip>
+            <Tooltip text="Delete">
               <div
                 className="h-5 w-5 cursor-pointer text-gray-700 hover:text-rose-800"
                 onClick={() => handleDelete(task.id)}
               >
                 <RiDeleteBin6Line size={20} />
               </div>
-            </CustomTooltip>
+            </Tooltip>
           </div>
         </div>
       ))}

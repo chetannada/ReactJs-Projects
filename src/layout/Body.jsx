@@ -1,8 +1,8 @@
 import { projectDetails } from "../utils/constant";
 import { useState } from "react";
-import ProjectCard from "./components/ProjectCard";
-import SearchProject from "./components/SearchProject";
-import NoResults from "./components/NoResults";
+import ProjectCard from "../components/ProjectCard";
+import SearchProject from "../components/SearchProject";
+import NoResults from "../components/NoResults";
 
 const Body = () => {
   const [activeTab, setActiveTab] = useState("crafted");

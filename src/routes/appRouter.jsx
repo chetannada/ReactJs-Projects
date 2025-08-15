@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../main";
-import Error from "../App/Error";
-import Body from "../App/Body";
+import Error from "../layout/Error";
+import Body from "../layout/Body";
 import ToDoList from "../Projects/ToDo-List/App";
 import ReduxCounter from "../Projects/Redux-Counter/App";
 import GoogleAuth from "../Projects/Google-Auth/App";

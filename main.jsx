@@ -1,13 +1,13 @@
 import { Provider } from "react-redux";
-import App from "./src/App/App";
 import store from "./src/Store/store";
+import Layout from "./src/layout/Layout";
 
 const Main = () => {
   return (
     <>
       {/* Provide store for managing state */}
       <Provider store={store}>
-        <App />
+        <Layout />
       </Provider>
     </>
   );
