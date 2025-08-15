@@ -1,4 +1,4 @@
-const CustomTooltip = (props) => {
+const Tooltip = (props) => {
   const { text, children, className = "left-1/2" } = props;
 
   return (
@@ -20,4 +20,4 @@ const CustomTooltip = (props) => {
   );
 };
 
-export default CustomTooltip;
+export default Tooltip;

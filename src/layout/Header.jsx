@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";
 import useWindowSize from "../hooks/useWindowSize";
-import LoginModal from "./components/LoginModal";
-import LoginButton from "./components/LoginButton";
+import LoginModal from "../components/LoginModal";
+import LoginButton from "../components/LoginButton";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;

@@ -1,6 +1,6 @@
 ## 📚 HTTP GET Request App
 
-- 💻 [_Source Code_](/src/Projects/Http-Get-Request/)
+- 💻 [_Source Code_](/src/features/http-get-request)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-get-request)
 
 ### 📋 Coding Challenge: React HTTP GET Requests with Fetch Method

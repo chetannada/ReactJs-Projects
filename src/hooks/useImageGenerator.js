@@ -1,9 +1,8 @@
-// src/hooks/useImageGenerator.js
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { generateImages } from "../Projects/React-Image-Generation/utils/api.js";
+import { generateImages } from "../features/image-generation/utils/api";
 
-export default function useImageGenerator() {
+const useImageGenerator = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -22,4 +21,6 @@ export default function useImageGenerator() {
   };
 
   return { images, loading, generateImages: generate };
-}
+};
+
+export default useImageGenerator;

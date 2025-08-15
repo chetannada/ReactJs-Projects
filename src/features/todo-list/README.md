@@ -1,6 +1,6 @@
 ## 📚 To-Do List App
 
-- 💻 [_Source Code_](/src/Projects/ToDo-List/)
+- 💻 [_Source Code_](/src/features/todo-list)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/todo-list)
 
 ### 📋 Coding Challenge: React To-Do List App
