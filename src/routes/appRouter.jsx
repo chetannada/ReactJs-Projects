@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../main";
 import Error from "../layout/Error";
 import Body from "../layout/Body";
-import ToDoList from "../Projects/ToDo-List/App";
-import ReduxCounter from "../Projects/Redux-Counter/App";
-import GoogleAuth from "../Projects/Google-Auth/App";
-import HttpGetRequest from "../Projects/Http-Get-Request/App";
-import HttpPostRequest from "../Projects/Http-Post-Request/App";
-import ReactImageGeneration from "../Projects/React-Image-Generation/App";
+import ToDoList from "../features/todo-list";
+import ReduxCounter from "../features/redux-counter";
+import GoogleAuth from "../features/google-auth";
+import HttpGetRequest from "../features/http-get-request";
+import HttpPostRequest from "../features/http-post-request";
+import ImageGeneration from "../features/image-generation";
 
 // Define application routes
 const appRouter = createBrowserRouter([
@@ -42,7 +42,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/image-generation",
-        element: <ReactImageGeneration />,
+        element: <ImageGeneration />,
       },
     ],
   },

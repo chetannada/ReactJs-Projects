@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import useImageGenerator from "../../hooks/useImageGenerator.js";
-import ControlsCard from "./components/ControlsCard";
-import ResultsGrid from "./components/ResultsGrid";
-import LoadingSpinner from "./components/LoadingSpinner";
+import ControlsCard from "./components/ControlsCard.jsx";
+import ResultsGrid from "./components/ResultsGrid.jsx";
+import LoadingSpinner from "./components/LoadingSpinner.jsx";
 
-const ReactImageGeneration = () => {
+const ImageGeneration = () => {
   const [prompt, setPrompt] = useState("");
   const [count, setCount] = useState(1);
   const [dimensions, setDimensions] = useState("512x512");
@@ -48,4 +48,4 @@ const ReactImageGeneration = () => {
   );
 };
 
-export default ReactImageGeneration;
+export default ImageGeneration;
