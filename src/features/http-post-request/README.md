@@ -1,6 +1,6 @@
 ## 📚 HTTP POST Request App
 
-- 💻 [_Source Code_](/src/Projects/Http-Post-Request/)
+- 💻 [_Source Code_](/src/features/http-post-request)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-post-request)
 
 ### 📋 Coding Challenge: React HTTP POST Requests with Fetch Method

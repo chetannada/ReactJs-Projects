@@ -17,38 +17,38 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 
 ## 📚 Project 01 - To-Do List App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/ToDo-List/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/ToDo-List/)
+- 👨‍💻 [_Coding Challenge_](./src/features/todo-list/README.md)
+- 💻 [_Source Code_](./src/features/todo-list/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/todo-list)
 
 ## 📚 Project 02 - Redux Counter App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/Redux-Counter/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/Redux-Counter/)
+- 👨‍💻 [_Coding Challenge_](./src/features/redux-counter/README.md)
+- 💻 [_Source Code_](./src/features/redux-counter/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/redux-counter)
 
 ## 📚 Project 03 - Google Authentication App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/Google-Auth/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/Google-Auth/)
+- 👨‍💻 [_Coding Challenge_](./src/features/google-auth/README.md)
+- 💻 [_Source Code_](./src/features/google-auth/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/google-auth)
 
 ## 📚 Project 04 - HTTP GET Request App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/Http-Get-Request/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/Http-Get-Request/)
+- 👨‍💻 [_Coding Challenge_](./src/features/http-get-request/README.md)
+- 💻 [_Source Code_](./src/features/http-get-request/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-get-request)
 
 ## 📚 Project 05 - HTTP POST Request App
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/Http-Post-Request/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/Http-Post-Request/)
+- 👨‍💻 [_Coding Challenge_](./src/features/http-post-request/README.md)
+- 💻 [_Source Code_](./src/features/http-post-request/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/http-post-request)
 
 ## 📚 Project 06 - Image Generation
 
-- 👨‍💻 [_Coding Challenge_](./src/Projects/React-Image-Generation/CodingChallenge.md)
-- 💻 [_Source Code_](./src/Projects/React-Image-Generation/)
+- 👨‍💻 [_Coding Challenge_](./src/features/image-generation/README.md)
+- 💻 [_Source Code_](./src/features/image-generation/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/image-generation)
 
 # 🎻 Prerequisites

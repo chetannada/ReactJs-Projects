@@ -1,6 +1,6 @@
 ## 📚 Redux Counter App
 
-- 💻 [_Source Code_](/src/Projects/Redux-Counter/)
+- 💻 [_Source Code_](/src/features/redux-counter)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/redux-counter)
 
 ### 📋 Coding Challenge: React Counter App with Redux Toolkit

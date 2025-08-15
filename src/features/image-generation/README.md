@@ -1,6 +1,6 @@
 ## 📚 Image Generation App
 
-- 💻 [_Source Code_](./src/Projects/React-Image-Generation/)
+- 💻 [_Source Code_](/src/features/image-generation)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/image-generation)
 
 ### 📋 Coding Challenge: Implementing Image Generation App
