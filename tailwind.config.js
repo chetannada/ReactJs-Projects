@@ -44,6 +44,10 @@ module.exports = {
         13: "52px",
         15: "60px",
       },
+      animation: {
+        "spin-slow": "spin 4s linear infinite",
+        "spin-slow-hover": "spin 10s linear infinite",
+      },
     },
   },
   plugins: [],

@@ -1,17 +1,39 @@
-import { projectDetails } from "../utils/constant";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 import SearchProject from "../components/SearchProject";
 import NoResults from "../components/NoResults";
+import { fetchCraftedProjects } from "../services/projectService";
+import NoData from "../components/NoData";
 
 const Body = () => {
   const [activeTab, setActiveTab] = useState("crafted");
-  const [filteredProjects, setFilteredProjects] = useState(projectDetails);
+  const [allProjects, setAllProjects] = useState(null);
+  const [filteredProjects, setFilteredProjects] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setAllProjects(null);
+    setFilteredProjects(null);
+
+    if (activeTab === "crafted") {
+      fetchCraftedProjects()
+        .then((data) => {
+          console.log("Fetched crafted projects:", data);
+          setAllProjects(data);
+          setFilteredProjects(data);
+        })
+        .catch((err) => console.error(err + "Failed to fetch crafted projects"))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [activeTab]);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    const result = projectDetails.filter((item) =>
+    const result = allProjects.filter((item) =>
       item.title.toLowerCase().includes(query)
     );
     setFilteredProjects(result);
@@ -19,7 +41,26 @@ const Body = () => {
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
-    setFilteredProjects(projectDetails);
+  };
+
+  const renderCraftedProjectUI = () => {
+    if (isLoading) return null;
+
+    if (allProjects !== null && filteredProjects !== null) {
+      return (
+        <>
+          {filteredProjects?.length > 0 ? (
+            filteredProjects?.map((item) => (
+              <ProjectCard key={item._id} item={item} />
+            ))
+          ) : (
+            <NoResults searchQuery={searchQuery} />
+          )}
+        </>
+      );
+    }
+
+    return <NoData message="No projects found" />;
   };
 
   return (
@@ -64,23 +105,19 @@ const Body = () => {
       </div>
 
       {/* Search box */}
-      <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
-        <SearchProject handleSearch={handleSearch} activeTab={activeTab} />
-      </div>
+      {allProjects !== null && (
+        <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
+          <SearchProject handleSearch={handleSearch} activeTab={activeTab} />
+        </div>
+      )}
 
+      {/* Projects Card*/}
       <div
         className={`h-full flex flex-row ${
-          filteredProjects.length > 0 ? "justify-start" : "justify-center"
+          filteredProjects?.length > 0 ? "justify-start" : "justify-center"
         } content-center items-stretch gap-10 flex-wrap`}
       >
-        {activeTab === "crafted" &&
-          (filteredProjects.length > 0 ? (
-            filteredProjects.map((item) => (
-              <ProjectCard key={item.id} item={item} />
-            ))
-          ) : (
-            <NoResults searchQuery={searchQuery} />
-          ))}
+        {activeTab === "crafted" && <>{renderCraftedProjectUI()}</>}
 
         {activeTab === "curated" && (
           <div className="w-full text-center py-20 text-purple-700 text-lg font-medium">
