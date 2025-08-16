@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
-import SearchProject from "../components/SearchProject";
 import NoResults from "../components/NoResults";
 import { fetchCraftedProjects } from "../services/projectService";
 import NoData from "../components/NoData";
+import SkeletonSearchBar from "../components/skeleton/SkeletonSearchBar";
+import SkeletonProjectCard from "../components/skeleton/SkeletonProjectCard";
+import SearchBar from "../components/SearchBar";
 
 const Body = () => {
   const [activeTab, setActiveTab] = useState("crafted");
@@ -44,7 +46,8 @@ const Body = () => {
   };
 
   const renderCraftedProjectUI = () => {
-    if (isLoading) return null;
+    if (isLoading)
+      return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
 
     if (allProjects !== null && filteredProjects !== null) {
       return (
@@ -104,17 +107,21 @@ const Body = () => {
         </div>
       </div>
 
-      {/* Search box */}
-      {allProjects !== null && (
+      {/* Search bar */}
+      {allProjects !== null && !isLoading ? (
         <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
-          <SearchProject handleSearch={handleSearch} activeTab={activeTab} />
+          <SearchBar handleSearch={handleSearch} activeTab={activeTab} />
         </div>
+      ) : (
+        <SkeletonSearchBar />
       )}
 
       {/* Projects Card*/}
       <div
         className={`h-full flex flex-row ${
-          filteredProjects?.length > 0 ? "justify-start" : "justify-center"
+          filteredProjects?.length > 0 || isLoading
+            ? "justify-start"
+            : "justify-center"
         } content-center items-stretch gap-10 flex-wrap`}
       >
         {activeTab === "crafted" && <>{renderCraftedProjectUI()}</>}
