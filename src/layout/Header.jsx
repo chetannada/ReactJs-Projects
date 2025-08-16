@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";
 import useWindowSize from "../hooks/useWindowSize";
-import LoginModal from "../components/LoginModal";
+import LoginModal from "../components/modals/LoginModal";
 import LoginButton from "../components/LoginButton";
 import axios from "axios";
 
@@ -116,12 +116,11 @@ const Header = () => {
       </header>
 
       {/* Modal */}
-      {showModal && (
-        <LoginModal
-          onClose={() => setShowModal(false)}
-          onLogin={hanldeOnLogin}
-        />
-      )}
+      <LoginModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onLogin={hanldeOnLogin}
+      />
     </>
   );
 };
