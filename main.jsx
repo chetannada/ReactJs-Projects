@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import store from "./src/Store/store";
+import store from "./src/reduxStore/store";
 import Layout from "./src/layout/Layout";
 
 const Main = () => {

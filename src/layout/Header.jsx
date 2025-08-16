@@ -7,7 +7,7 @@ import axios from "axios";
 import UserMenu from "../components/menu/UserMenu";
 import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logoutUser } from "../store/reducers/authSlice";
+import { fetchUser, logoutUser } from "../reduxStore/reducers/authSlice";
 
 axios.defaults.withCredentials = true;
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
