@@ -6,7 +6,6 @@ import MenuItem from "./MenuItem";
 const UserMenu = (props) => {
   const { user, handleLogout } = props;
 
-  console.log(user);
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
 

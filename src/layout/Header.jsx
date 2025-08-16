@@ -6,36 +6,24 @@ import LoginModal from "../components/modals/LoginModal";
 import axios from "axios";
 import UserMenu from "../components/menu/UserMenu";
 import { FiLogIn } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 
 axios.defaults.withCredentials = true;
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 const Header = () => {
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const { user, isLoggedIn, isAuthReady } = useSelector((state) => state.auth);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [isAuthReady, setIsAuthReady] = useState(false);
 
   const windowSize = useWindowSize();
 
-  const fetchUser = async () => {
-    try {
-      const res = await axios.get(`${API_BACKEND_URL}/api/me`);
-      setUser(res.data.user);
-      setIsLoggedIn(true);
-    } catch (err) {
-      console.error("User fetch failed:", err);
-      setUser(null);
-      setIsLoggedIn(false);
-    } finally {
-      setIsAuthReady(true);
-    }
-  };
-
   useEffect(() => {
-    fetchUser();
-  }, []);
+    dispatch(fetchUser());
+  }, [dispatch]);
 
   useEffect(() => {
     if (windowSize.width > 1024) {
@@ -43,23 +31,11 @@ const Header = () => {
     }
   }, [windowSize.width]);
 
-  const handleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  const handleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  const handleLoginClick = () => {
-    setShowModal(true);
-  };
+  const handleLoginClick = () => setShowModal(true);
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(`${API_BACKEND_URL}/api/logout`);
-      setUser(null);
-      setIsLoggedIn(false);
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
-  };
+  const handleLogout = () => dispatch(logoutUser());
 
   const hanldeOnLogin = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;

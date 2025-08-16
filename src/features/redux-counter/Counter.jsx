@@ -11,7 +11,7 @@ import {
 const Counter = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const countValue = useSelector((item) => item?.counter?.value);
+  const countValue = useSelector((state) => state.counter.value);
 
   const handleInputValue = (event) => {
     setInputValue(Number(event.target.value));
