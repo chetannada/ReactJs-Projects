@@ -1,137 +1,22 @@
-import { useEffect, useState } from "react";
-import ProjectCard from "../components/ProjectCard";
-import NoResults from "../components/NoResults";
-import { fetchCraftedProjects } from "../services/projectService";
-import NoData from "../components/NoData";
-import SkeletonSearchBar from "../components/skeleton/SkeletonSearchBar";
-import SkeletonProjectCard from "../components/skeleton/SkeletonProjectCard";
-import SearchBar from "../components/SearchBar";
+import { useState } from "react";
+import CraftedProjects from "../components/CraftedProjects";
+import CuratedProjects from "../components/CuratedProjects";
+import TabsPage from "../components/TabsPage";
 
 const Body = () => {
   const [activeTab, setActiveTab] = useState("crafted");
-  const [allProjects, setAllProjects] = useState(null);
-  const [filteredProjects, setFilteredProjects] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setAllProjects(null);
-    setFilteredProjects(null);
-
-    if (activeTab === "crafted") {
-      fetchCraftedProjects()
-        .then((data) => {
-          console.log("Fetched crafted projects:", data);
-          setAllProjects(data);
-          setFilteredProjects(data);
-        })
-        .catch((err) => console.error(err + "Failed to fetch crafted projects"))
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [activeTab]);
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    const result = allProjects.filter((item) =>
-      item.title.toLowerCase().includes(query)
-    );
-    setFilteredProjects(result);
-  };
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
   };
 
-  const renderCraftedProjectUI = () => {
-    if (isLoading)
-      return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
-
-    if (allProjects !== null && filteredProjects !== null) {
-      return (
-        <>
-          {filteredProjects?.length > 0 ? (
-            filteredProjects?.map((item) => (
-              <ProjectCard key={item._id} item={item} />
-            ))
-          ) : (
-            <NoResults searchQuery={searchQuery} />
-          )}
-        </>
-      );
-    }
-
-    return <NoData message="No projects found" />;
-  };
-
   return (
     <>
-      <div className="flex justify-between items-center mb-6 gap-4 flex-wrap">
-        {/* Tabs */}
-        <div className="flex gap-2 p-1 rounded-xl bg-gray-100 border border-purple-300">
-          {["crafted", "curated"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => handleTabs(tab)}
-              className={`px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border-2 ${
-                activeTab === tab
-                  ? "bg-white text-purple-700 border-purple-700"
-                  : "bg-transparent text-gray-700 border-transparent"
-              }`}
-            >
-              {tab === "crafted" ? "Crafted by Me" : "Curated by Others"}
-            </button>
-          ))}
-        </div>
+      <TabsPage activeTab={activeTab} handleTabs={handleTabs} />
 
-        {/* Github Repository Star Count and Follower Count */}
-        <div className="flex flex-row flex-wrap gap-4 justify-end sm:justify-start items-center text-lg">
-          <div className="bg-gray-100 p-2 rounded-md shadow-sm">
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=chetannada&repo=ReactJs-Projects&type=star&count=true&size=large"
-              width="120"
-              height="30"
-              title="GitHub"
-            />
-          </div>
-          <div className="bg-gray-100 p-2 rounded-md shadow-sm">
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=chetannada&type=follow&count=true&size=large"
-              width="260"
-              height="30"
-              title="GitHub"
-            ></iframe>
-          </div>
-        </div>
-      </div>
+      {activeTab === "crafted" && <CraftedProjects activeTab={activeTab} />}
 
-      {/* Search bar */}
-      {allProjects !== null && !isLoading ? (
-        <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
-          <SearchBar handleSearch={handleSearch} activeTab={activeTab} />
-        </div>
-      ) : (
-        <SkeletonSearchBar />
-      )}
-
-      {/* Projects Card*/}
-      <div
-        className={`h-full flex flex-row ${
-          filteredProjects?.length > 0 || isLoading
-            ? "justify-start"
-            : "justify-center"
-        } content-center items-stretch gap-10 flex-wrap`}
-      >
-        {activeTab === "crafted" && <>{renderCraftedProjectUI()}</>}
-
-        {activeTab === "curated" && (
-          <div className="w-full text-center py-20 text-purple-700 text-lg font-medium">
-            🚧 Curated by Others — Coming Soon!
-          </div>
-        )}
-      </div>
+      {activeTab === "curated" && <CuratedProjects activeTab={activeTab} />}
     </>
   );
 };
