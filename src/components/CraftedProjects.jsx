@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchCraftedProjects } from "../services/projectService";
 import SearchBar from "./SearchBar";
 import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
@@ -10,6 +10,8 @@ const CraftedProjects = ({ activeTab }) => {
   const [filteredData, setFilteredData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const lastQueryRef = useRef("");
 
   const callCraftedApi = async (query) => {
     await fetchCraftedProjects(query)
@@ -30,6 +32,7 @@ const CraftedProjects = ({ activeTab }) => {
   useEffect(() => {
     if (activeTab === "crafted") {
       setIsLoading(true);
+      lastQueryRef.current = "";
       setFilteredData(null);
 
       callCraftedApi(searchQuery);
@@ -37,6 +40,11 @@ const CraftedProjects = ({ activeTab }) => {
   }, [activeTab]);
 
   const handleSearch = useCallback((query) => {
+    if (query === lastQueryRef.current) {
+      return;
+    }
+
+    lastQueryRef.current = query;
     setSearchQuery(query);
     setIsLoading(true);
     callCraftedApi(query);
