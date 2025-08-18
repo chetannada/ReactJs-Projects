@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { FiLogOut } from "react-icons/fi";
 import MenuItem from "./MenuItem";
 
-const UserMenu = (props) => {
-  const { user, handleLogout } = props;
+const UserMenu = ({ user, handleLogout }) => {
+  const { userName, userAvatarUrl, githubUserName } = user;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
@@ -27,8 +27,8 @@ const UserMenu = (props) => {
         className="flex items-center gap-2"
       >
         <img
-          src={user.userAvatarUrl}
-          alt={user.userName}
+          src={userAvatarUrl}
+          alt={userName}
           className="w-8 h-8 rounded-full border-2 border-white"
         />
       </button>
@@ -38,13 +38,13 @@ const UserMenu = (props) => {
           <div className="p-4 border-b">
             <div className="flex items-center gap-3">
               <img
-                src={user.userAvatarUrl}
-                alt={user.userName}
+                src={userAvatarUrl}
+                alt={userName}
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
                 <p className="font-semibold text-gray-800">Chetan Nada</p>
-                <p className="text-xs text-gray-500">@{user.userLogin}</p>
+                <p className="text-xs text-gray-500">@{githubUserName}</p>
               </div>
             </div>
           </div>
