@@ -15,14 +15,14 @@ const ProjectCard = ({ item }) => {
   } = item;
 
   const [showMore, setShowMore] = useState(false);
-  const characterLimit = 80;
+  const characterLimit = 60;
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
 
   return (
-    <div className="max-w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-96 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
       {/* Title & Description */}
       <div className="flex flex-col gap-2 mb-5">
         <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>

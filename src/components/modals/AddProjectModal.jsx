@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
 import CustomModal from "./CustomModal";
+import { useSelector } from "react-redux";
+import { addCraftedProject } from "../../services/projectService";
+import toast from "react-hot-toast";
 
-const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
+const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
+  const { user } = useSelector((state) => state.auth);
+
   const {
     register,
     handleSubmit,
@@ -9,9 +14,26 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
     reset,
   } = useForm();
 
-  const onFormSubmit = (data) => {
-    onSubmit(data);
-    // reset();
+  const onFormSubmit = async (data) => {
+    const finalData = {
+      ...data,
+      contributorName: user?.userName,
+      contributorAvatarUrl: user?.userAvatarUrl,
+      contributorGithubUrl: user?.userGithubUrl,
+      contributorRole: user?.userRole,
+    };
+
+    await addCraftedProject(finalData)
+      .then(() => {
+        toast.success("Project submitted successfully!");
+        refreshCraftedProjects();
+        reset();
+        onClose();
+      })
+      .catch((err) => {
+        console.error(err + "Failed to submit project");
+        toast.error(err + "Failed to submit project. Please try again.");
+      });
   };
 
   return (

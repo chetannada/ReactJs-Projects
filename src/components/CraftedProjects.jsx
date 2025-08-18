@@ -1,64 +1,46 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { fetchCraftedProjects } from "../services/projectService";
+import { useCallback, useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
 import ProjectCard from "./ProjectCard";
 import NoResults from "./NoResults";
 import NoData from "./NoData";
 
-const CraftedProjects = ({ activeTab }) => {
-  const [filteredData, setFilteredData] = useState(null);
+const CraftedProjects = ({
+  activeTab,
+  craftedData,
+  isLoading,
+  refreshCraftedProjects,
+  lastQueryRef,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  const lastQueryRef = useRef("");
-
-  const callCraftedApi = async (query) => {
-    await fetchCraftedProjects(query)
-      .then((data) => {
-        setFilteredData(data);
-      })
-      .catch((err) => {
-        console.error(err + "Failed to Search crafted projects");
-        if (query) {
-          setFilteredData([]);
-        }
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
 
   useEffect(() => {
     if (activeTab === "crafted") {
-      setIsLoading(true);
-      lastQueryRef.current = "";
-      setFilteredData(null);
-
-      callCraftedApi(searchQuery);
+      refreshCraftedProjects("");
     }
   }, [activeTab]);
 
-  const handleSearch = useCallback((query) => {
-    if (query === lastQueryRef.current) {
-      return;
-    }
+  const handleSearch = useCallback(
+    (query) => {
+      if (query === lastQueryRef.current) {
+        return;
+      }
 
-    lastQueryRef.current = query;
-    setSearchQuery(query);
-    setIsLoading(true);
-    callCraftedApi(query);
-  }, []);
+      setSearchQuery(query);
+      refreshCraftedProjects(query);
+    },
+    [refreshCraftedProjects, lastQueryRef]
+  );
 
   const renderProjects = () => {
     if (isLoading)
       return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
 
-    if (filteredData !== null) {
+    if (craftedData !== null) {
       return (
         <>
-          {filteredData?.length > 0 ? (
-            filteredData?.map((item) => (
+          {craftedData?.length > 0 ? (
+            craftedData?.map((item) => (
               <ProjectCard key={item._id} item={item} />
             ))
           ) : (
@@ -77,13 +59,13 @@ const CraftedProjects = ({ activeTab }) => {
         <SearchBar
           handleSearch={handleSearch}
           activeTab={activeTab}
-          isDisabled={isLoading || filteredData === null}
+          isDisabled={isLoading || craftedData === null}
         />
       </div>
 
       <div
         className={`h-full flex flex-row ${
-          filteredData?.length > 0 || isLoading
+          craftedData?.length > 0 || isLoading
             ? "justify-start"
             : "justify-center"
         } content-center items-stretch gap-10 flex-wrap`}

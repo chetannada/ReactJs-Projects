@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CraftedProjects from "../components/CraftedProjects";
 import CuratedProjects from "../components/CuratedProjects";
 import TabsPage from "../components/TabsPage";
 import AddProjectModal from "../components/modals/AddProjectModal";
 import { useSelector } from "react-redux";
 import LoginModal from "../components/modals/LoginModal";
+import { getCraftedProjects } from "../services/projectService";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector((state) => state.auth);
 
   const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
+  const [craftedData, setCraftedData] = useState(null);
+  const [isLoadingCrafted, setIsLoadingCrafted] = useState(true);
+  const lastQueryRef = useRef("");
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
@@ -20,22 +24,25 @@ const Body = () => {
     setShowModal(true);
   };
 
-  const handlleFormSubmit = (data) => {
-    const finalData = {
-      ...data,
-      contributorName: user?.userName,
-      contributorAvatarUrl: user?.userAvatarUrl,
-      contributorGithubUrl: user?.userGithubUrl,
-      contributorRole: user?.userRole,
-    };
-
-    console.log(finalData, "Final data to be submitted");
-  };
-
   const hanldeOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
     window.location.href = `${API_BACKEND_URL}/auth/github`;
+  };
+
+  const refreshCraftedProjects = async (query = "") => {
+    setIsLoadingCrafted(true);
+    lastQueryRef.current = query;
+
+    try {
+      const data = await getCraftedProjects(query);
+      setCraftedData(data);
+    } catch (err) {
+      console.error("Failed to refresh crafted projects:", err);
+      setCraftedData([]);
+    } finally {
+      setIsLoadingCrafted(false);
+    }
   };
 
   return (
@@ -46,7 +53,15 @@ const Body = () => {
         handleAddProject={handleAddProject}
       />
 
-      {activeTab === "crafted" && <CraftedProjects activeTab={activeTab} />}
+      {activeTab === "crafted" && (
+        <CraftedProjects
+          activeTab={activeTab}
+          craftedData={craftedData}
+          isLoading={isLoadingCrafted}
+          refreshCraftedProjects={refreshCraftedProjects}
+          lastQueryRef={lastQueryRef}
+        />
+      )}
 
       {activeTab === "curated" && <CuratedProjects activeTab={activeTab} />}
 
@@ -54,7 +69,7 @@ const Body = () => {
         <AddProjectModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
-          onSubmit={handlleFormSubmit}
+          refreshCraftedProjects={refreshCraftedProjects}
         />
       ) : (
         <LoginModal
