@@ -4,7 +4,7 @@ const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 export const fetchCraftedProjects = async (searchQuery = "") => {
   const queryUrl = searchQuery
-    ? `?title=${encodeURIComponent(searchQuery)}`
+    ? `?projectTitle=${encodeURIComponent(searchQuery)}`
     : ``;
 
   try {

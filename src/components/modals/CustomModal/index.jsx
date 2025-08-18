@@ -1,13 +1,23 @@
-// components/ui/Modal.js
+import { useEffect } from "react";
 import { FiX } from "react-icons/fi";
 
 const CustomModal = ({ isOpen, onClose, children, width = "w-128" }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 px-4">
       <div
-        className={`bg-white rounded-lg shadow-2xl p-6 relative transition-all duration-300 ${width}`}
+        className={`bg-white rounded-lg shadow-2xl p-6 relative transition-all duration-300 ${width} max-h-[80vh] overflow-y-auto`}
       >
         {/* Close Button */}
         <button

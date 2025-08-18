@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, logoutUser } from "../reduxStore/reducers/authSlice";
 
 axios.defaults.withCredentials = true;
-const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -38,6 +37,8 @@ const Header = () => {
   const handleLogout = () => dispatch(logoutUser());
 
   const hanldeOnLogin = () => {
+    const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
@@ -66,18 +67,15 @@ const Header = () => {
     <>
       <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-primary shadow-lg border-b-4 border-b-secondary text-white">
         <nav className="flex justify-between items-center h-full">
-          {/* Logo */}
           <a href="/">
             <h1 className="text-2xl mob:text-xl xmob:text-lg font-semibold">
               <span className="text-purple-400">React.js</span> Projects
             </h1>
           </a>
 
-          {/* Right Side Controls */}
           <div className="flex items-center gap-2">
             {renderAuthUI()}
 
-            {/* Hamburger Menu */}
             <div
               onClick={handleSidebar}
               className="hidden lg:block p-4 -mr-4 text-3xl mob:text-2xl cursor-pointer"
@@ -86,7 +84,6 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Sidebar */}
           {sidebarOpen && (
             <Sidebar
               isLoggedIn={isLoggedIn}
@@ -95,11 +92,13 @@ const Header = () => {
             />
           )}
 
-          {/* Login Modal */}
           <LoginModal
             isOpen={showModal}
             onClose={() => setShowModal(false)}
             onLogin={hanldeOnLogin}
+            title="Welcome back!"
+            description="To personalize your experience and save your favorite projects, log in
+        using your GitHub account."
           />
         </nav>
       </header>

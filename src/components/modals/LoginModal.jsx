@@ -1,17 +1,12 @@
 import { FaGithub } from "react-icons/fa";
 import CustomModal from "./CustomModal";
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
+const LoginModal = ({ isOpen, onClose, onLogin, title, description }) => {
   return (
     <CustomModal isOpen={isOpen} onClose={onClose}>
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Welcome back!
-      </h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">{title}</h2>
 
-      <p className="text-gray-600 mb-6">
-        To personalize your experience and save your favorite projects, log in
-        using your GitHub account.
-      </p>
+      <p className="text-gray-600 mb-6">{description}</p>
 
       <div className="flex justify-center">
         <button
