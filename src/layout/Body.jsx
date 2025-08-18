@@ -30,12 +30,15 @@ const Body = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
-  const refreshCraftedProjects = async (query = "") => {
+  const refreshCraftedProjects = async (query = "", contributorId = null) => {
     setIsLoadingCrafted(true);
     lastQueryRef.current = query;
 
     try {
-      const data = await getCraftedProjects(query);
+      const data = await getCraftedProjects(
+        query,
+        user?.userId || contributorId
+      );
       setCraftedData(data);
     } catch (err) {
       console.error("Failed to refresh crafted projects:", err);

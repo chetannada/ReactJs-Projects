@@ -4,6 +4,7 @@ import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
 import ProjectCard from "./ProjectCard";
 import NoResults from "./NoResults";
 import NoData from "./NoData";
+import { useSelector } from "react-redux";
 
 const CraftedProjects = ({
   activeTab,
@@ -12,13 +13,15 @@ const CraftedProjects = ({
   refreshCraftedProjects,
   lastQueryRef,
 }) => {
+  const { user } = useSelector((state) => state.auth);
+
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (activeTab === "crafted") {
-      refreshCraftedProjects("");
+      refreshCraftedProjects("", user?.userId || null);
     }
-  }, [activeTab]);
+  }, [activeTab, user]);
 
   const handleSearch = useCallback(
     (query) => {
@@ -27,7 +30,7 @@ const CraftedProjects = ({
       }
 
       setSearchQuery(query);
-      refreshCraftedProjects(query);
+      refreshCraftedProjects(query, user?.userId || null);
     },
     [refreshCraftedProjects, lastQueryRef]
   );

@@ -2,14 +2,19 @@ import axios from "axios";
 
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
-export const getCraftedProjects = async (searchQuery = "") => {
-  const queryUrl = searchQuery
-    ? `?projectTitle=${encodeURIComponent(searchQuery)}`
-    : ``;
+export const getCraftedProjects = async (
+  searchQuery = "",
+  contributorId = null
+) => {
+  const queryParams = new URLSearchParams();
+  if (searchQuery) queryParams.append("projectTitle", searchQuery);
+  if (contributorId) queryParams.append("contributorId", contributorId);
 
   try {
     const response = await axios.get(
-      `${API_BACKEND_URL}/api/projects/crafted${queryUrl}`
+      `${API_BACKEND_URL}/api/projects/crafted/get${
+        queryParams.toString() ? `?${queryParams.toString()}` : ""
+      }`
     );
     return response.data;
   } catch (error) {

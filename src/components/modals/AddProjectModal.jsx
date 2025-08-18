@@ -18,6 +18,7 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
     const finalData = {
       ...data,
       contributorName: user?.userName,
+      contributorId: user?.userId,
       contributorAvatarUrl: user?.userAvatarUrl,
       contributorGithubUrl: user?.userGithubUrl,
       contributorRole: user?.userRole,
@@ -26,7 +27,7 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
     await addCraftedProject(finalData)
       .then(() => {
         toast.success("Project submitted successfully!");
-        refreshCraftedProjects();
+        refreshCraftedProjects("", user?.userId || null);
         reset();
         onClose();
       })
