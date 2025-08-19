@@ -18,7 +18,6 @@ export const getCraftedProjects = async (
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching crafted projects:", error);
     throw error;
   }
 };
@@ -31,7 +30,20 @@ export const addCraftedProject = async (projectData) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error submitting crafted project:", error);
+    throw error;
+  }
+};
+
+export const deleteCraftedProject = async (projectId, contributorId) => {
+  try {
+    const response = await axios.delete(
+      `${API_BACKEND_URL}/api/projects/crafted/delete/${projectId}`,
+      {
+        data: { contributorId },
+      }
+    );
+    return response.data;
+  } catch (error) {
     throw error;
   }
 };

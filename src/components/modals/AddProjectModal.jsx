@@ -17,6 +17,10 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
     reset,
   } = useForm({
     defaultValues: {
+      projectTitle: "",
+      projectDescription: "",
+      githubCodeUrl: "",
+      liveUrl: "",
       techStack: ["React.js"],
     },
   });
@@ -32,15 +36,15 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
     };
 
     await addCraftedProject(finalData)
-      .then(() => {
-        toast.success("Project submitted successfully!");
+      .then((res) => {
+        toast.success(res.message);
         refreshCraftedProjects("", user?.userId || null);
         reset();
         onClose();
       })
       .catch((err) => {
-        console.error(err + "Failed to submit project");
-        toast.error(err + "Failed to submit project. Please try again.");
+        console.error("Failed to submit project:", err);
+        toast.error(err.message);
       });
   };
 

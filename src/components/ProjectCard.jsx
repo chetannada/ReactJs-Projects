@@ -6,7 +6,7 @@ import Tooltip from "./Tooltip";
 import { statusTooltips } from "../utils/constant";
 import { statusStyles } from "../utils/styles";
 
-const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
+const ProjectCard = ({ item, userId, handleEdit, handleDeleteShowModal }) => {
   const {
     _id,
     projectTitle,
@@ -42,7 +42,7 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
                 Edit
               </button>
               <button
-                onClick={() => handleDelete(_id)}
+                onClick={() => handleDeleteShowModal(_id)}
                 className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded hover:from-red-600 hover:to-pink-700"
               >
                 Delete
