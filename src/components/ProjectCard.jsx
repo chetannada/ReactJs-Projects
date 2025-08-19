@@ -1,10 +1,11 @@
 import { FaGithub } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import { IoOpenOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const ProjectCard = ({ item }) => {
+const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
   const {
+    _id,
     projectTitle,
     projectDescription,
     githubCodeUrl,
@@ -12,19 +13,60 @@ const ProjectCard = ({ item }) => {
     contributorGithubUrl,
     contributorAvatarUrl,
     contributorName,
+    contributorId,
+    status,
+    rejectionReason,
   } = item;
 
   const [showMore, setShowMore] = useState(false);
   const characterLimit = 60;
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
+  const toggleShowMore = () => setShowMore(!showMore);
+
+  // Status badge color logic
+  const statusStyles = {
+    approved: "bg-green-100 text-green-800",
+    pending: "bg-yellow-100 text-yellow-800",
+    rejected: "bg-red-100 text-red-800",
   };
 
   return (
-    <div className="max-w-96 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="relative max-w-96 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+      {/* Edit/Delete Controls */}
+      {contributorId === userId && (
+        <div className="absolute top-4 left-5 flex gap-3 z-10">
+          <button
+            onClick={() => handleEdit(_id)}
+            className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded hover:from-blue-600 hover:to-indigo-700"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => handleDelete(_id)}
+            className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded hover:from-red-600 hover:to-pink-700"
+          >
+            Delete
+          </button>
+        </div>
+      )}
+
+      {/* Status Badge */}
+      {(status === "pending" ||
+        status === "rejected" ||
+        (status === "approved" && contributorId === userId)) && (
+        <span
+          className={`absolute top-4 right-5 px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]}`}
+        >
+          {status}
+        </span>
+      )}
+
       {/* Title & Description */}
-      <div className="flex flex-col gap-2 mb-5">
+      <div
+        className={`flex flex-col gap-2 mb-5 ${
+          contributorId === userId ? "mt-9" : "mt-0"
+        }`}
+      >
         <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>
         <p className="font-normal dark:text-gray-400">
           {showMore || projectDescription?.length <= characterLimit
@@ -40,6 +82,13 @@ const ProjectCard = ({ item }) => {
           )}
         </p>
       </div>
+
+      {/* Rejection Reason */}
+      {status === "rejected" && rejectionReason && (
+        <div className="w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
+          <strong>Reason:</strong> {rejectionReason}
+        </div>
+      )}
 
       <div>
         {/* Action Buttons */}
@@ -59,7 +108,7 @@ const ProjectCard = ({ item }) => {
           </Link>
         </div>
 
-        {/* Contributor Attribution with Profile Image */}
+        {/* Contributor Info */}
         <div className="flex flex-wrap items-center gap-3 mt-2 text-sm italic text-gray-600 dark:text-gray-400">
           <span className="dark:text-gray-400">Contributed by:</span>
           <Link

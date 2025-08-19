@@ -13,15 +13,15 @@ const CraftedProjects = ({
   refreshCraftedProjects,
   lastQueryRef,
 }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthReady } = useSelector((state) => state.auth);
 
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (activeTab === "crafted") {
+    if (activeTab === "crafted" && isAuthReady) {
       refreshCraftedProjects("", user?.userId || null);
     }
-  }, [activeTab, user]);
+  }, [activeTab, isAuthReady, user]);
 
   const handleSearch = useCallback(
     (query) => {
@@ -44,7 +44,13 @@ const CraftedProjects = ({
         <>
           {craftedData?.length > 0 ? (
             craftedData?.map((item) => (
-              <ProjectCard key={item._id} item={item} />
+              <ProjectCard
+                key={item._id}
+                item={item}
+                userId={user?.userId}
+                handleEdit={() => console.log("edit")}
+                handleDelete={() => console.log("delete")}
+              />
             ))
           ) : (
             <NoResults searchQuery={searchQuery} />
