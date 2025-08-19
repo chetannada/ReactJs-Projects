@@ -15,6 +15,7 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
     contributorName,
     contributorId,
     status,
+    techStack,
     rejectionReason,
   } = item;
 
@@ -55,9 +56,9 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
         status === "rejected" ||
         (status === "approved" && contributorId === userId)) && (
         <span
-          className={`absolute top-4 right-5 px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]}`}
+          className={`absolute top-4 right-5 px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]} shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200`}
         >
-          {status}
+          {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
         </span>
       )}
 
@@ -82,6 +83,24 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
           )}
         </p>
       </div>
+
+      {/* Tech Stack */}
+      {Array.isArray(techStack) && techStack.length > 0 && (
+        <div
+          className={`flex flex-wrap gap-2 mt-2 ${
+            contributorId === userId ? "mb-6" : "mb-0"
+          }`}
+        >
+          {techStack.map((tech, index) => (
+            <span
+              key={index}
+              className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Rejection Reason */}
       {status === "rejected" && rejectionReason && (
