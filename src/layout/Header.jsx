@@ -68,7 +68,7 @@ const Header = () => {
       <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-primary shadow-lg border-b-4 border-b-secondary text-white">
         <nav className="flex justify-between items-center h-full">
           <a href="/">
-            <h1 className="text-2xl mob:text-xl xmob:text-lg font-semibold">
+            <h1 className="text-2xl mob:text-xl xmob:text-base font-semibold">
               <span className="text-purple-400">React.js</span> Projects
             </h1>
           </a>

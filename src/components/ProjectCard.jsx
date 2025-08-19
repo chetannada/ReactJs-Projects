@@ -2,6 +2,9 @@ import { FaGithub } from "react-icons/fa6";
 import { IoOpenOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Tooltip from "./Tooltip";
+import { statusTooltips } from "../utils/constant";
+import { statusStyles } from "../utils/styles";
 
 const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
   const {
@@ -24,51 +27,46 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
 
   const toggleShowMore = () => setShowMore(!showMore);
 
-  // Status badge color logic
-  const statusStyles = {
-    approved: "bg-green-100 text-green-800",
-    pending: "bg-yellow-100 text-yellow-800",
-    rejected: "bg-red-100 text-red-800",
-  };
-
   return (
-    <div className="relative max-w-96 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
-      {/* Edit/Delete Controls */}
-      {contributorId === userId && (
-        <div className="absolute top-4 left-5 flex gap-3 z-10">
-          <button
-            onClick={() => handleEdit(_id)}
-            className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded hover:from-blue-600 hover:to-indigo-700"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => handleDelete(_id)}
-            className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded hover:from-red-600 hover:to-pink-700"
-          >
-            Delete
-          </button>
-        </div>
-      )}
+    <div className="w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full">
+        {contributorId === userId && (
+          <div className="flex flex-row flex-wrap justify-between items-center gap-4 mb-3">
+            {/* Edit/Delete Controls */}
 
-      {/* Status Badge */}
-      {(status === "pending" ||
-        status === "rejected" ||
-        (status === "approved" && contributorId === userId)) && (
-        <span
-          className={`absolute top-4 right-5 px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]} shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200`}
-        >
-          {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
-        </span>
-      )}
+            <div className="flex flex-row gap-3">
+              <button
+                onClick={() => handleEdit(_id)}
+                className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded hover:from-blue-600 hover:to-indigo-700"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded hover:from-red-600 hover:to-pink-700"
+              >
+                Delete
+              </button>
+            </div>
 
-      <div>
+            {/* Status Badge */}
+            {(status === "pending" ||
+              status === "rejected" ||
+              (status === "approved" && contributorId === userId)) && (
+              <Tooltip text={statusTooltips[status]} width="w-56">
+                <span
+                  className={`px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]} shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200`}
+                >
+                  {status.charAt(0).toUpperCase() +
+                    status.slice(1).toLowerCase()}
+                </span>
+              </Tooltip>
+            )}
+          </div>
+        )}
+
         {/* Title & Description */}
-        <div
-          className={`flex flex-col gap-2 mb-5 ${
-            contributorId === userId ? "mt-9" : "mt-0"
-          }`}
-        >
+        <div className={`flex flex-col gap-2 mb-5`}>
           <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>
           <p className="font-normal dark:text-gray-400">
             {showMore || projectDescription?.length <= characterLimit
@@ -87,11 +85,7 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
 
         {/* Tech Stack */}
         {Array.isArray(techStack) && techStack.length > 0 && (
-          <div
-            className={`flex flex-wrap gap-2 mt-1 ${
-              contributorId === userId ? "mb-6" : "mb-0"
-            }`}
-          >
+          <div className={`flex flex-wrap gap-2 mt-1 mb-6`}>
             {techStack.map((tech, index) => (
               <span
                 key={index}

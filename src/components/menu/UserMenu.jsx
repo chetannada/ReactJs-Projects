@@ -29,7 +29,7 @@ const UserMenu = ({ user, handleLogout }) => {
         <img
           src={userAvatarUrl}
           alt={userName}
-          className="w-8 h-8 rounded-full border-2 border-white"
+          className="w-8 h-8 xmob:w-7 xmob:h-7 rounded-full border-2 border-white"
         />
       </button>
 

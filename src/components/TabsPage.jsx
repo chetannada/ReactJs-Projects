@@ -8,7 +8,7 @@ const TabsPage = ({ activeTab, handleTabs, handleAddProject }) => {
           <button
             key={tab}
             onClick={() => handleTabs(tab)}
-            className={`px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border-2 ${
+            className={`px-6 xmob:px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border-2 ${
               activeTab === tab
                 ? "bg-white text-purple-700 border-purple-700"
                 : "bg-transparent text-gray-700 border-transparent"

@@ -22,7 +22,7 @@ const SearchBar = ({ handleSearch, isDisabled }) => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder={isDisabled ? query : "Search project by name..."}
         disabled={isDisabled}
-        className={`px-4 py-3 outline-none w-full min-w-108 sm:min-w-72 xsm:min-w-52 text-sm ${
+        className={`px-4 py-3 outline-none w-full min-w-108 sm:min-w-72 xsm:min-w-52 xmob:min-w-40 text-sm ${
           isDisabled ? "text-gray-500 bg-gray-100" : "text-gray-700"
         } placeholder-gray-400`}
       />

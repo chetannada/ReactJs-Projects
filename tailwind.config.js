@@ -26,6 +26,7 @@ module.exports = {
         secondary: "#6b21a8",
       },
       width: {
+        102: "26rem",
         108: "28rem",
         128: "32rem",
         140: "36rem",
@@ -35,9 +36,11 @@ module.exports = {
         180: "52rem",
       },
       maxWidth: {
+        102: "26rem",
         108: "28rem",
       },
       minWidth: {
+        102: "26rem",
         108: "28rem",
       },
       margin: {

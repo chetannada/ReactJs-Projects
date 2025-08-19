@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { addCraftedProject } from "../../services/projectService";
 import toast from "react-hot-toast";
 import ChipInputField from "../chip-input-field";
+import TextInputField from "../text-input-field";
 
 const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
   const { user } = useSelector((state) => state.auth);
@@ -59,112 +60,98 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
         <div className="flex flex-row md:flex-col gap-4">
           <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Project Title"
-              autoComplete="off"
-              {...register("projectTitle", { required: "Title is required" })}
-              className={`w-full px-4 py-2 border rounded-md text-sm ${
-                errors.projectTitle ? "border-red-500" : "border-gray-300"
-              }`}
+            <Controller
+              name="projectTitle"
+              control={control}
+              rules={{ required: "Title is required" }}
+              render={({ field }) => (
+                <TextInputField
+                  field={field}
+                  error={errors.projectTitle}
+                  placeholder="Project Title"
+                />
+              )}
             />
-            {errors.projectTitle && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.projectTitle.message}
-              </p>
-            )}
           </div>
 
           <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Project Description"
-              autoComplete="off"
-              {...register("projectDescription", {
-                required: "Description is required",
-              })}
-              className={`w-full px-4 py-2 border rounded-md text-sm resize-none ${
-                errors.projectDescription ? "border-red-500" : "border-gray-300"
-              }`}
+            <Controller
+              name="projectDescription"
+              control={control}
+              rules={{ required: "Description is required" }}
+              render={({ field }) => (
+                <TextInputField
+                  field={field}
+                  error={errors.projectDescription}
+                  placeholder="Project Description"
+                />
+              )}
             />
-            {errors.projectDescription && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.projectDescription.message}
-              </p>
-            )}
           </div>
         </div>
 
         <div className="flex flex-row md:flex-col gap-4">
           <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Code Repository URL"
-              autoComplete="off"
-              {...register("githubCodeUrl", {
+            <Controller
+              name="githubCodeUrl"
+              control={control}
+              rules={{
                 required: "Code URL is required",
                 pattern: {
                   value: /^(https?:\/\/)/,
                   message: "Enter a valid URL",
                 },
-              })}
-              className={`w-full px-4 py-2 border rounded-md text-sm ${
-                errors.githubCodeUrl ? "border-red-500" : "border-gray-300"
-              }`}
+              }}
+              render={({ field }) => (
+                <TextInputField
+                  field={field}
+                  error={errors.githubCodeUrl}
+                  placeholder="Code Repository URL"
+                />
+              )}
             />
-            {errors.githubCodeUrl && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.githubCodeUrl.message}
-              </p>
-            )}
           </div>
 
           <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Live Demo URL"
-              autoComplete="off"
-              {...register("liveUrl", {
+            <Controller
+              name="liveUrl"
+              control={control}
+              rules={{
                 required: "Live URL is required",
                 pattern: {
                   value: /^(https?:\/\/)/,
                   message: "Enter a valid URL",
                 },
-              })}
-              className={`w-full px-4 py-2 border rounded-md text-sm ${
-                errors.liveUrl ? "border-red-500" : "border-gray-300"
-              }`}
+              }}
+              render={({ field }) => (
+                <TextInputField
+                  field={field}
+                  error={errors.liveUrl}
+                  placeholder="Live Demo URL"
+                />
+              )}
             />
-            {errors.liveUrl && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.liveUrl.message}
-              </p>
-            )}
           </div>
         </div>
 
-        {/* Tech Stack Input */}
-        <Controller
-          name="techStack"
-          control={control}
-          rules={{
-            validate: (value) =>
-              value.length > 0 || "At least one tech stack is required",
-          }}
-          render={({ field }) => (
-            <ChipInputField
-              value={field.value}
-              onChange={field.onChange}
-              placeholder="Add tech used in your project..."
-            />
-          )}
-        />
-
-        {errors.techStack && (
-          <p className="text-red-500 text-xs mt-1">
-            {errors.techStack.message}
-          </p>
-        )}
+        <div>
+          <Controller
+            name="techStack"
+            control={control}
+            rules={{
+              validate: (value) =>
+                value.length > 0 || "At least one tech stack is required",
+            }}
+            render={({ field }) => (
+              <ChipInputField
+                value={field.value}
+                onChange={field.onChange}
+                error={errors.techStack}
+                placeholder="Add Tech used in your Project..."
+              />
+            )}
+          />
+        </div>
 
         <div className="flex justify-center pt-4">
           <button
