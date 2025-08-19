@@ -62,52 +62,54 @@ const ProjectCard = ({ item, userId, handleEdit, handleDelete }) => {
         </span>
       )}
 
-      {/* Title & Description */}
-      <div
-        className={`flex flex-col gap-2 mb-5 ${
-          contributorId === userId ? "mt-9" : "mt-0"
-        }`}
-      >
-        <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>
-        <p className="font-normal dark:text-gray-400">
-          {showMore || projectDescription?.length <= characterLimit
-            ? projectDescription
-            : `${projectDescription?.substring(0, characterLimit)}...`}
-          {projectDescription?.length > characterLimit && (
-            <button
-              onClick={toggleShowMore}
-              className="text-blue-600 dark:text-blue-400 hover:underline ml-1"
-            >
-              {showMore ? "see less" : "see more"}
-            </button>
-          )}
-        </p>
-      </div>
-
-      {/* Tech Stack */}
-      {Array.isArray(techStack) && techStack.length > 0 && (
+      <div>
+        {/* Title & Description */}
         <div
-          className={`flex flex-wrap gap-2 mt-2 ${
-            contributorId === userId ? "mb-6" : "mb-0"
+          className={`flex flex-col gap-2 mb-5 ${
+            contributorId === userId ? "mt-9" : "mt-0"
           }`}
         >
-          {techStack.map((tech, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200"
-            >
-              {tech}
-            </span>
-          ))}
+          <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>
+          <p className="font-normal dark:text-gray-400">
+            {showMore || projectDescription?.length <= characterLimit
+              ? projectDescription
+              : `${projectDescription?.substring(0, characterLimit)}...`}
+            {projectDescription?.length > characterLimit && (
+              <button
+                onClick={toggleShowMore}
+                className="text-blue-600 dark:text-blue-400 hover:underline ml-1"
+              >
+                {showMore ? "see less" : "see more"}
+              </button>
+            )}
+          </p>
         </div>
-      )}
 
-      {/* Rejection Reason */}
-      {status === "rejected" && rejectionReason && (
-        <div className="w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
-          <strong>Reason:</strong> {rejectionReason}
-        </div>
-      )}
+        {/* Tech Stack */}
+        {Array.isArray(techStack) && techStack.length > 0 && (
+          <div
+            className={`flex flex-wrap gap-2 mt-1 ${
+              contributorId === userId ? "mb-6" : "mb-0"
+            }`}
+          >
+            {techStack.map((tech, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Rejection Reason */}
+        {status === "rejected" && rejectionReason && (
+          <div className="w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
+            <strong>Reason:</strong> {rejectionReason}
+          </div>
+        )}
+      </div>
 
       <div>
         {/* Action Buttons */}

@@ -1,18 +1,24 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import CustomModal from "./CustomModal";
 import { useSelector } from "react-redux";
 import { addCraftedProject } from "../../services/projectService";
 import toast from "react-hot-toast";
+import ChipInputField from "../chip-input-field";
 
 const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
   const { user } = useSelector((state) => state.auth);
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
+    register,
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      techStack: ["React.js"],
+    },
+  });
 
   const onFormSubmit = async (data) => {
     const finalData = {
@@ -136,6 +142,29 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
             )}
           </div>
         </div>
+
+        {/* Tech Stack Input */}
+        <Controller
+          name="techStack"
+          control={control}
+          rules={{
+            validate: (value) =>
+              value.length > 0 || "At least one tech stack is required",
+          }}
+          render={({ field }) => (
+            <ChipInputField
+              value={field.value}
+              onChange={field.onChange}
+              placeholder="Add tech used in your project..."
+            />
+          )}
+        />
+
+        {errors.techStack && (
+          <p className="text-red-500 text-xs mt-1">
+            {errors.techStack.message}
+          </p>
+        )}
 
         <div className="flex justify-center pt-4">
           <button
