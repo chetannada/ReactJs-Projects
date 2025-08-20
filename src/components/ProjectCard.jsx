@@ -34,13 +34,13 @@ const ProjectCard = ({
   const toggleShowMore = () => setShowMore(!showMore);
 
   return (
-    <div className="group w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="group w-full max-w-108 sm:max-w-88 xsm:max-w-80 mob:max-w-68 xmob:max-w-64 px-4 sm:px-6 py-4 flex flex-wrap flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="w-full">
         {(contributorId === userId || userRole === "admin") && (
-          <div className="flex flex-row flex-wrap justify-between items-center gap-4 mb-3">
+          <div className="flex flex-wrap flex-row justify-between items-center gap-4 mb-3">
             {/* Edit/Delete Controls */}
 
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-wrap flex-row gap-3">
               <button
                 onClick={() => handleEditShowModal(item)}
                 className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
@@ -71,7 +71,7 @@ const ProjectCard = ({
         )}
 
         {/* Title & Description */}
-        <div className={`flex flex-col gap-2 mb-5`}>
+        <div className={`flex flex-wrap flex-col gap-2 mb-5`}>
           <h5 className="text-2xl font-bold dark:text-white">{projectTitle}</h5>
           <p className="font-normal dark:text-gray-400">
             {showMore || projectDescription?.length <= characterLimit
@@ -112,7 +112,7 @@ const ProjectCard = ({
 
       <div>
         {/* Action Buttons */}
-        <div className="flex flex-row mob:flex-col gap-4 mob:gap-2 flex-wrap justify-between items-start mb-4">
+        <div className="flex flex-wrap flex-row mob:flex-col gap-4 mob:gap-2 justify-between items-start mb-4">
           <Link
             to={githubCodeUrl}
             target="_blank"

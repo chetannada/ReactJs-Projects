@@ -30,13 +30,13 @@ const ChipInputField = ({ value, onChange, max = 4, placeholder, error }) => {
         {value.map((tech, index) => (
           <span
             key={index}
-            className="flex items-center gap-1 px-2 py-1 mr-2 mb-1 text-xs font-medium text-gray-800 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-full shadow-sm"
+            className="flex items-center gap-4 px-3 py-1 mr-2 mb-1 text-xs font-medium text-gray-800 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-full shadow-sm"
           >
             {tech}
             <button
               type="button"
               onClick={() => handleRemove(index)}
-              className="text-red-500 hover:text-red-700 text-xs"
+              className="text-red-600 hover:text-red-800 text-xs"
             >
               ✕
             </button>
