@@ -61,7 +61,7 @@ const ListItem = ({ todoList, setTodoList, setAddTask }) => {
           </div>
 
           <div className="flex flex-row gap-3">
-            <Tooltip text="Edit">
+            <Tooltip text="Edit" left="left-1/2">
               <div
                 className="h-5 w-5 cursor-pointer text-green-700 hover:text-green-900"
                 onClick={() => handleEdit(task)}
@@ -69,7 +69,7 @@ const ListItem = ({ todoList, setTodoList, setAddTask }) => {
                 <TbEdit size={20} />
               </div>
             </Tooltip>
-            <Tooltip text="Delete">
+            <Tooltip text="Delete" left="left-1/2">
               <div
                 className="h-5 w-5 cursor-pointer text-gray-700 hover:text-rose-800"
                 onClick={() => handleDelete(task.id)}

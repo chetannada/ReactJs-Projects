@@ -3,21 +3,40 @@ module.exports = {
   content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     screens: {
+      "2xlMin": "1536px",
+      // => @media (min-width: 1536px) { ... }
+
       "2xl": { max: "1536px" },
       // => @media (max-width: 1536px) { ... }
 
+      xlMin: "1280px",
       xl: { max: "1280px" },
 
+      lgMin: "1024px",
       lg: { max: "1024px" },
 
+      lgMidMin: "950px",
+      lgMid: { max: "950px" },
+
+      mdMin: "900px",
       md: { max: "900px" },
 
+      mdMidMin: "750px",
+      mdMid: { max: "750px" },
+
+      smMin: "640px",
       sm: { max: "640px" },
 
+      mobMidMin: "520px",
+      mobMid: { max: "520px" },
+
+      xsmMin: "480px",
       xsm: { max: "480px" },
 
+      mobMin: "420px",
       mob: { max: "420px" },
 
+      xmobMin: "360px",
       xmob: { max: "360px" },
     },
     extend: {
