@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 import CraftedProjects from "../components/CraftedProjects";
 import CuratedProjects from "../components/CuratedProjects";
 import TabsPage from "../components/TabsPage";
-import AddProjectModal from "../components/modals/AddProjectModal";
 import { useSelector } from "react-redux";
 import LoginModal from "../components/modals/LoginModal";
 import { getCraftedProjects } from "../services/projectService";
+import AddUpdateProjectModal from "../components/modals/AddUpdateProjectModal";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector((state) => state.auth);
@@ -14,13 +14,19 @@ const Body = () => {
   const [showModal, setShowModal] = useState(false);
   const [craftedData, setCraftedData] = useState(null);
   const [isLoadingCrafted, setIsLoadingCrafted] = useState(true);
+  const [editItem, setEditItem] = useState(null);
   const lastQueryRef = useRef("");
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleAddProject = () => {
+  const handleAddShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleEditShowModal = (item) => {
+    setEditItem(item);
     setShowModal(true);
   };
 
@@ -53,7 +59,7 @@ const Body = () => {
       <TabsPage
         activeTab={activeTab}
         handleTabs={handleTabs}
-        handleAddProject={handleAddProject}
+        handleAddShowModal={handleAddShowModal}
       />
 
       {activeTab === "crafted" && (
@@ -63,16 +69,19 @@ const Body = () => {
           isLoading={isLoadingCrafted}
           refreshCraftedProjects={refreshCraftedProjects}
           lastQueryRef={lastQueryRef}
+          handleEditShowModal={handleEditShowModal}
         />
       )}
 
       {activeTab === "curated" && <CuratedProjects activeTab={activeTab} />}
 
       {isLoggedIn && user ? (
-        <AddProjectModal
+        <AddUpdateProjectModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           refreshCraftedProjects={refreshCraftedProjects}
+          editItem={editItem}
+          setEditItem={setEditItem}
         />
       ) : (
         <LoginModal

@@ -47,3 +47,15 @@ export const deleteCraftedProject = async (projectId, contributorId) => {
     throw error;
   }
 };
+
+export const updateCraftedProject = async (projectId, updatedData) => {
+  try {
+    const response = await axios.put(
+      `${API_BACKEND_URL}/api/projects/crafted/update/${projectId}`,
+      updatedData
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

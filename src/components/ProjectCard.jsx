@@ -6,7 +6,12 @@ import Tooltip from "./Tooltip";
 import { statusTooltips } from "../utils/constant";
 import { statusStyles } from "../utils/styles";
 
-const ProjectCard = ({ item, userId, handleEdit, handleDeleteShowModal }) => {
+const ProjectCard = ({
+  item,
+  userId,
+  handleEditShowModal,
+  handleDeleteShowModal,
+}) => {
   const {
     _id,
     projectTitle,
@@ -36,7 +41,7 @@ const ProjectCard = ({ item, userId, handleEdit, handleDeleteShowModal }) => {
 
             <div className="flex flex-row gap-3">
               <button
-                onClick={() => handleEdit(_id)}
+                onClick={() => handleEditShowModal(item)}
                 className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded hover:from-blue-600 hover:to-indigo-700"
               >
                 Edit

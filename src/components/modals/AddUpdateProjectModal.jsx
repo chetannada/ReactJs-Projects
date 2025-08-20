@@ -1,19 +1,28 @@
 import { Controller, useForm } from "react-hook-form";
 import CustomModal from "./CustomModal";
 import { useSelector } from "react-redux";
-import { addCraftedProject } from "../../services/projectService";
+import {
+  addCraftedProject,
+  updateCraftedProject,
+} from "../../services/projectService";
 import toast from "react-hot-toast";
 import ChipInputField from "../chip-input-field";
 import TextInputField from "../text-input-field";
+import { useEffect } from "react";
 
-const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
+const AddUpdateProjectModal = ({
+  isOpen,
+  onClose,
+  refreshCraftedProjects,
+  editItem,
+  setEditItem,
+}) => {
   const { user } = useSelector((state) => state.auth);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    register,
     reset,
   } = useForm({
     defaultValues: {
@@ -25,40 +34,81 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
     },
   });
 
+  useEffect(() => {
+    if (editItem) {
+      reset({
+        projectTitle: editItem.projectTitle || "",
+        projectDescription: editItem.projectDescription || "",
+        githubCodeUrl: editItem.githubCodeUrl || "",
+        liveUrl: editItem.liveUrl || "",
+        techStack: editItem.techStack || ["React.js"],
+      });
+    } else {
+      reset({
+        projectTitle: "",
+        projectDescription: "",
+        githubCodeUrl: "",
+        liveUrl: "",
+        techStack: ["React.js"],
+      });
+    }
+  }, [editItem, reset]);
+
+  const handleClose = () => {
+    reset();
+    setEditItem(null);
+    onClose();
+  };
+
   const onFormSubmit = async (data) => {
-    const finalData = {
+    let finalData = {
       ...data,
-      contributorName: user?.userName,
-      contributorId: user?.userId,
-      contributorAvatarUrl: user?.userAvatarUrl,
-      contributorGithubUrl: user?.userGithubUrl,
-      contributorRole: user?.userRole,
+      contributorName: editItem ? editItem?.contributorName : user?.userName,
+      contributorId: editItem ? editItem?.contributorId : user?.userId,
+      contributorAvatarUrl: editItem
+        ? editItem?.contributorAvatarUrl
+        : user?.userAvatarUrl,
+      contributorGithubUrl: editItem
+        ? editItem?.contributorGithubUrl
+        : user?.userGithubUrl,
+      contributorRole: editItem ? editItem?.contributorRole : user?.userRole,
     };
 
-    await addCraftedProject(finalData)
-      .then((res) => {
-        toast.success(res.message);
-        refreshCraftedProjects("", user?.userId || null);
-        reset();
-        onClose();
-      })
-      .catch((err) => {
-        console.error("Failed to submit project:", err);
-        toast.error(err.message);
-      });
+    if (editItem) {
+      finalData = {
+        ...finalData,
+        updatedBy: user?.userName,
+        updatedByRole: user?.userRole,
+      };
+
+      await updateCraftedProject(editItem._id, finalData)
+        .then((res) => {
+          toast.success(res.message);
+          handleClose();
+          refreshCraftedProjects("", user?.userId || null);
+        })
+        .catch((err) => {
+          console.error("Failed to submit project:", err);
+          toast.error(err.message);
+        });
+    } else {
+      await addCraftedProject(finalData)
+        .then((res) => {
+          toast.success(res.message);
+          handleClose();
+          refreshCraftedProjects("", user?.userId || null);
+        })
+        .catch((err) => {
+          console.error("Failed to submit project:", err);
+          toast.error(err.message);
+        });
+    }
   };
 
   return (
-    <CustomModal
-      isOpen={isOpen}
-      onClose={() => {
-        reset();
-        onClose();
-      }}
-      width="w-180 md:w-128"
-    >
+    <CustomModal isOpen={isOpen} onClose={handleClose} width="w-180 md:w-128">
       <h2 className="text-xl font-semibold text-gray-700 mb-6">
-        🚀 Add a New Project
+        {editItem ? "✏️ Update Project" : "🚀 Add a New Project"}
       </h2>
 
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
@@ -162,7 +212,7 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
             type="submit"
             className="flex items-center gap-2 text-sm px-5 py-2.5 text-white bg-gradient-to-br from-teal-700 to-lime-600 hover:from-lime-600 hover:to-teal-700 focus:ring-4 focus:outline-none font-medium rounded-lg"
           >
-            Submit Project
+            {editItem ? "Update" : "Submit"}
           </button>
         </div>
       </form>
@@ -170,4 +220,4 @@ const AddProjectModal = ({ isOpen, onClose, refreshCraftedProjects }) => {
   );
 };
 
-export default AddProjectModal;
+export default AddUpdateProjectModal;

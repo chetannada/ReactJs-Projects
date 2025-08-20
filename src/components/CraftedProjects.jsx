@@ -15,6 +15,7 @@ const CraftedProjects = ({
   isLoading,
   refreshCraftedProjects,
   lastQueryRef,
+  handleEditShowModal,
 }) => {
   const { user, isAuthReady } = useSelector((state) => state.auth);
 
@@ -40,33 +41,6 @@ const CraftedProjects = ({
     [refreshCraftedProjects, lastQueryRef]
   );
 
-  const renderProjects = () => {
-    if (isLoading)
-      return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
-
-    if (craftedData !== null) {
-      return (
-        <>
-          {craftedData?.length > 0 ? (
-            craftedData?.map((item) => (
-              <ProjectCard
-                key={item._id}
-                item={item}
-                userId={user?.userId}
-                handleEdit={() => console.log("edit")}
-                handleDeleteShowModal={handleDeleteShowModal}
-              />
-            ))
-          ) : (
-            <NoResults searchQuery={searchQuery} />
-          )}
-        </>
-      );
-    }
-
-    return <NoData message="No projects found" />;
-  };
-
   const handleDeleteShowModal = (id) => {
     setProjectId(id);
     setShowModal(true);
@@ -83,6 +57,34 @@ const CraftedProjects = ({
       toast.error(err.message);
     }
   };
+
+  const renderProjects = () => {
+    if (isLoading)
+      return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
+
+    if (craftedData !== null) {
+      return (
+        <>
+          {craftedData?.length > 0 ? (
+            craftedData?.map((item) => (
+              <ProjectCard
+                key={item._id}
+                item={item}
+                userId={user?.userId}
+                handleEditShowModal={handleEditShowModal}
+                handleDeleteShowModal={handleDeleteShowModal}
+              />
+            ))
+          ) : (
+            <NoResults searchQuery={searchQuery} />
+          )}
+        </>
+      );
+    }
+
+    return <NoData message="No projects found" />;
+  };
+
   return (
     <>
       <div className="flex justify-center md:justify-start items-center mx-auto mb-8">
