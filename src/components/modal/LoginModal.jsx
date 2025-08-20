@@ -1,9 +1,9 @@
 import { FaGithub } from "react-icons/fa";
-import CustomModal from "./CustomModal";
+import Modal from ".";
 
 const LoginModal = ({ isOpen, onClose, onLogin, title, description }) => {
   return (
-    <CustomModal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className="text-xl font-semibold text-gray-800 mb-4">{title}</h2>
 
       <p className="text-gray-600 mb-6">{description}</p>
@@ -17,7 +17,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, title, description }) => {
           Login with GitHub
         </button>
       </div>
-    </CustomModal>
+    </Modal>
   );
 };
 

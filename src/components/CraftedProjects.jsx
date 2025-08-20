@@ -5,9 +5,9 @@ import ProjectCard from "./ProjectCard";
 import NoResults from "./NoResults";
 import NoData from "./NoData";
 import { useSelector } from "react-redux";
-import DeleteProjectModal from "./modals/DeleteProjectModal";
 import { deleteCraftedProject } from "../services/projectService";
 import toast from "react-hot-toast";
+import DeleteProjectModal from "./modal/DeleteProjectModal";
 
 const CraftedProjects = ({
   activeTab,

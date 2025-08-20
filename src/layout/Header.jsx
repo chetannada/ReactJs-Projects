@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";
 import useWindowSize from "../hooks/useWindowSize";
-import LoginModal from "../components/modals/LoginModal";
 import axios from "axios";
 import UserMenu from "../components/menu/UserMenu";
 import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logoutUser } from "../reduxStore/reducers/authSlice";
+import LoginModal from "../components/modal/LoginModal";
+import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 
 axios.defaults.withCredentials = true;
 

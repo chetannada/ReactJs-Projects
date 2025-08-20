@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { FiX } from "react-icons/fi";
 
-const CustomModal = ({ isOpen, onClose, children, width = "w-128" }) => {
+const Modal = ({ isOpen, onClose, children, width = "w-128" }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden");
@@ -35,4 +35,4 @@ const CustomModal = ({ isOpen, onClose, children, width = "w-128" }) => {
   );
 };
 
-export default CustomModal;
+export default Modal;

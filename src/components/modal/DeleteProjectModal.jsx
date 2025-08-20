@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-import CustomModal from "./CustomModal";
+import Modal from ".";
 
 const DeleteProjectModal = ({
   isOpen,
@@ -9,7 +9,7 @@ const DeleteProjectModal = ({
   description,
 }) => {
   return (
-    <CustomModal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className="text-xl font-semibold text-red-700 mb-4">{title}</h2>
 
       <p className="text-gray-600 mb-6">{description}</p>
@@ -30,7 +30,7 @@ const DeleteProjectModal = ({
           Cancel
         </button>
       </div>
-    </CustomModal>
+    </Modal>
   );
 };
 

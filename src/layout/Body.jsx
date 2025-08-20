@@ -3,9 +3,9 @@ import CraftedProjects from "../components/CraftedProjects";
 import CuratedProjects from "../components/CuratedProjects";
 import TabsPage from "../components/TabsPage";
 import { useSelector } from "react-redux";
-import LoginModal from "../components/modals/LoginModal";
 import { getCraftedProjects } from "../services/projectService";
-import AddUpdateProjectModal from "../components/modals/AddUpdateProjectModal";
+import AddUpdateProjectModal from "../components/modal/AddUpdateProjectModal";
+import LoginModal from "../components/modal/LoginModal";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector((state) => state.auth);

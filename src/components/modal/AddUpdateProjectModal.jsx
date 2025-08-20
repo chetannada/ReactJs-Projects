@@ -1,5 +1,4 @@
 import { Controller, useForm } from "react-hook-form";
-import CustomModal from "./CustomModal";
 import { useSelector } from "react-redux";
 import {
   addCraftedProject,
@@ -9,6 +8,7 @@ import toast from "react-hot-toast";
 import ChipInputField from "../chip-input-field";
 import TextInputField from "../text-input-field";
 import { useEffect } from "react";
+import Modal from ".";
 
 const AddUpdateProjectModal = ({
   isOpen,
@@ -107,7 +107,7 @@ const AddUpdateProjectModal = ({
   };
 
   return (
-    <CustomModal isOpen={isOpen} onClose={handleClose} width="w-180 md:w-128">
+    <Modal isOpen={isOpen} onClose={handleClose} width="w-180 md:w-128">
       <h2 className="text-xl font-semibold text-gray-700 mb-6">
         {editItem ? "✏️ Update Project" : "🚀 Add a New Project"}
       </h2>
@@ -224,7 +224,7 @@ const AddUpdateProjectModal = ({
           </button>
         </div>
       </form>
-    </CustomModal>
+    </Modal>
   );
 };
 

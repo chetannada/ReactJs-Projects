@@ -2,7 +2,7 @@ import { FaCheckCircle, FaRegCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import toast from "react-hot-toast";
-import Tooltip from "../../components/Tooltip";
+import Tooltip from "../../components/tooltip";
 
 const ListItem = ({ todoList, setTodoList, setAddTask }) => {
   // Set task for editing
