@@ -34,12 +34,12 @@ export const addCraftedProject = async (projectData) => {
   }
 };
 
-export const deleteCraftedProject = async (projectId, contributorId) => {
+export const deleteCraftedProject = async (projectId, payload) => {
   try {
     const response = await axios.delete(
       `${API_BACKEND_URL}/api/projects/crafted/delete/${projectId}`,
       {
-        data: { contributorId },
+        data: payload,
       }
     );
     return response.data;

@@ -48,7 +48,11 @@ const CraftedProjects = ({
 
   const handleDelete = async (projectId) => {
     try {
-      const res = await deleteCraftedProject(projectId, user?.userId || null);
+      const res = await deleteCraftedProject(projectId, {
+        contributorId: user?.userId || null,
+        userRole: user?.userRole || "contributor",
+      });
+
       toast.success(res.message);
       setShowModal(false);
       refreshCraftedProjects("", user?.userId || null);
@@ -110,7 +114,7 @@ const CraftedProjects = ({
         onClose={() => setShowModal(false)}
         onDelete={() => handleDelete(projectId)}
         title="Delete Project?"
-        description="Are you sure you want to permanently delete this project? This action cannot be undone."
+        description="Are you sure you want to delete this project? This action cannot be undone."
       />
     </>
   );
