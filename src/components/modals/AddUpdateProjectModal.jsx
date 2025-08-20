@@ -16,6 +16,7 @@ const AddUpdateProjectModal = ({
   refreshCraftedProjects,
   editItem,
   setEditItem,
+  activeTab,
 }) => {
   const { user } = useSelector((state) => state.auth);
 
@@ -173,8 +174,15 @@ const AddUpdateProjectModal = ({
               rules={{
                 required: "Live URL is required",
                 pattern: {
-                  value: /^(https?:\/\/)/,
-                  message: "Enter a valid URL",
+                  value:
+                    activeTab === "crafted"
+                      ? /^\/[a-zA-Z0-9\-_/]+$/
+                      : /^(https?:\/\/)/,
+                  message: `Enter a valid ${
+                    activeTab === "crafted"
+                      ? "relative path like /project-folder-name"
+                      : "URL"
+                  }`,
                 },
               }}
               render={({ field }) => (

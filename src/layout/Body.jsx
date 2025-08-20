@@ -82,6 +82,7 @@ const Body = () => {
           refreshCraftedProjects={refreshCraftedProjects}
           editItem={editItem}
           setEditItem={setEditItem}
+          activeTab={activeTab}
         />
       ) : (
         <LoginModal
