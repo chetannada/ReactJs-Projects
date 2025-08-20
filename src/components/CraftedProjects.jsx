@@ -76,6 +76,7 @@ const CraftedProjects = ({
                 key={item._id}
                 item={item}
                 userId={user?.userId}
+                userRole={user?.userRole}
                 handleEditShowModal={handleEditShowModal}
                 handleDeleteShowModal={handleDeleteShowModal}
               />

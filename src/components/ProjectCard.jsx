@@ -9,6 +9,7 @@ import { statusStyles } from "../utils/styles";
 const ProjectCard = ({
   item,
   userId,
+  userRole,
   handleEditShowModal,
   handleDeleteShowModal,
 }) => {
@@ -35,7 +36,7 @@ const ProjectCard = ({
   return (
     <div className="w-108 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-50 hover:scale-105 transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="w-full">
-        {contributorId === userId && (
+        {(contributorId === userId || userRole === "admin") && (
           <div className="flex flex-row flex-wrap justify-between items-center gap-4 mb-3">
             {/* Edit/Delete Controls */}
 
@@ -55,9 +56,7 @@ const ProjectCard = ({
             </div>
 
             {/* Status Badge */}
-            {(status === "pending" ||
-              status === "rejected" ||
-              (status === "approved" && contributorId === userId)) && (
+            {status && (contributorId === userId || userRole === "admin") && (
               <Tooltip text={statusTooltips[status]} width="w-56">
                 <span
                   className={`px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]} shadow-sm hover:shadow-md hover:scale-105 transition-transform duration-200`}
