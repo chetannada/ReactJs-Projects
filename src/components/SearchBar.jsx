@@ -1,13 +1,16 @@
 import { memo, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ handleSearch, isDisabled }) => {
-  const [query, setQuery] = useState("");
-
+const SearchBar = ({
+  handleSearch,
+  isDisabled,
+  inputSearch,
+  setInputSearch,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isDisabled) {
-      handleSearch(query.trim().toLowerCase());
+      handleSearch(inputSearch.trim().toLowerCase());
     }
   };
 
@@ -18,9 +21,9 @@ const SearchBar = ({ handleSearch, isDisabled }) => {
     >
       <input
         type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={isDisabled ? query : "Search project by name..."}
+        value={inputSearch}
+        onChange={(e) => setInputSearch(e.target.value)}
+        placeholder={isDisabled ? inputSearch : "Search project by name..."}
         disabled={isDisabled}
         className={`px-4 py-3 outline-none w-full min-w-108 sm:min-w-72 xsm:min-w-52 xmob:min-w-40 text-sm ${
           isDisabled ? "text-gray-500 bg-gray-100" : "text-gray-700"

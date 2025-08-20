@@ -1,4 +1,16 @@
-const NoResults = ({ searchQuery }) => {
+const NoResults = ({
+  searchQuery,
+  refreshCraftedProjects,
+  user,
+  setSearchQuery,
+  setInputSearch,
+}) => {
+  const hanldeResetSearch = () => {
+    setSearchQuery("");
+    setInputSearch("");
+    refreshCraftedProjects("", user?.userId || null);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="w-full max-w-xl flex flex-col items-center justify-center gap-4 py-12 px-6 text-center bg-gradient-to-br from-purple-50 via-white to-purple-100 rounded-xl shadow-md border border-purple-200">
@@ -23,7 +35,7 @@ const NoResults = ({ searchQuery }) => {
           below. Your next discovery might just be a scroll away!
         </p>
         <button
-          onClick={() => window.location.reload()}
+          onClick={hanldeResetSearch}
           className="mt-4 px-6 py-2 text-sm bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg transition-transform transform hover:scale-105"
         >
           Reset Search

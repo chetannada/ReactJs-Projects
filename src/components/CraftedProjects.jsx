@@ -19,6 +19,7 @@ const CraftedProjects = ({
 }) => {
   const { user, isAuthReady } = useSelector((state) => state.auth);
 
+  const [inputSearch, setInputSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [projectId, setProjectId] = useState("");
@@ -80,7 +81,19 @@ const CraftedProjects = ({
               />
             ))
           ) : (
-            <NoResults searchQuery={searchQuery} />
+            <>
+              {searchQuery ? (
+                <NoResults
+                  searchQuery={searchQuery}
+                  refreshCraftedProjects={refreshCraftedProjects}
+                  user={user}
+                  setSearchQuery={setSearchQuery}
+                  setInputSearch={setInputSearch}
+                />
+              ) : (
+                <NoData message="No projects found" />
+              )}
+            </>
           )}
         </>
       );
@@ -96,6 +109,8 @@ const CraftedProjects = ({
           handleSearch={handleSearch}
           activeTab={activeTab}
           isDisabled={isLoading || craftedData === null}
+          inputSearch={inputSearch}
+          setInputSearch={setInputSearch}
         />
       </div>
 
