@@ -58,8 +58,10 @@ const CraftedProjects = ({
       setShowModal(false);
       refreshCraftedProjects("", user?.userId || null);
     } catch (err) {
-      console.error("Failed to delete project:", err);
-      toast.error(err.message);
+      const message =
+        err.response?.data?.errorMessage || "Something went wrong!";
+      console.error("Error:", message);
+      toast.error(message);
     }
   };
 

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getCraftedProjects } from "../services/projectService";
 import AddUpdateProjectModal from "../components/modal/AddUpdateProjectModal";
 import LoginModal from "../components/modal/LoginModal";
+import toast from "react-hot-toast";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector((state) => state.auth);
@@ -41,13 +42,16 @@ const Body = () => {
     lastQueryRef.current = query;
 
     try {
-      const data = await getCraftedProjects(
+      const res = await getCraftedProjects(
         query,
         user?.userId || contributorId
       );
-      setCraftedData(data);
+      setCraftedData(res);
     } catch (err) {
-      console.error("Failed to refresh crafted projects:", err);
+      const message =
+        err.response?.data?.errorMessage || "Something went wrong!";
+      console.error("Error:", message);
+      toast.error(message);
       setCraftedData([]);
     } finally {
       setIsLoadingCrafted(false);

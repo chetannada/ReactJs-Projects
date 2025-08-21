@@ -89,8 +89,10 @@ const AddUpdateProjectModal = ({
           refreshCraftedProjects("", user?.userId || null);
         })
         .catch((err) => {
-          console.error("Failed to submit project:", err);
-          toast.error(err.message);
+          const message =
+            err.response?.data?.errorMessage || "Something went wrong!";
+          console.error("Error:", message);
+          toast.error(message);
         });
     } else {
       await addCraftedProject(finalData)
@@ -100,8 +102,10 @@ const AddUpdateProjectModal = ({
           refreshCraftedProjects("", user?.userId || null);
         })
         .catch((err) => {
-          console.error("Failed to submit project:", err);
-          toast.error(err.message);
+          const message =
+            err.response?.data?.errorMessage || "Something went wrong!";
+          console.error("Error:", message);
+          toast.error(message);
         });
     }
   };
