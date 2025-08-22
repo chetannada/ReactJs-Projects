@@ -34,7 +34,7 @@ const ProjectCard = ({
   const toggleShowMore = () => setShowMore(!showMore);
 
   return (
-    <div className="group w-full px-4 sm:px-6 py-4 bg-opacity-50 bg-purple-50 hover:scale-[1.02] transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="group w-full flex flex-col flex-wrap gap-4 justify-between items-start px-6 py-4 bg-opacity-50 bg-purple-50 hover:scale-[1.02] transition-transform duration-300 hover:shadow-[0_10px_25px_-5px_rgba(139,92,246,0.5)] border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="w-full">
         {(contributorId === userId || userRole === "admin") && (
           <div className="flex flex-wrap flex-row justify-between items-center gap-4 mb-3">
@@ -49,7 +49,7 @@ const ProjectCard = ({
               </button>
 
               <button
-                onClick={() => handleDeleteShowModal(_id)}
+                onClick={() => handleDeleteShowModal(item)}
                 className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
               >
                 Delete

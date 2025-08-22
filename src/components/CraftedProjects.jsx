@@ -22,7 +22,8 @@ const CraftedProjects = ({
   const [inputSearch, setInputSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [projectId, setProjectId] = useState("");
+  const [projectItem, setProjectItem] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
     if (activeTab === "crafted" && isAuthReady) {
@@ -42,12 +43,13 @@ const CraftedProjects = ({
     [refreshCraftedProjects, lastQueryRef]
   );
 
-  const handleDeleteShowModal = (id) => {
-    setProjectId(id);
+  const handleDeleteShowModal = (item) => {
+    setProjectItem(item);
     setShowModal(true);
   };
 
   const handleDelete = async (projectId) => {
+    setIsDisabled(true);
     try {
       const res = await deleteCraftedProject(projectId, {
         contributorId: user?.userId || null,
@@ -55,14 +57,21 @@ const CraftedProjects = ({
       });
 
       toast.success(res.message);
-      setShowModal(false);
+      handleClose();
       refreshCraftedProjects("", user?.userId || null);
     } catch (err) {
       const message =
         err.response?.data?.errorMessage || "Something went wrong!";
       console.error("Error:", message);
       toast.error(message);
+    } finally {
+      () => setIsDisabled(false);
     }
+  };
+
+  const handleClose = () => {
+    setIsDisabled(false);
+    setShowModal(false);
   };
 
   const renderProjects = () => {
@@ -126,10 +135,19 @@ const CraftedProjects = ({
 
       <DeleteProjectModal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        onDelete={() => handleDelete(projectId)}
+        onClose={handleClose}
+        onDelete={() => handleDelete(projectItem._id)}
+        isDisabled={isDisabled}
         title="Delete Project?"
-        description="Are you sure you want to delete this project? This action cannot be undone."
+        description={
+          <span>
+            Are you sure you want to delete{" "}
+            <span className="font-semibold text-red-600">
+              {projectItem?.projectTitle}
+            </span>{" "}
+            project? This action cannot be undone.
+          </span>
+        }
       />
     </>
   );
