@@ -1,19 +1,79 @@
 # ❤️ React.js Projects 🚀
 
-Welcome to `ReactJs Projects` Repository which containing `Awesome Machine Coding Projects using React.js` with Live URL which is helpful for both Beginner and Experience Developer. Tech Stack used: `React.js, Javacript, HTML, CSS, TailwindCSS, Vite, Redux Toolkit`
+Welcome to the `React.js Projects` repository — a curated collection of machine coding projects built using React.js. These projects are designed to be both beginner-friendly and valuable for experienced developers looking to sharpen their frontend skills.
 
-- [🚀 _Live Project Demo_ 😍](https://reactjs-projects-app.netlify.app/)
+Each project includes a live demo and showcases best practices in modular architecture, responsive UI, and modern tooling.
 
-# 🌻 Projects
+- [🚀 _Live Frontend Demo_ 😍](https://reactjs-projects-app.netlify.app/)
 
-This repository contains a `Collection of Cool Coding React.js Projects` with Code and Live URL, which helps you to practice yourself in React.js
+## 🚀 About the Project
 
-### 🌱 Structure of this Project
+This repository contains a collection of **machine coding projects** built with React.js, designed to help developers practice real-world UI workflows and frontend architecture. Each project demonstrates key concepts like component modularity, state management, API integration, and responsive design.
 
-- index.html - _Root index file of Project_
-- index.css - _Global CSS file of Project_
-- index.jsx - _Root js/jsx file of Project_
-- .env - _environment variables for this project to run in development environment (fill the actual values for environment variable that are empty)_
+The backend is powered by a RESTful API built with Node.js and Express.js, enabling full-stack functionality for this project.
+
+## 🛠️ Tech Stack
+
+### 🖥️ Client (Frontend)
+
+- **React.js** – JavaScript library for building dynamic user interfaces
+- **HTML & CSS** – For structure and styling
+- **TailwindCSS** – Utility-first CSS framework for rapid UI development
+- **Vite** – Fast build tool and development server
+- **Redux Toolkit** – State management with simplified configuration
+
+### 🔧 Server (Backend)
+
+- **Node.js** – JavaScript runtime environment
+- **Express.js** – Web framework for building RESTful APIs
+- **Mongoose** – ODM library for MongoDB
+
+### 🗄️ Database
+
+- **MongoDB** – NoSQL database for storing project data
+
+## 🔗 Backend Resources
+
+- [📦 Backend Repository](https://github.com/chetannada/ReactJs-Projects-Backend)
+- [🌐 Live API Server](https://reactjs-projects-api.vercel.app/)
+
+## 🌻 Projects
+
+This repository contains a collection of cool coding projects built with **React.js**, complete with source code and live URLs. These projects are designed to help you practice and master React.js through hands-on experience.
+
+## 🌱 Structure of this Project
+
+```bash
+/REACTJS-PROJECTS
+
+├── public/
+│ └── images/
+├── src/                       # Source code
+│ ├── components/              # Reusable UI components
+│ │ ├── modal/
+│ │ ├── skeleton/
+│ ├── features/                # Feature-based modules
+│ │ ├── google-auth/
+│ │ ├── http-get-request/
+│ │ ├── http-post-request/
+│ │ ├── image-generation/
+│ │ ├── redux-counter/
+│ │ └── todo-list/
+│ ├── hooks/                   # Custom React hooks
+│ ├── layout/                  # Layout components
+│ │ ├── Body.jsx
+│ │ ├── Layout.jsx
+│ ├── routes/
+│ │ └── appRouter.jsx          # App routing configuration
+│ ├── services/                # API service layer
+│ ├── store/                   # Redux store
+│ └── utils/                   # Utility functions and style constants
+├── .env                       # Environment variables
+├── index.html                 # Root HTML file
+├── index.css                  # Global CSS file
+└── index.jsx                  # Entry point for React app
+└── README.md                  # Project documentation
+```
 
 ## 📚 Project 01 - To-Do List App
 
@@ -51,41 +111,47 @@ This repository contains a `Collection of Cool Coding React.js Projects` with Co
 - 💻 [_Source Code_](./src/features/image-generation/)
 - [🚀 _Live Demo_ 😍](https://reactjs-projects-app.netlify.app/image-generation)
 
-# 🎻 Prerequisites
+## 🎻 Prerequisites
 
-Before getting started with the Practicing Projects, you should have a basic understanding of `HTML, CSS and JavaScript`.
-
-# ✏️ Contribute
-
-This repository is an `Open-Source` and `Contributions` are always welcome! If you find an issue in any Projects then create an issue under the Issue section and then create a `Pull Request`. Your contribution will help make this repository a valuable resource for the `React.js Community`.
+Before getting started with the Practicing Projects, you should have a basic understanding of `React.js, JavaScript, HTML, CSS and TailwindCSS.`
 
 ## 🔥 Clone this Repository
 
 You need to write the following commands on the terminal screen (in vscode) so that you can run this project locally.
 
 ```bash
-  git clone "https://github.com/chetannada/ReactJs-Projects.git"
+git clone "https://github.com/chetannada/ReactJs-Projects.git"
 ```
 
 Go to the project directory
 
 ```bash
-  cd ReactJs-Projects
+cd ReactJs-Projects
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
-Start the server
+Set up environment variables:
+
+- .env - environment variables for this project to run in development environment (fill with actual values for environment variables)
+
+Run the application:
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
-This application should now be running on `localhost`. If you want to Fork repository and want to run locally, follow this guidelines [Fork and Clone Github Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+This application should now be running on `http://localhost:3000`.
+
+If you want to Fork repository and want to run locally, follow this guidelines [Fork and Clone Github Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+
+## ✏️ Contributing
+
+This is an Open-Source repository, and contributions are always welcome! If you find an issue, please create a new issue under the "Issues" section. To contribute code, fork the repository and submit a pull request. Your contributions will help make this a valuable resource for the community!
 
 ## ✨ Contributors
 
@@ -119,7 +185,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 [![Forkers repo roster for @chetannada/ReactJs-Projects](https://reporoster.com/forks/chetannada/ReactJs-Projects)](https://github.com/chetannada/ReactJs-Projects/network/members)
 
-## 🔗 Let's Connect
+## 🤝 Let's Connect
 
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chetannada/)
 [![twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/chetannada)
