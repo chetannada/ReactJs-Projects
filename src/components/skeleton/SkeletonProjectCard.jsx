@@ -1,10 +1,15 @@
 const SkeletonProjectCard = () => {
   return (
-    <div className="max-w-96 min-w-96 mob:min-w-72 py-4 px-6 flex flex-col justify-between items-start bg-opacity-50 bg-purple-100 hover:scale-105 transition-transform duration-300 border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow animate-pulse dark:bg-gray-400 dark:border-gray-300">
+    <div className="w-full smMin:w-102 px-4 sm:px-6 py-4 flex flex-col justify-between items-start bg-opacity-50 bg-purple-100 hover:scale-105 transition-transform duration-300 border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow animate-pulse dark:bg-gray-400 dark:border-gray-300">
       <div className="flex flex-col gap-2 mb-5 w-full">
-        <div className="h-6 bg-gray-300 dark:bg-gray-300 rounded w-2/3" />{" "}
-        <div className="h-4 bg-gray-300 dark:bg-gray-300 rounded w-full" />{" "}
-        <div className="h-4 bg-gray-300 dark:bg-gray-300 rounded w-5/6" />{" "}
+        <div className="h-6 bg-gray-300 dark:bg-gray-300 rounded w-2/3" />
+        <div className="h-4 bg-gray-300 dark:bg-gray-300 rounded w-full" />
+        <div className="h-4 bg-gray-300 dark:bg-gray-300 rounded w-5/6" />
+      </div>
+
+      <div className="flex flex-row mob:flex-col gap-4 mob:gap-2 flex-wrap justify-start items-start mb-4 w-full">
+        <div className="h-6 w-24 bg-gray-300 dark:bg-gray-300 rounded-full" />
+        <div className="h-6 w-28 bg-gray-300 dark:bg-gray-300 rounded-full" />
       </div>
 
       <div className="flex flex-row mob:flex-col gap-4 mob:gap-2 flex-wrap justify-start items-start mb-4 w-full">
