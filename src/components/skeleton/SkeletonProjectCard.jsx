@@ -1,6 +1,6 @@
 const SkeletonProjectCard = () => {
   return (
-    <div className="w-full smMin:w-102 px-4 sm:px-6 py-4 flex flex-col justify-between items-start bg-opacity-50 bg-purple-100 hover:scale-105 transition-transform duration-300 border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow animate-pulse dark:bg-gray-400 dark:border-gray-300">
+    <div className="w-full px-4 sm:px-6 py-4 bg-opacity-50 bg-purple-100 hover:scale-105 transition-transform duration-300 border border-gray-200 rounded-tr-3xl rounded-bl-3xl shadow animate-pulse dark:bg-gray-400 dark:border-gray-300">
       <div className="flex flex-col gap-2 mb-5 w-full">
         <div className="h-6 bg-gray-300 dark:bg-gray-300 rounded w-2/3" />
         <div className="h-4 bg-gray-300 dark:bg-gray-300 rounded w-full" />

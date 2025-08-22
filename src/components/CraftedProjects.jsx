@@ -66,43 +66,48 @@ const CraftedProjects = ({
   };
 
   const renderProjects = () => {
-    if (isLoading)
-      return [...Array(6)].map((_, i) => <SkeletonProjectCard key={i} />);
-
-    if (craftedData !== null) {
+    if (isLoading) {
       return (
-        <>
-          {craftedData?.length > 0 ? (
-            craftedData?.map((item) => (
-              <ProjectCard
-                key={item._id}
-                item={item}
-                userId={user?.userId}
-                userRole={user?.userRole}
-                handleEditShowModal={handleEditShowModal}
-                handleDeleteShowModal={handleDeleteShowModal}
-              />
-            ))
-          ) : (
-            <>
-              {searchQuery ? (
-                <NoResults
-                  searchQuery={searchQuery}
-                  refreshCraftedProjects={refreshCraftedProjects}
-                  user={user}
-                  setSearchQuery={setSearchQuery}
-                  setInputSearch={setInputSearch}
-                />
-              ) : (
-                <NoData message="No projects found" />
-              )}
-            </>
-          )}
-        </>
+        <div
+          className={`w-full grid grid-cols-3 xl:grid-cols-2 mdMid:grid-cols-1 gap-6`}
+        >
+          {[...Array(6)].map((_, i) => (
+            <SkeletonProjectCard key={i} />
+          ))}
+        </div>
       );
     }
 
-    return <NoData message="No projects found" />;
+    if (craftedData?.length) {
+      return (
+        <div
+          className={`w-full grid grid-cols-3 xl:grid-cols-2 mdMid:grid-cols-1 gap-6`}
+        >
+          {craftedData?.map((item) => (
+            <ProjectCard
+              key={item._id}
+              item={item}
+              userId={user?.userId}
+              userRole={user?.userRole}
+              handleEditShowModal={handleEditShowModal}
+              handleDeleteShowModal={handleDeleteShowModal}
+            />
+          ))}
+        </div>
+      );
+    } else if (!craftedData?.length && searchQuery) {
+      return (
+        <NoResults
+          searchQuery={searchQuery}
+          refreshCraftedProjects={refreshCraftedProjects}
+          user={user}
+          setSearchQuery={setSearchQuery}
+          setInputSearch={setInputSearch}
+        />
+      );
+    } else {
+      return <NoData message="No projects found" />;
+    }
   };
 
   return (
@@ -117,15 +122,7 @@ const CraftedProjects = ({
         />
       </div>
 
-      <div
-        className={`h-full flex flex-row ${
-          craftedData?.length > 0 || isLoading
-            ? "justify-start"
-            : "justify-center"
-        } content-center items-stretch gap-10 flex-wrap`}
-      >
-        {renderProjects()}
-      </div>
+      {renderProjects()}
 
       <DeleteProjectModal
         isOpen={showModal}
