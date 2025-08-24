@@ -1,21 +1,21 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 // Async actions for fetching user and logging out
-export const fetchUser = createAsyncThunk("auth/fetchUser", async () => {
-  const res = await axios.get(`${API_BACKEND_URL}/api/me`);
+export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
+  const res = await axios.get(`${API_BACKEND_URL}/auth/me`);
   return res.data.user;
 });
 
-export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
+export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
   await axios.post(`${API_BACKEND_URL}/api/logout`);
 });
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     user: null,
     isLoggedIn: false,
