@@ -11,7 +11,7 @@ export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
 });
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
-  await axios.post(`${API_BACKEND_URL}/api/logout`);
+  await axios.post(`${API_BACKEND_URL}/logout`);
 });
 
 const authSlice = createSlice({
