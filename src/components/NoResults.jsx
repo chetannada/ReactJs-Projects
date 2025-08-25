@@ -1,14 +1,15 @@
 const NoResults = ({
   searchQuery,
-  refreshCraftedProjects,
+  fetchProjects,
   user,
   setSearchQuery,
   setInputSearch,
+  activeTab,
 }) => {
   const hanldeResetSearch = () => {
     setSearchQuery("");
     setInputSearch("");
-    refreshCraftedProjects("", user?.userId || null);
+    fetchProjects("", user?.userId || null, activeTab);
   };
 
   return (
@@ -27,12 +28,11 @@ const NoResults = ({
           />
         </svg>
         <h2 className="text-xl font-semibold text-purple-700">
-          No projects found matching{" "}
-          <span className="italic text-pink-500">"{searchQuery}"</span>
+          No projects found matching <span className="italic text-pink-500">"{searchQuery}"</span>
         </h2>
         <p className="text-sm text-gray-600 max-w-md">
-          Try searching for another keyword, or explore all crafted projects
-          below. Your next discovery might just be a scroll away!
+          Try searching for another keyword, or explore all crafted projects below. Your next
+          discovery might just be a scroll away!
         </p>
         <button
           onClick={hanldeResetSearch}

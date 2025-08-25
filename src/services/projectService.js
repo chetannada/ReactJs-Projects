@@ -2,17 +2,15 @@ import axios from "axios";
 
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
-export const getCraftedProjects = async (
-  searchQuery = "",
-  contributorId = null
-) => {
+export const fetchGalleryProjects = async (searchQuery = "", contributorId = null, activeTab) => {
   const queryParams = new URLSearchParams();
   if (searchQuery) queryParams.append("projectTitle", searchQuery);
   if (contributorId) queryParams.append("contributorId", contributorId);
+  if (activeTab) queryParams.append("type", activeTab);
 
   try {
     const response = await axios.get(
-      `${API_BACKEND_URL}/api/projects/crafted/get${
+      `${API_BACKEND_URL}/api/projects/get${
         queryParams.toString() ? `?${queryParams.toString()}` : ""
       }`
     );
@@ -22,10 +20,15 @@ export const getCraftedProjects = async (
   }
 };
 
-export const addCraftedProject = async (projectData) => {
+export const submitProjectToGallery = async (projectData, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
   try {
     const response = await axios.post(
-      `${API_BACKEND_URL}/api/projects/crafted/add`,
+      `${API_BACKEND_URL}/api/projects/add${
+        queryParams.toString() ? `?${queryParams.toString()}` : ""
+      }`,
       projectData
     );
     return response.data;
@@ -34,10 +37,15 @@ export const addCraftedProject = async (projectData) => {
   }
 };
 
-export const deleteCraftedProject = async (projectId, payload) => {
+export const removeProjectFromGallery = async (projectId, payload, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
   try {
     const response = await axios.delete(
-      `${API_BACKEND_URL}/api/projects/crafted/delete/${projectId}`,
+      `${API_BACKEND_URL}/api/projects/delete/${projectId}${
+        queryParams.toString() ? `?${queryParams.toString()}` : ""
+      }`,
       {
         data: payload,
       }
@@ -48,11 +56,34 @@ export const deleteCraftedProject = async (projectId, payload) => {
   }
 };
 
-export const updateCraftedProject = async (projectId, updatedData) => {
+export const editGalleryProject = async (projectId, updatedData, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
   try {
     const response = await axios.put(
-      `${API_BACKEND_URL}/api/projects/crafted/update/${projectId}`,
+      `${API_BACKEND_URL}/api/projects/update/${projectId}${
+        queryParams.toString() ? `?${queryParams.toString()}` : ""
+      }`,
       updatedData
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const reviewGalleryProject = async (projectId, reviewedData, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
+  try {
+    const response = await axios.put(
+      `${API_BACKEND_URL}/api/projects/review/${projectId}?${queryParams.toString()}`,
+      reviewedData,
+      {
+        withCredentials: true,
+      }
     );
     return response.data;
   } catch (error) {
