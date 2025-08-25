@@ -54,6 +54,7 @@ const ProjectGallery = ({
       const res = await removeProjectFromGallery(
         projectId,
         {
+          contributorName: user?.userName || null,
           contributorId: user?.userId || null,
           userRole: user?.userRole || "contributor",
         },
