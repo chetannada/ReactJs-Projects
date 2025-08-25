@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import TabsPage from "../components/TabsPage";
 import { useSelector } from "react-redux";
 import { fetchGalleryProjects } from "../services/projectService";
-import AddUpdateProjectModal from "../components/modal/AddUpdateProjectModal";
 import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
 import ProjectGallery from "../components/ProjectGallery";
+import AddUpdateReviewProjectModal from "../components/modal/AddUpdateReviewProjectModal";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector(state => state.auth);
@@ -15,6 +15,7 @@ const Body = () => {
   const [projectItems, setProjectItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [editItem, setEditItem] = useState(null);
+  const [reviewItem, setReviewItem] = useState(null);
   const lastQueryRef = useRef("");
 
   const handleTabs = tab => {
@@ -26,7 +27,14 @@ const Body = () => {
   };
 
   const handleEditShowModal = item => {
+    setReviewItem(null);
     setEditItem(item);
+    setShowModal(true);
+  };
+
+  const handleReviewModal = item => {
+    setEditItem(null);
+    setReviewItem(item);
     setShowModal(true);
   };
 
@@ -75,15 +83,18 @@ const Body = () => {
         fetchProjects={fetchProjects}
         lastQueryRef={lastQueryRef}
         handleEditShowModal={handleEditShowModal}
+        handleReviewModal={handleReviewModal}
       />
 
       {isLoggedIn && user ? (
-        <AddUpdateProjectModal
+        <AddUpdateReviewProjectModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           fetchProjects={fetchProjects}
           editItem={editItem}
           setEditItem={setEditItem}
+          reviewItem={reviewItem}
+          setReviewItem={setReviewItem}
           activeTab={activeTab}
         />
       ) : (

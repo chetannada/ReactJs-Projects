@@ -16,6 +16,7 @@ const ProjectGallery = ({
   fetchProjects,
   lastQueryRef,
   handleEditShowModal,
+  handleReviewModal,
 }) => {
   const { user, isAuthReady } = useSelector(state => state.auth);
 
@@ -100,6 +101,7 @@ const ProjectGallery = ({
               userRole={user?.userRole}
               handleEditShowModal={handleEditShowModal}
               handleDeleteShowModal={handleDeleteShowModal}
+              handleReviewModal={handleReviewModal}
               activeTab={activeTab}
             />
           ))}

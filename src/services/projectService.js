@@ -72,3 +72,21 @@ export const editGalleryProject = async (projectId, updatedData, activeTab) => {
     throw error;
   }
 };
+
+export const reviewGalleryProject = async (projectId, reviewedData, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
+  try {
+    const response = await axios.put(
+      `${API_BACKEND_URL}/api/projects/review/${projectId}?${queryParams.toString()}`,
+      reviewedData,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
