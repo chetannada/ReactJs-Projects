@@ -12,6 +12,7 @@ const ProjectCard = ({
   userRole,
   handleEditShowModal,
   handleDeleteShowModal,
+  activeTab,
 }) => {
   const {
     _id,
@@ -58,16 +59,11 @@ const ProjectCard = ({
 
             {/* Status Badge */}
             {status && (contributorId === userId || userRole === "admin") && (
-              <Tooltip
-                text={statusTooltips[status]}
-                width="w-36"
-                left="left-1/3"
-              >
+              <Tooltip text={statusTooltips[status]} width="w-36" left="left-1/3">
                 <span
                   className={`px-3 py-1 text-xs font-semibold rounded-full ${statusStyles[status]} shadow-sm opacity-30 group-hover:opacity-100 transition-opacity duration-200`}
                 >
-                  {status.charAt(0).toUpperCase() +
-                    status.slice(1).toLowerCase()}
+                  {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
                 </span>
               </Tooltip>
             )}
@@ -126,6 +122,7 @@ const ProjectCard = ({
           </Link>
           <Link
             to={liveUrl}
+            target={activeTab === "crafted" ? "_self" : "_blank"}
             className="flex flex-row gap-2 justify-center items-center text-white bg-gradient-to-r from-pink-500 to-purple-700 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5"
           >
             <IoOpenOutline size={20} /> Live Demo

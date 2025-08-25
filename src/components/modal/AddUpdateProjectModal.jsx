@@ -1,9 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import {
-  addCraftedProject,
-  updateCraftedProject,
-} from "../../services/projectService";
+import { submitProjectToGallery, editGalleryProject } from "../../services/projectService";
 import toast from "react-hot-toast";
 import ChipInputField from "../chip-input-field";
 import TextInputField from "../text-input-field";
@@ -13,12 +10,12 @@ import Modal from ".";
 const AddUpdateProjectModal = ({
   isOpen,
   onClose,
-  refreshCraftedProjects,
+  fetchProjects,
   editItem,
   setEditItem,
   activeTab,
 }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector(state => state.auth);
   const [isDisabled, setIsDisabled] = useState(false);
 
   const {
@@ -63,19 +60,15 @@ const AddUpdateProjectModal = ({
     onClose();
   };
 
-  const onFormSubmit = async (data) => {
+  const onFormSubmit = async data => {
     setIsDisabled(true);
 
     let finalData = {
       ...data,
       contributorName: editItem ? editItem?.contributorName : user?.userName,
       contributorId: editItem ? editItem?.contributorId : user?.userId,
-      contributorAvatarUrl: editItem
-        ? editItem?.contributorAvatarUrl
-        : user?.userAvatarUrl,
-      contributorGithubUrl: editItem
-        ? editItem?.contributorGithubUrl
-        : user?.userGithubUrl,
+      contributorAvatarUrl: editItem ? editItem?.contributorAvatarUrl : user?.userAvatarUrl,
+      contributorGithubUrl: editItem ? editItem?.contributorGithubUrl : user?.userGithubUrl,
       contributorRole: editItem ? editItem?.contributorRole : user?.userRole,
     };
 
@@ -86,29 +79,27 @@ const AddUpdateProjectModal = ({
         updatedByRole: user?.userRole,
       };
 
-      await updateCraftedProject(editItem._id, finalData)
-        .then((res) => {
+      await editGalleryProject(editItem._id, finalData, activeTab)
+        .then(res => {
           toast.success(res.message);
           handleClose();
-          refreshCraftedProjects("", user?.userId || null);
+          fetchProjects("", user?.userId || null, activeTab);
         })
-        .catch((err) => {
-          const message =
-            err.response?.data?.errorMessage || "Something went wrong!";
+        .catch(err => {
+          const message = err.response?.data?.errorMessage || "Something went wrong!";
           console.error("Error:", message);
           toast.error(message);
         })
         .finally(() => setIsDisabled(false));
     } else {
-      await addCraftedProject(finalData)
-        .then((res) => {
+      await submitProjectToGallery(finalData, activeTab)
+        .then(res => {
           toast.success(res.message);
           handleClose();
-          refreshCraftedProjects("", user?.userId || null);
+          fetchProjects("", user?.userId || null, activeTab);
         })
-        .catch((err) => {
-          const message =
-            err.response?.data?.errorMessage || "Something went wrong!";
+        .catch(err => {
+          const message = err.response?.data?.errorMessage || "Something went wrong!";
           console.error("Error:", message);
           toast.error(message);
         })
@@ -184,23 +175,14 @@ const AddUpdateProjectModal = ({
               rules={{
                 required: "Live URL is required",
                 pattern: {
-                  value:
-                    activeTab === "crafted"
-                      ? /^\/[a-zA-Z0-9\-_/]+$/
-                      : /^(https?:\/\/)/,
+                  value: activeTab === "crafted" ? /^\/[a-zA-Z0-9\-_/]+$/ : /^(https?:\/\/)/,
                   message: `Enter a valid ${
-                    activeTab === "crafted"
-                      ? "relative path like /project-folder-name"
-                      : "URL"
+                    activeTab === "crafted" ? "relative path like /project-folder-name" : "URL"
                   }`,
                 },
               }}
               render={({ field }) => (
-                <TextInputField
-                  field={field}
-                  error={errors.liveUrl}
-                  placeholder="Live Demo URL"
-                />
+                <TextInputField field={field} error={errors.liveUrl} placeholder="Live Demo URL" />
               )}
             />
           </div>
@@ -211,8 +193,7 @@ const AddUpdateProjectModal = ({
             name="techStack"
             control={control}
             rules={{
-              validate: (value) =>
-                value.length > 0 || "At least one tech stack is required",
+              validate: value => value.length > 0 || "At least one tech stack is required",
             }}
             render={({ field }) => (
               <ChipInputField
