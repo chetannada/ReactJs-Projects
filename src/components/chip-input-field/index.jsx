@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-const ChipInputField = ({ value, onChange, max = 4, placeholder, error }) => {
+const ChipInputField = ({
+  value,
+  onChange,
+  max = 8,
+  placeholder,
+  error,
+  disabled = false,
+  ...rest
+}) => {
   const [input, setInput] = useState("");
 
   const handleAdd = () => {
@@ -16,7 +24,7 @@ const ChipInputField = ({ value, onChange, max = 4, placeholder, error }) => {
     }
   };
 
-  const handleRemove = (index) => {
+  const handleRemove = index => {
     onChange(value.filter((_, i) => i !== index));
   };
 
@@ -36,7 +44,8 @@ const ChipInputField = ({ value, onChange, max = 4, placeholder, error }) => {
             <button
               type="button"
               onClick={() => handleRemove(index)}
-              className="text-red-600 hover:text-red-800 text-xs"
+              className={`text-red-600 hover:text-red-800 text-xs ${disabled ? "cursor-not-allowed" : ""}`}
+              disabled={disabled}
             >
               ✕
             </button>
@@ -44,17 +53,19 @@ const ChipInputField = ({ value, onChange, max = 4, placeholder, error }) => {
         ))}
 
         <input
+          {...rest}
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => {
             if (e.key === "Enter") {
               e.preventDefault();
               handleAdd();
             }
           }}
           placeholder={placeholder}
-          className={`flex-grow min-w-[120px] px-2 py-1 outline-none text-sm`}
+          className={`flex-grow min-w-[120px] px-2 py-1 outline-none text-sm ${disabled ? "cursor-not-allowed" : ""}`}
+          disabled={disabled}
         />
       </div>
       {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}

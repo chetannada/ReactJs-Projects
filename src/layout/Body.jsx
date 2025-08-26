@@ -1,22 +1,24 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import CraftedProjects from "../components/CraftedProjects";
-import CuratedProjects from "../components/CuratedProjects";
-import AddUpdateProjectModal from "../components/modal/AddUpdateProjectModal";
-import LoginModal from "../components/modal/LoginModal";
+import ProjectGallery from "../components/ProjectGallery";
 import TabsPage from "../components/TabsPage";
-import { getCraftedProjects } from "../services/projectService";
+import AddUpdateReviewProjectModal from "../components/modal/AddUpdateReviewProjectModal";
+import LoginModal from "../components/modal/LoginModal";
+import { fetchGalleryProjects } from "../services/projectService";
 
 const Body = () => {
-  const { user, isLoggedIn } = useSelector((state) => state.auth);
+  const { user, isLoggedIn, isAuthReady } = useSelector((state) => state.auth);
 
   const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
-  const [craftedData, setCraftedData] = useState(null);
-  const [isLoadingCrafted, setIsLoadingCrafted] = useState(true);
+  const [projectItems, setProjectItems] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [editItem, setEditItem] = useState(null);
-  const lastQueryRef = useRef("");
+  const [reviewItem, setReviewItem] = useState(null);
+
+  const lastQueryRef = useRef(null);
+  const debounceRef = useRef(null);
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
@@ -27,7 +29,14 @@ const Body = () => {
   };
 
   const handleEditShowModal = (item) => {
+    setReviewItem(null);
     setEditItem(item);
+    setShowModal(true);
+  };
+
+  const handleReviewModal = (item) => {
+    setEditItem(null);
+    setReviewItem(item);
     setShowModal(true);
   };
 
@@ -37,22 +46,36 @@ const Body = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
-  const refreshCraftedProjects = async (query = "", contributorId = null) => {
-    setIsLoadingCrafted(true);
-    lastQueryRef.current = query;
+  const fetchProjects = async (
+    search = { query: "", field: "title" },
+    contributorId = null,
+    activeTab = "curated"
+  ) => {
+    const { query, field } = search;
+    const formattedQuery = `${field}:${query}`;
+    lastQueryRef.current = formattedQuery;
 
     try {
-      const res = await getCraftedProjects(query, user?.userId || contributorId);
-      setCraftedData(res);
+      const res = await fetchGalleryProjects({ query, field }, contributorId, activeTab);
+      setProjectItems(res);
     } catch (err) {
       const message = err.response?.data?.errorMessage || "Something went wrong!";
       console.error("Error:", message);
       toast.error(message);
-      setCraftedData([]);
+      setProjectItems([]);
     } finally {
-      setIsLoadingCrafted(false);
+      setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (isAuthReady) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+      }, 300);
+    }
+  }, [isAuthReady, user, activeTab]);
 
   return (
     <>
@@ -62,26 +85,26 @@ const Body = () => {
         handleAddShowModal={handleAddShowModal}
       />
 
-      {activeTab === "crafted" && (
-        <CraftedProjects
-          activeTab={activeTab}
-          craftedData={craftedData}
-          isLoading={isLoadingCrafted}
-          refreshCraftedProjects={refreshCraftedProjects}
-          lastQueryRef={lastQueryRef}
-          handleEditShowModal={handleEditShowModal}
-        />
-      )}
-
-      {activeTab === "curated" && <CuratedProjects activeTab={activeTab} />}
+      {/* Crafted and Curated Project Gallery */}
+      <ProjectGallery
+        activeTab={activeTab}
+        projectItems={projectItems}
+        isLoading={isLoading}
+        fetchProjects={fetchProjects}
+        lastQueryRef={lastQueryRef}
+        handleEditShowModal={handleEditShowModal}
+        handleReviewModal={handleReviewModal}
+      />
 
       {isLoggedIn && user ? (
-        <AddUpdateProjectModal
+        <AddUpdateReviewProjectModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
-          refreshCraftedProjects={refreshCraftedProjects}
+          fetchProjects={fetchProjects}
           editItem={editItem}
           setEditItem={setEditItem}
+          reviewItem={reviewItem}
+          setReviewItem={setReviewItem}
           activeTab={activeTab}
         />
       ) : (
