@@ -2,9 +2,24 @@ import axios from "axios";
 
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
-export const fetchGalleryProjects = async (searchQuery = "", contributorId = null, activeTab) => {
+export const fetchGalleryProjects = async (
+  search = { query: "", field: "title" },
+  contributorId = null,
+  activeTab
+) => {
   const queryParams = new URLSearchParams();
-  if (searchQuery) queryParams.append("projectTitle", searchQuery);
+  const { query, field } = search;
+
+  const fieldMap = {
+    title: "projectTitle",
+    status: "status",
+    techstack: "techStack",
+    contributedBy: "contributorName",
+  };
+
+  const paramKey = fieldMap[field] || "projectTitle";
+
+  if (query) queryParams.append(paramKey, query);
   if (contributorId) queryParams.append("contributorId", contributorId);
   if (activeTab) queryParams.append("type", activeTab);
 

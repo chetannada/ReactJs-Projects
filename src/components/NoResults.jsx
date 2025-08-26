@@ -1,3 +1,5 @@
+import { fieldLabels } from "../utils/constant";
+
 const NoResults = ({
   searchQuery,
   fetchProjects,
@@ -7,9 +9,9 @@ const NoResults = ({
   activeTab,
 }) => {
   const hanldeResetSearch = () => {
-    setSearchQuery("");
+    setSearchQuery({ query: "", field: "title" });
     setInputSearch("");
-    fetchProjects("", user?.userId || null, activeTab);
+    fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
   };
 
   return (
@@ -28,8 +30,11 @@ const NoResults = ({
           />
         </svg>
         <h2 className="text-xl font-semibold text-purple-700">
-          No projects found matching <span className="italic text-pink-500">"{searchQuery}"</span>
+          No projects found with{" "}
+          <span className="text-pink-500 font-medium">{fieldLabels[searchQuery.field]}</span>{" "}
+          matching <span className="italic text-pink-500">"{searchQuery.query}"</span>
         </h2>
+
         <p className="text-sm text-gray-600 max-w-md">
           Try searching for another keyword, or explore all crafted projects below. Your next
           discovery might just be a scroll away!

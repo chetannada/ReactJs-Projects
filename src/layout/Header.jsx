@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true;
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user, isLoggedIn, isAuthReady } = useSelector((state) => state.auth);
+  const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -85,11 +85,15 @@ const Header = () => {
           </div>
 
           {sidebarOpen && (
-            <Sidebar
-              isLoggedIn={isLoggedIn}
-              handleLogout={handleLogout}
-              handleLoginClick={handleLoginClick}
-            />
+            <>
+              <div className="fixed inset-0 top-14 bg-black bg-opacity-60 z-10" />
+              <Sidebar
+                isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
+                handleLoginClick={handleLoginClick}
+                sidebarOpen={sidebarOpen}
+              />
+            </>
           )}
 
           <LoginModal

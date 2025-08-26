@@ -1,10 +1,25 @@
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import MenuItem from "../components/menu/MenuItem";
+import { useEffect } from "react";
 
-const Sidebar = ({ isLoggedIn, handleLogout, handleLoginClick }) => {
+const Sidebar = ({ isLoggedIn, handleLogout, handleLoginClick, sidebarOpen }) => {
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.classList.add("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [sidebarOpen]);
+
   return (
     <>
-      <ul className="hidden lg:block fixed top-14 left-0 w-[40%] min-w-40 h-full bg-primary text-white ease-in-out duration-500">
+      <ul
+        className={`fixed top-14 left-0 w-[40%] min-w-40 h-full bg-primary text-white z-20 transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         {isLoggedIn ? (
           <MenuItem
             icon={<FiLogOut />}
