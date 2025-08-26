@@ -1,22 +1,22 @@
-import { useRef, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import CraftedProjects from '../components/CraftedProjects';
-import CuratedProjects from '../components/CuratedProjects';
-import AddUpdateProjectModal from '../components/modal/AddUpdateProjectModal';
-import LoginModal from '../components/modal/LoginModal';
-import TabsPage from '../components/TabsPage';
-import { getCraftedProjects } from '../services/projectService';
+import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import CraftedProjects from "../components/CraftedProjects";
+import CuratedProjects from "../components/CuratedProjects";
+import AddUpdateProjectModal from "../components/modal/AddUpdateProjectModal";
+import LoginModal from "../components/modal/LoginModal";
+import TabsPage from "../components/TabsPage";
+import { getCraftedProjects } from "../services/projectService";
 
 const Body = () => {
   const { user, isLoggedIn } = useSelector((state) => state.auth);
 
-  const [activeTab, setActiveTab] = useState('crafted');
+  const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
   const [craftedData, setCraftedData] = useState(null);
   const [isLoadingCrafted, setIsLoadingCrafted] = useState(true);
   const [editItem, setEditItem] = useState(null);
-  const lastQueryRef = useRef('');
+  const lastQueryRef = useRef("");
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
@@ -37,7 +37,7 @@ const Body = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
-  const refreshCraftedProjects = async (query = '', contributorId = null) => {
+  const refreshCraftedProjects = async (query = "", contributorId = null) => {
     setIsLoadingCrafted(true);
     lastQueryRef.current = query;
 
@@ -45,8 +45,8 @@ const Body = () => {
       const res = await getCraftedProjects(query, user?.userId || contributorId);
       setCraftedData(res);
     } catch (err) {
-      const message = err.response?.data?.errorMessage || 'Something went wrong!';
-      console.error('Error:', message);
+      const message = err.response?.data?.errorMessage || "Something went wrong!";
+      console.error("Error:", message);
       toast.error(message);
       setCraftedData([]);
     } finally {
@@ -62,7 +62,7 @@ const Body = () => {
         handleAddShowModal={handleAddShowModal}
       />
 
-      {activeTab === 'crafted' && (
+      {activeTab === "crafted" && (
         <CraftedProjects
           activeTab={activeTab}
           craftedData={craftedData}
@@ -73,7 +73,7 @@ const Body = () => {
         />
       )}
 
-      {activeTab === 'curated' && <CuratedProjects activeTab={activeTab} />}
+      {activeTab === "curated" && <CuratedProjects activeTab={activeTab} />}
 
       {isLoggedIn && user ? (
         <AddUpdateProjectModal

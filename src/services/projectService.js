@@ -1,16 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
-export const getCraftedProjects = async (searchQuery = '', contributorId = null) => {
+export const getCraftedProjects = async (searchQuery = "", contributorId = null) => {
   const queryParams = new URLSearchParams();
-  if (searchQuery) queryParams.append('projectTitle', searchQuery);
-  if (contributorId) queryParams.append('contributorId', contributorId);
+  if (searchQuery) queryParams.append("projectTitle", searchQuery);
+  if (contributorId) queryParams.append("contributorId", contributorId);
 
   try {
     const response = await axios.get(
       `${API_BACKEND_URL}/projects/crafted/get${
-        queryParams.toString() ? `?${queryParams.toString()}` : ''
+        queryParams.toString() ? `?${queryParams.toString()}` : ""
       }`
     );
     return response.data;

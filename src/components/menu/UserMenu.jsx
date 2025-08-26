@@ -1,31 +1,28 @@
 // components/UserMenu.jsx
-import { useEffect, useRef, useState } from 'react'
-import { FiLogOut } from 'react-icons/fi'
-import MenuItem from './MenuItem'
+import { useEffect, useRef, useState } from "react";
+import { FiLogOut } from "react-icons/fi";
+import MenuItem from "./MenuItem";
 
 const UserMenu = ({ user, handleLogout }) => {
-  const { userName, userAvatarUrl, githubUserName } = user
+  const { userName, userAvatarUrl, githubUserName } = user;
 
-  const [open, setOpen] = useState(false)
-  const menuRef = useRef()
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
 
   // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setOpen(false)
+        setOpen(false);
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="relative" ref={menuRef}>
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-2"
-      >
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2">
         <img
           src={userAvatarUrl}
           alt={userName}
@@ -50,16 +47,12 @@ const UserMenu = ({ user, handleLogout }) => {
           </div>
 
           <ul className="text-gray-700 text-sm">
-            <MenuItem
-              icon={<FiLogOut />}
-              label="Logout"
-              onClick={handleLogout}
-            />
+            <MenuItem icon={<FiLogOut />} label="Logout" onClick={handleLogout} />
           </ul>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default UserMenu
+export default UserMenu;
