@@ -16,7 +16,9 @@ const Body = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [editItem, setEditItem] = useState(null);
   const [reviewItem, setReviewItem] = useState(null);
+
   const lastQueryRef = useRef("");
+  const debounceRef = useRef(null);
 
   const handleTabs = tab => {
     setActiveTab(tab);
@@ -63,7 +65,10 @@ const Body = () => {
 
   useEffect(() => {
     if (isAuthReady) {
-      fetchProjects("", user?.userId || null, activeTab);
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        fetchProjects("", user?.userId || null, activeTab);
+      }, 300);
     }
   }, [isAuthReady, user, activeTab]);
 
