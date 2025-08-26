@@ -8,7 +8,7 @@ import ProjectGallery from "../components/ProjectGallery";
 import AddUpdateReviewProjectModal from "../components/modal/AddUpdateReviewProjectModal";
 
 const Body = () => {
-  const { user, isLoggedIn } = useSelector(state => state.auth);
+  const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
 
   const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
@@ -61,11 +61,11 @@ const Body = () => {
     }
   };
 
-  // Fetch data whenever the activeTab changes
   useEffect(() => {
-    setProjectItems(null);
-    fetchProjects("", user?.userId || null, activeTab);
-  }, [activeTab]);
+    if (isAuthReady) {
+      fetchProjects("", user?.userId || null, activeTab);
+    }
+  }, [isAuthReady, user, activeTab]);
 
   return (
     <>
