@@ -21,19 +21,18 @@ const ProjectGallery = ({
   const { user } = useSelector(state => state.auth);
 
   const [inputSearch, setInputSearch] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState({ query: "", field: "title" });
   const [showModal, setShowModal] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleSearch = useCallback(
-    query => {
-      if (query === lastQueryRef.current) {
-        return;
-      }
+    ({ query, field }) => {
+      const formattedQuery = `${field}:${query}`;
+      if (formattedQuery === lastQueryRef.current) return;
 
-      setSearchQuery(query);
-      fetchProjects(query, user?.userId || null, activeTab);
+      setSearchQuery({ query, field });
+      fetchProjects({ query, field }, user?.userId || null, activeTab);
     },
     [fetchProjects, lastQueryRef]
   );
@@ -58,7 +57,7 @@ const ProjectGallery = ({
 
       toast.success(res.message);
       handleClose();
-      fetchProjects("", user?.userId || null, activeTab);
+      fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
     } catch (err) {
       const message = err.response?.data?.errorMessage || "Something went wrong!";
       console.error("Error:", message);
@@ -101,7 +100,7 @@ const ProjectGallery = ({
           ))}
         </div>
       );
-    } else if (!projectItems?.length && searchQuery) {
+    } else if (!projectItems?.length && searchQuery?.query) {
       return (
         <NoResults
           searchQuery={searchQuery}

@@ -101,7 +101,7 @@ const AddUpdateReviewProjectModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects("", user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -120,7 +120,7 @@ const AddUpdateReviewProjectModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects("", user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -139,7 +139,7 @@ const AddUpdateReviewProjectModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects("", user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";

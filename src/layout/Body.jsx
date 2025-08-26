@@ -17,7 +17,7 @@ const Body = () => {
   const [editItem, setEditItem] = useState(null);
   const [reviewItem, setReviewItem] = useState(null);
 
-  const lastQueryRef = useRef("");
+  const lastQueryRef = useRef(null);
   const debounceRef = useRef(null);
 
   const handleTabs = tab => {
@@ -46,12 +46,17 @@ const Body = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
-  const fetchProjects = async (query = "", contributorId = null, activeTab = "curated") => {
-    setIsLoading(true);
-    lastQueryRef.current = query;
+  const fetchProjects = async (
+    search = { query: "", field: "title" },
+    contributorId = null,
+    activeTab = "curated"
+  ) => {
+    const { query, field } = search;
+    const formattedQuery = `${field}:${query}`;
+    lastQueryRef.current = formattedQuery;
 
     try {
-      const res = await fetchGalleryProjects(query, contributorId, activeTab);
+      const res = await fetchGalleryProjects({ query, field }, contributorId, activeTab);
       setProjectItems(res);
     } catch (err) {
       const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -67,7 +72,7 @@ const Body = () => {
     if (isAuthReady) {
       clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
-        fetchProjects("", user?.userId || null, activeTab);
+        fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
       }, 300);
     }
   }, [isAuthReady, user, activeTab]);
