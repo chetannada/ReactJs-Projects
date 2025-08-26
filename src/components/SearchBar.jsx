@@ -23,14 +23,14 @@ const SearchBar = ({ handleSearch, isDisabled, inputSearch, setInputSearch }) =>
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center bg-white border border-purple-300 rounded-xl overflow-hidden"
+      className={`w-full mobMidMin:max-w-2xl flex flex-row mobMid:flex-col items-stretch mobMid:gap-2 border mobMid:border-none border-purple-300 ${isDisabled ? "bg-gray-100" : "bg-white"} mobMid:bg-transparent rounded-xl mobMid:rounded-none overflow-hidden`}
     >
-      <div className="relative w-full">
+      <div className="relative w-full mobMidMin:max-w-48 mobMid:border mobMid:border-purple-300 mobMid:rounded-xl">
         <select
           value={searchBy}
           onChange={handleSelect}
           disabled={isDisabled}
-          className={`w-full px-3 py-3 mr-6 text-sm border-r border-purple-300 outline-none appearance-none ${
+          className={`w-full px-3 py-4 mr-6 text-sm border-r mobMid:border-none mobMid:rounded-xl border-purple-300 outline-none appearance-none ${
             isDisabled
               ? "bg-gray-100 text-gray-500 cursor-not-allowed"
               : "bg-white text-gray-700 cursor-pointer"
@@ -57,25 +57,29 @@ const SearchBar = ({ handleSearch, isDisabled, inputSearch, setInputSearch }) =>
         </div>
       </div>
 
-      <input
-        type="text"
-        value={inputSearch}
-        onChange={e => setInputSearch(e.target.value)}
-        placeholder={isDisabled ? inputSearch : `Search by ${fieldLabels[searchBy]}...`}
-        disabled={isDisabled}
-        className={`px-4 py-3 outline-none w-full min-w-108 sm:min-w-72 xsm:min-w-52 xmob:min-w-40 text-sm ${
-          isDisabled ? "text-gray-500 bg-gray-100" : "text-gray-700"
-        } placeholder-gray-400`}
-      />
-      <button
-        type="submit"
-        disabled={isDisabled}
-        className={`px-4 py-4 ${
-          isDisabled ? "bg-gray-300" : "bg-purple-700 hover:bg-purple-800"
-        } text-white flex items-center justify-center transition`}
+      <div
+        className={`w-full ${isDisabled ? "bg-gray-100" : "bg-white"} flex items-center mobMid:border mobMid:border-purple-300 mobMid:rounded-xl`}
       >
-        <FaSearch />
-      </button>
+        <input
+          type="text"
+          value={inputSearch}
+          onChange={e => setInputSearch(e.target.value)}
+          placeholder={isDisabled ? inputSearch : `Search by ${fieldLabels[searchBy]}...`}
+          disabled={isDisabled}
+          className={`px-4 py-3 outline-none w-full text-sm mobMid:rounded-xl ${
+            isDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-700"
+          } placeholder-gray-400`}
+        />
+        <button
+          type="submit"
+          disabled={isDisabled}
+          className={`px-4 py-[18px] mobMid:rounded-r-xl ${
+            isDisabled ? "bg-gray-300 cursor-not-allowed" : "bg-purple-700 hover:bg-purple-800"
+          } text-white flex items-center justify-center transition`}
+        >
+          <FaSearch />
+        </button>
+      </div>
     </form>
   );
 };
