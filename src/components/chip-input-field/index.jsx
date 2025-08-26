@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 const ChipInputField = ({
   value,
   onChange,
-  max = 4,
+  max = 8,
   placeholder,
   error,
   disabled = false,
