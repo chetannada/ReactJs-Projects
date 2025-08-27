@@ -12,7 +12,6 @@ export const fetchGalleryProjects = async (
 
   const fieldMap = {
     title: "projectTitle",
-    status: "status",
     techstack: "techStack",
     contributedBy: "contributorName",
   };
