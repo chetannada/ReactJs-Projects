@@ -37,7 +37,6 @@ const SearchBar = ({ handleSearch, isDisabled, inputSearch, setInputSearch }) =>
           }`}
         >
           <option value="title"> {!isDisabled && "Title"}</option>
-          <option value="status">Status</option>
           <option value="techstack">Tech Stack</option>
           <option value="contributedBy">Contributed By</option>
         </select>

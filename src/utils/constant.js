@@ -6,7 +6,6 @@ export const statusTooltips = {
 
 export const fieldLabels = {
   title: "title",
-  status: "status",
   techstack: "tech stack",
   contributedBy: "contributed by",
 };
