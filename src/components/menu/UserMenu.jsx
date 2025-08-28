@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { FiLogOut } from "react-icons/fi";
 import MenuItem from "./MenuItem";
 
-const UserMenu = ({ user, handleLogout }) => {
+const UserMenu = ({ user, handleLogoutClick }) => {
   const { userName, userAvatarUrl, githubUserName } = user;
 
   const [open, setOpen] = useState(false);
@@ -11,7 +11,7 @@ const UserMenu = ({ user, handleLogout }) => {
 
   // Close menu on outside click
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = e => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setOpen(false);
       }
@@ -22,10 +22,7 @@ const UserMenu = ({ user, handleLogout }) => {
 
   return (
     <div className="relative" ref={menuRef}>
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-2"
-      >
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2">
         <img
           src={userAvatarUrl}
           alt={userName}
@@ -50,11 +47,7 @@ const UserMenu = ({ user, handleLogout }) => {
           </div>
 
           <ul className="text-gray-700 text-sm">
-            <MenuItem
-              icon={<FiLogOut />}
-              label="Logout"
-              onClick={handleLogout}
-            />
+            <MenuItem icon={<FiLogOut />} label="Logout" onClick={handleLogoutClick} />
           </ul>
         </div>
       )}
