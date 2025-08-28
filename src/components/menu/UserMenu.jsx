@@ -1,5 +1,5 @@
 // components/UserMenu.jsx
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import MenuItem from "./MenuItem";
 
@@ -22,10 +22,7 @@ const UserMenu = ({ user, handleLogout }) => {
 
   return (
     <div className="relative" ref={menuRef}>
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-2"
-      >
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2">
         <img
           src={userAvatarUrl}
           alt={userName}
@@ -43,18 +40,14 @@ const UserMenu = ({ user, handleLogout }) => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="font-semibold text-gray-800">Chetan Nada</p>
+                <p className="font-semibold text-gray-800">{userName}</p>
                 <p className="text-xs text-gray-500">@{githubUserName}</p>
               </div>
             </div>
           </div>
 
           <ul className="text-gray-700 text-sm">
-            <MenuItem
-              icon={<FiLogOut />}
-              label="Logout"
-              onClick={handleLogout}
-            />
+            <MenuItem icon={<FiLogOut />} label="Logout" onClick={handleLogout} />
           </ul>
         </div>
       )}

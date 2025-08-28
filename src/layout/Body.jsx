@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import TabsPage from "../components/TabsPage";
-import { useSelector } from "react-redux";
-import { fetchGalleryProjects } from "../services/projectService";
-import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 import ProjectGallery from "../components/ProjectGallery";
+import TabsPage from "../components/TabsPage";
 import AddUpdateReviewProjectModal from "../components/modal/AddUpdateReviewProjectModal";
+import LoginModal from "../components/modal/LoginModal";
+import { fetchGalleryProjects } from "../services/projectService";
 
 const Body = () => {
-  const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
+  const { user, isLoggedIn, isAuthReady } = useSelector((state) => state.auth);
 
   const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,7 @@ const Body = () => {
   const lastQueryRef = useRef(null);
   const debounceRef = useRef(null);
 
-  const handleTabs = tab => {
+  const handleTabs = (tab) => {
     setActiveTab(tab);
   };
 
@@ -28,13 +28,13 @@ const Body = () => {
     setShowModal(true);
   };
 
-  const handleEditShowModal = item => {
+  const handleEditShowModal = (item) => {
     setReviewItem(null);
     setEditItem(item);
     setShowModal(true);
   };
 
-  const handleReviewModal = item => {
+  const handleReviewModal = (item) => {
     setEditItem(null);
     setReviewItem(item);
     setShowModal(true);
