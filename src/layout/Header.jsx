@@ -8,6 +8,7 @@ import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../components/modal/LoginModal";
 import { fetchUser, logoutUser } from "../store/reducers/authSlice";
+import LogoutModal from "../components/modal/LogoutModal";
 
 axios.defaults.withCredentials = true;
 
@@ -16,7 +17,8 @@ const Header = () => {
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const windowSize = useWindowSize();
 
@@ -32,9 +34,7 @@ const Header = () => {
 
   const handleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  const handleLoginClick = () => setShowModal(true);
-
-  const handleLogout = () => dispatch(logoutUser());
+  const handleLoginClick = () => setShowLoginModal(true);
 
   const hanldeOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
@@ -42,12 +42,20 @@ const Header = () => {
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
+  const handleLogoutClick = () => setShowLogoutModal(true);
+
+  const handleOnLogout = () => {
+    setShowLogoutModal(false);
+    setSidebarOpen(false);
+    dispatch(logoutUser());
+  };
+
   // Render authentication UI based on login state
   const renderAuthUI = () => {
     if (!isAuthReady) return null;
 
     if (isLoggedIn && user) {
-      return <UserMenu user={user} handleLogout={handleLogout} />;
+      return <UserMenu user={user} handleLogoutClick={handleLogoutClick} />;
     }
 
     return (
@@ -89,7 +97,7 @@ const Header = () => {
               <div className="fixed inset-0 top-14 bg-black bg-opacity-60 z-10" />
               <Sidebar
                 isLoggedIn={isLoggedIn}
-                handleLogout={handleLogout}
+                handleLogoutClick={handleLogoutClick}
                 handleLoginClick={handleLoginClick}
                 sidebarOpen={sidebarOpen}
               />
@@ -97,12 +105,20 @@ const Header = () => {
           )}
 
           <LoginModal
-            isOpen={showModal}
-            onClose={() => setShowModal(false)}
+            isOpen={showLoginModal}
+            onClose={() => setShowLoginModal(false)}
             onLogin={hanldeOnLogin}
             title="Welcome back!"
             description="To personalize your experience and save your favorite projects, log in
         using your GitHub account."
+          />
+
+          <LogoutModal
+            isOpen={showLogoutModal}
+            onClose={() => setShowLogoutModal(false)}
+            onLogout={handleOnLogout}
+            title="Taking a break?"
+            description={`You'll be signed out and redirected to the home screen. Come back anytime to keep building and sharing!`}
           />
         </nav>
       </header>

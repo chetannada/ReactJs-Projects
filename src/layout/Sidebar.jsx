@@ -2,7 +2,7 @@ import { FiLogIn, FiLogOut } from "react-icons/fi";
 import MenuItem from "../components/menu/MenuItem";
 import { useEffect } from "react";
 
-const Sidebar = ({ isLoggedIn, handleLogout, handleLoginClick, sidebarOpen }) => {
+const Sidebar = ({ isLoggedIn, handleLogoutClick, handleLoginClick, sidebarOpen }) => {
   useEffect(() => {
     if (sidebarOpen) {
       document.body.classList.add("overflow-hidden");
@@ -24,7 +24,7 @@ const Sidebar = ({ isLoggedIn, handleLogout, handleLoginClick, sidebarOpen }) =>
           <MenuItem
             icon={<FiLogOut />}
             label="Logout"
-            onClick={handleLogout}
+            onClick={handleLogoutClick}
             hoverClass="hover:bg-secondary"
             pxClass="px-8"
           />
