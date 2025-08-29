@@ -1,7 +1,7 @@
 import { MdAddCircleOutline } from "react-icons/md";
 import useWindowSize from "../hooks/useWindowSize";
 
-const TabsPage = ({ activeTab, handleTabs, handleAddShowModal }) => {
+const TabsPage = ({ activeTab, handleTabs, handleAddModal }) => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 420;
 
@@ -24,7 +24,7 @@ const TabsPage = ({ activeTab, handleTabs, handleAddShowModal }) => {
       </div>
 
       <button
-        onClick={handleAddShowModal}
+        onClick={handleAddModal}
         className="flex items-center gap-2 px-4 py-2 text-white bg-gradient-to-br from-teal-700 to-lime-600 hover:from-lime-600 hover:to-teal-700 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm mob:text-xs transition"
       >
         <MdAddCircleOutline className="text-xl" />
