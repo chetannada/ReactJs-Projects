@@ -4,6 +4,7 @@ import {
   submitProjectToGallery,
   editGalleryProject,
   reviewGalleryProject,
+  restoreGalleryProject,
 } from "../../services/projectService";
 import toast from "react-hot-toast";
 import ChipInputField from "../chip-input-field";
@@ -11,7 +12,7 @@ import TextInputField from "../text-input-field";
 import { useEffect, useState } from "react";
 import Modal from ".";
 
-const AddUpdateReviewProjectModal = ({
+const ProjectFormModal = ({
   isOpen,
   onClose,
   fetchProjects,
@@ -19,6 +20,8 @@ const AddUpdateReviewProjectModal = ({
   setEditItem,
   reviewItem,
   setReviewItem,
+  restoreItem,
+  setRestoreItem,
   activeTab,
 }) => {
   const { user } = useSelector(state => state.auth);
@@ -30,6 +33,7 @@ const AddUpdateReviewProjectModal = ({
     formState: { errors },
     reset,
     watch,
+    setValue,
   } = useForm({
     defaultValues: {
       projectTitle: "",
@@ -39,14 +43,21 @@ const AddUpdateReviewProjectModal = ({
       techStack: ["React.js"],
       status: "approved",
       rejectionReason: "",
+      restoredReason: "",
     },
   });
 
   const statusValue = watch("status");
 
   useEffect(() => {
-    if (editItem || reviewItem) {
-      const item = editItem || reviewItem;
+    if (statusValue === "approved") {
+      setValue("rejectionReason", "");
+    }
+  }, [statusValue]);
+
+  useEffect(() => {
+    if (editItem || reviewItem || restoreItem) {
+      const item = editItem || reviewItem || restoreItem;
       reset({
         projectTitle: item.projectTitle || "",
         projectDescription: item.projectDescription || "",
@@ -55,6 +66,7 @@ const AddUpdateReviewProjectModal = ({
         techStack: item.techStack || ["React.js"],
         status: reviewItem ? "approved" : item.status,
         rejectionReason: item.rejectionReason || "",
+        restoredReason: item.restoredReason || "",
       });
     } else {
       reset({
@@ -65,15 +77,17 @@ const AddUpdateReviewProjectModal = ({
         techStack: ["React.js"],
         status: "approved",
         rejectionReason: "",
+        restoredReason: "",
       });
     }
-  }, [editItem, reviewItem, reset]);
+  }, [editItem, reviewItem, restoreItem, reset]);
 
   const handleClose = () => {
     setIsDisabled(false);
     reset();
     setEditItem(null);
     setReviewItem(null);
+    setRestoreItem(null);
     onClose();
   };
 
@@ -95,6 +109,7 @@ const AddUpdateReviewProjectModal = ({
         updatedByRole: user?.userRole,
         status: "pending",
         rejectionReason: "",
+        restoredReason: "",
       };
 
       await editGalleryProject(editItem._id, finalData, activeTab)
@@ -113,10 +128,29 @@ const AddUpdateReviewProjectModal = ({
       finalData = {
         ...finalData,
         status: data.status,
-        rejectionReason: data.status === "rejected" ? data.rejectionReason : null,
+        rejectionReason: data.rejectionReason,
       };
 
       await reviewGalleryProject(reviewItem._id, finalData, activeTab)
+        .then(res => {
+          toast.success(res.message);
+          handleClose();
+          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+        })
+        .catch(err => {
+          const message = err.response?.data?.errorMessage || "Something went wrong!";
+          console.error("Error:", message);
+          toast.error(message);
+        })
+        .finally(() => setIsDisabled(false));
+    } else if (restoreItem) {
+      finalData = {
+        ...finalData,
+        status: data.status,
+        restoredReason: data.restoredReason,
+      };
+
+      await restoreGalleryProject(restoreItem._id, finalData, activeTab)
         .then(res => {
           toast.success(res.message);
           handleClose();
@@ -133,6 +167,7 @@ const AddUpdateReviewProjectModal = ({
         ...finalData,
         status: "pending",
         rejectionReason: "",
+        restoredReason: "",
       };
 
       await submitProjectToGallery(finalData, activeTab)
@@ -150,11 +185,13 @@ const AddUpdateReviewProjectModal = ({
     }
   };
 
-  const handleTitle = () => {
+  const getModalTitle = () => {
     if (editItem) {
       return "✏️ Update Project";
     } else if (reviewItem) {
       return "🔍 Review Project";
+    } else if (restoreItem) {
+      return "♻️ Restore Project";
     } else {
       return "🚀 Add a New Project";
     }
@@ -162,7 +199,7 @@ const AddUpdateReviewProjectModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} width="w-180 md:w-128">
-      <h2 className="text-xl font-semibold text-gray-700 mb-6">{handleTitle()}</h2>
+      <h2 className="text-xl font-semibold text-gray-700 mb-6">{getModalTitle()}</h2>
 
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
         <div className="flex flex-row md:flex-col gap-4">
@@ -176,7 +213,7 @@ const AddUpdateReviewProjectModal = ({
                   field={field}
                   error={errors.projectTitle}
                   placeholder="Project Title"
-                  disabled={reviewItem}
+                  disabled={reviewItem || restoreItem}
                 />
               )}
             />
@@ -192,7 +229,7 @@ const AddUpdateReviewProjectModal = ({
                   field={field}
                   error={errors.projectDescription}
                   placeholder="Project Description"
-                  disabled={reviewItem}
+                  disabled={reviewItem || restoreItem}
                 />
               )}
             />
@@ -216,7 +253,7 @@ const AddUpdateReviewProjectModal = ({
                   field={field}
                   error={errors.githubCodeUrl}
                   placeholder="Code Repository URL"
-                  disabled={reviewItem}
+                  disabled={reviewItem || restoreItem}
                 />
               )}
             />
@@ -240,7 +277,7 @@ const AddUpdateReviewProjectModal = ({
                   field={field}
                   error={errors.liveUrl}
                   placeholder="Live Demo URL"
-                  disabled={reviewItem}
+                  disabled={reviewItem || restoreItem}
                 />
               )}
             />
@@ -260,13 +297,13 @@ const AddUpdateReviewProjectModal = ({
                 onChange={field.onChange}
                 error={errors.techStack}
                 placeholder="Add Tech used in your Project..."
-                disabled={reviewItem}
+                disabled={reviewItem || restoreItem}
               />
             )}
           />
         </div>
 
-        {reviewItem && (
+        {(reviewItem || restoreItem) && (
           <div className="flex flex-row md:flex-col gap-4">
             <div className="flex-1">
               <Controller
@@ -277,7 +314,8 @@ const AddUpdateReviewProjectModal = ({
                   <div className="relative">
                     <select
                       {...field}
-                      className="w-full px-3 py-2 pr-10 border rounded-md text-sm appearance-none cursor-pointer"
+                      disabled={restoreItem}
+                      className={`w-full px-3 py-2 pr-10 border rounded-md text-sm appearance-none ${restoreItem ? "cursor-not-allowed" : "cursor-pointer"}`}
                     >
                       <option value="approved">Approve</option>
                       <option value="rejected">Reject</option>
@@ -301,25 +339,43 @@ const AddUpdateReviewProjectModal = ({
               )}
             </div>
 
-            <div className="flex-1">
-              <Controller
-                name="rejectionReason"
-                control={control}
-                rules={{
-                  validate: value =>
-                    statusValue === "rejected"
-                      ? value.trim().length > 0 || "Rejection reason is required"
-                      : true,
-                }}
-                render={({ field }) => (
-                  <TextInputField
-                    field={field}
-                    error={errors.rejectionReason}
-                    placeholder={`Reason for rejection ${statusValue === "rejected" ? "" : "(optional)"}`}
-                  />
-                )}
-              />
-            </div>
+            {reviewItem ? (
+              <div className="flex-1">
+                <Controller
+                  name="rejectionReason"
+                  control={control}
+                  rules={{
+                    validate: value =>
+                      statusValue === "rejected"
+                        ? value.trim().length > 0 || "Rejection reason is required"
+                        : true,
+                  }}
+                  render={({ field }) => (
+                    <TextInputField
+                      field={field}
+                      error={errors.rejectionReason}
+                      placeholder={`Reason for rejection`}
+                      disabled={statusValue === "approved"}
+                    />
+                  )}
+                />
+              </div>
+            ) : (
+              <div className="flex-1">
+                <Controller
+                  name="restoredReason"
+                  control={control}
+                  rules={{ required: "Restored reason is required" }}
+                  render={({ field }) => (
+                    <TextInputField
+                      field={field}
+                      error={errors.restoredReason}
+                      placeholder={`Reason for restored`}
+                    />
+                  )}
+                />
+              </div>
+            )}
           </div>
         )}
 
@@ -340,4 +396,4 @@ const AddUpdateReviewProjectModal = ({
   );
 };
 
-export default AddUpdateReviewProjectModal;
+export default ProjectFormModal;

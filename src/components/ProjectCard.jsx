@@ -10,13 +10,13 @@ const ProjectCard = ({
   item,
   userId,
   userRole,
-  handleEditShowModal,
-  handleDeleteShowModal,
+  handleRestoreModal,
+  handleEditModal,
+  handleDeleteModal,
   handleReviewModal,
   activeTab,
 }) => {
   const {
-    _id,
     projectTitle,
     projectDescription,
     githubCodeUrl,
@@ -28,6 +28,8 @@ const ProjectCard = ({
     status,
     techStack,
     rejectionReason,
+    restoredReason,
+    isDeleted,
   } = item;
 
   const [showMore, setShowMore] = useState(false);
@@ -43,15 +45,23 @@ const ProjectCard = ({
             {/* Edit/Delete Controls */}
 
             <div className="flex flex-wrap flex-row gap-3">
-              <button
-                onClick={() => handleEditShowModal(item)}
-                className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
-              >
-                Edit
-              </button>
+              {isDeleted ? (
+                <Tooltip text={"This project has been deleted"} width="w-36" left="left-1/3">
+                  <button className="text-xs px-3 py-1 bg-gray-300 text-gray-600 cursor-default rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200">
+                    Deleted
+                  </button>
+                </Tooltip>
+              ) : (
+                <button
+                  onClick={() => handleEditModal(item)}
+                  className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
+                >
+                  Edit
+                </button>
+              )}
 
               <button
-                onClick={() => handleDeleteShowModal(item)}
+                onClick={() => handleDeleteModal(item)}
                 className="text-xs px-3 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
               >
                 Delete
@@ -59,7 +69,16 @@ const ProjectCard = ({
             </div>
 
             <div className="flex flex-wrap flex-row gap-3">
-              {userRole === "admin" && status === "pending" && (
+              {userRole === "admin" && isDeleted && (
+                <button
+                  onClick={() => handleRestoreModal(item)}
+                  className="text-xs px-3 py-1 bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
+                >
+                  Restore
+                </button>
+              )}
+
+              {userRole === "admin" && !isDeleted && status === "pending" && (
                 <button
                   onClick={() => handleReviewModal(item)}
                   className="text-xs px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded opacity-30 group-hover:opacity-100 transition-opacity duration-200"
@@ -114,10 +133,15 @@ const ProjectCard = ({
           </div>
         )}
 
-        {/* Rejection Reason */}
-        {status === "rejected" && rejectionReason && (
+        {/* Rejection and Restored Reason */}
+        {rejectionReason && (userId === contributorId || userRole === "admin") && (
           <div className="w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
-            <strong>Reason:</strong> {rejectionReason}
+            <strong>Rejected reason:</strong> {rejectionReason}
+          </div>
+        )}
+        {restoredReason && (userId === contributorId || userRole === "admin") && (
+          <div className="w-full mb-6 p-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-md">
+            <strong>Restored reason:</strong> {restoredReason}
           </div>
         )}
       </div>

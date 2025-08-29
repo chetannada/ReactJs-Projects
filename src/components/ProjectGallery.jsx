@@ -15,8 +15,9 @@ const ProjectGallery = ({
   isLoading,
   fetchProjects,
   lastQueryRef,
-  handleEditShowModal,
+  handleEditModal,
   handleReviewModal,
+  handleRestoreModal,
 }) => {
   const { user } = useSelector(state => state.auth);
 
@@ -37,7 +38,7 @@ const ProjectGallery = ({
     [fetchProjects, lastQueryRef]
   );
 
-  const handleDeleteShowModal = item => {
+  const handleDeleteModal = item => {
     setDeleteItem(item);
     setShowModal(true);
   };
@@ -92,8 +93,9 @@ const ProjectGallery = ({
               item={item}
               userId={user?.userId}
               userRole={user?.userRole}
-              handleEditShowModal={handleEditShowModal}
-              handleDeleteShowModal={handleDeleteShowModal}
+              handleRestoreModal={handleRestoreModal}
+              handleEditModal={handleEditModal}
+              handleDeleteModal={handleDeleteModal}
               handleReviewModal={handleReviewModal}
               activeTab={activeTab}
             />

@@ -104,3 +104,21 @@ export const reviewGalleryProject = async (projectId, reviewedData, activeTab) =
     throw error;
   }
 };
+
+export const restoreGalleryProject = async (projectId, restoredData, activeTab) => {
+  const queryParams = new URLSearchParams();
+  if (activeTab) queryParams.append("type", activeTab);
+
+  try {
+    const response = await axios.put(
+      `${API_BACKEND_URL}/api/projects/restore/${projectId}?${queryParams.toString()}`,
+      restoredData,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

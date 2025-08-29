@@ -5,7 +5,7 @@ import { fetchGalleryProjects } from "../services/projectService";
 import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
 import ProjectGallery from "../components/ProjectGallery";
-import AddUpdateReviewProjectModal from "../components/modal/AddUpdateReviewProjectModal";
+import ProjectFormModal from "../components/modal/ProjectFormModal";
 
 const Body = () => {
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
@@ -16,6 +16,7 @@ const Body = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [editItem, setEditItem] = useState(null);
   const [reviewItem, setReviewItem] = useState(null);
+  const [restoreItem, setRestoreItem] = useState(null);
 
   const lastQueryRef = useRef(null);
   const debounceRef = useRef(null);
@@ -24,19 +25,31 @@ const Body = () => {
     setActiveTab(tab);
   };
 
-  const handleAddShowModal = () => {
+  const handleAddModal = () => {
+    setReviewItem(null);
+    setRestoreItem(null);
+    setEditItem(null);
     setShowModal(true);
   };
 
-  const handleEditShowModal = item => {
+  const handleEditModal = item => {
     setReviewItem(null);
+    setRestoreItem(null);
     setEditItem(item);
     setShowModal(true);
   };
 
   const handleReviewModal = item => {
     setEditItem(null);
+    setRestoreItem(null);
     setReviewItem(item);
+    setShowModal(true);
+  };
+
+  const handleRestoreModal = item => {
+    setEditItem(null);
+    setReviewItem(null);
+    setRestoreItem(item);
     setShowModal(true);
   };
 
@@ -79,11 +92,7 @@ const Body = () => {
 
   return (
     <>
-      <TabsPage
-        activeTab={activeTab}
-        handleTabs={handleTabs}
-        handleAddShowModal={handleAddShowModal}
-      />
+      <TabsPage activeTab={activeTab} handleTabs={handleTabs} handleAddModal={handleAddModal} />
 
       {/* Crafted and Curated Project Gallery */}
       <ProjectGallery
@@ -92,12 +101,13 @@ const Body = () => {
         isLoading={isLoading}
         fetchProjects={fetchProjects}
         lastQueryRef={lastQueryRef}
-        handleEditShowModal={handleEditShowModal}
+        handleEditModal={handleEditModal}
         handleReviewModal={handleReviewModal}
+        handleRestoreModal={handleRestoreModal}
       />
 
       {isLoggedIn && user ? (
-        <AddUpdateReviewProjectModal
+        <ProjectFormModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           fetchProjects={fetchProjects}
@@ -105,6 +115,8 @@ const Body = () => {
           setEditItem={setEditItem}
           reviewItem={reviewItem}
           setReviewItem={setReviewItem}
+          restoreItem={restoreItem}
+          setRestoreItem={setRestoreItem}
           activeTab={activeTab}
         />
       ) : (
