@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
 import ProjectCard from "./ProjectCard";
@@ -22,10 +22,17 @@ const ProjectGallery = ({
   const { user } = useSelector(state => state.auth);
 
   const [inputSearch, setInputSearch] = useState("");
+  const [searchBy, setSearchBy] = useState("title");
   const [searchQuery, setSearchQuery] = useState({ query: "", field: "title" });
   const [showModal, setShowModal] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    setSearchQuery({ query: "", field: "title" });
+    setInputSearch("");
+    setSearchBy("title");
+  }, [activeTab]);
 
   const handleSearch = useCallback(
     ({ query, field }) => {
@@ -110,6 +117,7 @@ const ProjectGallery = ({
           user={user}
           setSearchQuery={setSearchQuery}
           setInputSearch={setInputSearch}
+          setSearchBy={setSearchBy}
           activeTab={activeTab}
         />
       );
@@ -126,6 +134,8 @@ const ProjectGallery = ({
           isDisabled={isLoading || projectItems === null}
           inputSearch={inputSearch}
           setInputSearch={setInputSearch}
+          searchBy={searchBy}
+          setSearchBy={setSearchBy}
         />
       </div>
 

@@ -2,9 +2,14 @@ import { memo, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { fieldLabels } from "../utils/constant";
 
-const SearchBar = ({ handleSearch, isDisabled, inputSearch, setInputSearch }) => {
-  const [searchBy, setSearchBy] = useState("title");
-
+const SearchBar = ({
+  handleSearch,
+  isDisabled,
+  inputSearch,
+  setInputSearch,
+  searchBy,
+  setSearchBy,
+}) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (!isDisabled) {
