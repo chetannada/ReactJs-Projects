@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { removeProjectFromGallery } from "../services/projectService";
 import toast from "react-hot-toast";
 import DeleteProjectModal from "./modal/DeleteProjectModal";
+import { capitalizeWord } from "../utils/function";
 
 const ProjectGallery = ({
   activeTab,
@@ -146,7 +147,7 @@ const ProjectGallery = ({
         onClose={handleClose}
         onDelete={() => handleDelete(deleteItem._id)}
         isDisabled={isDisabled}
-        title="Delete Project?"
+        title={`Delete ${capitalizeWord(activeTab)} Project?`}
         description={
           <span>
             Are you sure you want to delete{" "}
