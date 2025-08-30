@@ -4,7 +4,7 @@ import { FiLogOut } from "react-icons/fi";
 import MenuItem from "./MenuItem";
 
 const UserMenu = ({ user, handleLogoutClick }) => {
-  const { userName, userAvatarUrl, githubUserName } = user;
+  const { userName, userAvatarUrl, userGithubLogin } = user;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
@@ -40,8 +40,8 @@ const UserMenu = ({ user, handleLogoutClick }) => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="font-semibold text-gray-800">Chetan Nada</p>
-                <p className="text-xs text-gray-500">@{githubUserName}</p>
+                <p className="font-semibold text-gray-800">{userName}</p>
+                <p className="text-xs text-gray-500">@{userGithubLogin}</p>
               </div>
             </div>
           </div>

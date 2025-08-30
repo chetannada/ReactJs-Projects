@@ -11,6 +11,7 @@ import ChipInputField from "../chip-input-field";
 import TextInputField from "../text-input-field";
 import { useEffect, useState } from "react";
 import Modal from ".";
+import { capitalizeWord } from "../../utils/function";
 
 const ProjectFormModal = ({
   isOpen,
@@ -186,14 +187,16 @@ const ProjectFormModal = ({
   };
 
   const getModalTitle = () => {
+    const projectName = capitalizeWord(activeTab);
+
     if (editItem) {
-      return "✏️ Update Project";
+      return `✏️ Update ${projectName} Project`;
     } else if (reviewItem) {
-      return "🔍 Review Project";
+      return `🔍 Review ${projectName} Project`;
     } else if (restoreItem) {
-      return "♻️ Restore Project";
+      return `♻️ Restore ${projectName} Project`;
     } else {
-      return "🚀 Add a New Project";
+      return `🚀 Add a New ${projectName} Project`;
     }
   };
 
