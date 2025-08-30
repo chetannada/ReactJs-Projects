@@ -64,6 +64,7 @@ const Body = () => {
     contributorId = null,
     activeTab = "curated"
   ) => {
+    setIsLoading(true);
     const { query, field } = search;
     const formattedQuery = `${field}:${query}`;
     lastQueryRef.current = formattedQuery;
@@ -83,6 +84,7 @@ const Body = () => {
 
   useEffect(() => {
     if (isAuthReady) {
+      setIsLoading(true);
       clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
         fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
