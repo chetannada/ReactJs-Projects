@@ -65,7 +65,7 @@ const ProjectFormModal = ({
         githubCodeUrl: item.githubCodeUrl || "",
         liveUrl: item.liveUrl || "",
         techStack: item.techStack || ["React.js"],
-        status: reviewItem ? "approved" : item.status,
+        status: reviewItem || restoreItem ? "approved" : item.status,
         rejectionReason: item.rejectionReason || "",
         restoredReason: item.restoredReason || "",
       });
@@ -147,7 +147,8 @@ const ProjectFormModal = ({
     } else if (restoreItem) {
       finalData = {
         ...finalData,
-        status: data.status,
+        status: "approved",
+        rejectionReason: "",
         restoredReason: data.restoredReason,
       };
 

@@ -135,14 +135,14 @@ const ProjectCard = ({
 
         {/* Rejection and Restored Reason */}
         {rejectionReason && (userId === contributorId || userRole === "admin") && (
-          <div className="w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
+          <p className="w-fit max-w-full mb-6 p-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md whitespace-pre-wrap break-words">
             <strong>Rejected reason:</strong> {rejectionReason}
-          </div>
+          </p>
         )}
         {restoredReason && (userId === contributorId || userRole === "admin") && (
-          <div className="w-full mb-6 p-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-md">
+          <p className="w-fit max-w-full mb-6 p-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-md whitespace-pre-wrap break-words">
             <strong>Restored reason:</strong> {restoredReason}
-          </div>
+          </p>
         )}
       </div>
 
