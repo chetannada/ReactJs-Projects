@@ -1,20 +1,23 @@
-import { useEffect, useState } from "react";
-import { IoMdMenu, IoMdClose } from "react-icons/io";
-import Sidebar from "./Sidebar";
-import useWindowSize from "../hooks/useWindowSize";
 import axios from "axios";
-import UserMenu from "../components/menu/UserMenu";
+import { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import UserMenu from "../components/menu/UserMenu";
 import LoginModal from "../components/modal/LoginModal";
-import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 import LogoutModal from "../components/modal/LogoutModal";
+import useWindowSize from "../hooks/useWindowSize";
+import { fetchUser, logoutUser } from "../store/reducers/authSlice";
+import Sidebar from "./Sidebar";
 
 axios.defaults.withCredentials = true;
 
 const Header = () => {
   const dispatch = useDispatch();
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
+  console.log(user);
+  console.log(isLoggedIn);
+  console.log(isAuthReady);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);

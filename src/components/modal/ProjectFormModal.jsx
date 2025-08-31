@@ -1,17 +1,17 @@
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import {
-  submitProjectToGallery,
-  editGalleryProject,
-  reviewGalleryProject,
-  restoreGalleryProject,
-} from "../../services/projectService";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import Modal from ".";
+import {
+  editGalleryProject,
+  restoreGalleryProject,
+  reviewGalleryProject,
+  submitProjectToGallery,
+} from "../../services/projectService";
+import { capitalizeWord } from "../../utils/function";
 import ChipInputField from "../chip-input-field";
 import TextInputField from "../text-input-field";
-import { useEffect, useState } from "react";
-import Modal from ".";
-import { capitalizeWord } from "../../utils/function";
 
 const ProjectFormModal = ({
   isOpen,
@@ -97,9 +97,9 @@ const ProjectFormModal = ({
     let finalData = {
       ...data,
       contributorName: editItem ? editItem?.contributorName : user?.userName,
-      contributorId: editItem ? editItem?.contributorId : user?.userId,
-      contributorAvatarUrl: editItem ? editItem?.contributorAvatarUrl : user?.userAvatarUrl,
-      contributorGithubUrl: editItem ? editItem?.contributorGithubUrl : user?.userGithubUrl,
+      contributorId: editItem ? editItem?.contributorId : user?.github?.id,
+      contributorAvatarUrl: editItem ? editItem?.contributorAvatarUrl : user?.github?.avatarUrl,
+      contributorGithubUrl: editItem ? editItem?.contributorGithubUrl : user?.github?.remoteName,
       contributorRole: editItem ? editItem?.contributorRole : user?.userRole,
     };
 
@@ -117,7 +117,7 @@ const ProjectFormModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -136,7 +136,7 @@ const ProjectFormModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -155,7 +155,7 @@ const ProjectFormModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
@@ -175,7 +175,7 @@ const ProjectFormModal = ({
         .then(res => {
           toast.success(res.message);
           handleClose();
-          fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+          fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
         })
         .catch(err => {
           const message = err.response?.data?.errorMessage || "Something went wrong!";
