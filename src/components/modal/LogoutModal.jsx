@@ -2,8 +2,6 @@ import { FiLogOut } from "react-icons/fi";
 import Modal from ".";
 
 const LogoutModal = ({ isOpen, onClose, onLogout, title, description }) => {
-  console.log(isOpen);
-  console.log(title);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className="text-xl font-semibold text-blue-700 mb-4">{title}</h2>

@@ -15,9 +15,6 @@ axios.defaults.withCredentials = true;
 const Header = () => {
   const dispatch = useDispatch();
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
-  console.log(user);
-  console.log(isLoggedIn);
-  console.log(isAuthReady);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -40,7 +37,9 @@ const Header = () => {
   const handleLoginClick = () => setShowLoginModal(true);
 
   const hanldeOnLogin = () => {
-    const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+    const API_VERSION_PREFIX = '/api';
+
+    const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL + API_VERSION_PREFIX; 
 
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };

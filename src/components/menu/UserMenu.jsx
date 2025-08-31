@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import MenuItem from "./MenuItem";
 
-const UserMenu = ({ user, handleLogout }) => {
+const UserMenu = ({ user, handleLogoutClick }) => {
   const { userName, github } = user;
 
   const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ const UserMenu = ({ user, handleLogout }) => {
           </div>
 
           <ul className="text-gray-700 text-sm">
-            <MenuItem icon={<FiLogOut />} label="Logout" onClick={handleLogout} />
+            <MenuItem icon={<FiLogOut />} label="Logout" onClick={handleLogoutClick} />
           </ul>
         </div>
       )}
