@@ -7,7 +7,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, title, description }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">{title}</h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4 mr-8">{title}</h2>
 
       <p className="text-gray-600 mb-6">{description}</p>
 
