@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../components/modal/LoginModal";
 import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 import LogoutModal from "../components/modal/LogoutModal";
+import strings from "../utils/strings";
 
 axios.defaults.withCredentials = true;
 
@@ -36,7 +37,7 @@ const Header = () => {
 
   const handleLoginClick = () => setShowLoginModal(true);
 
-  const hanldeOnLogin = () => {
+  const handleOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
     window.location.href = `${API_BACKEND_URL}/auth/github`;
@@ -107,18 +108,17 @@ const Header = () => {
           <LoginModal
             isOpen={showLoginModal}
             onClose={() => setShowLoginModal(false)}
-            onLogin={hanldeOnLogin}
-            title="Welcome back!"
-            description="To personalize your experience and save your favorite projects, log in
-        using your GitHub account."
+            onLogin={handleOnLogin}
+            title={strings.loginHeaderTitle}
+            description={strings.loginHeaderDescription}
           />
 
           <LogoutModal
             isOpen={showLogoutModal}
             onClose={() => setShowLogoutModal(false)}
             onLogout={handleOnLogout}
-            title="Taking a break?"
-            description={`You'll be signed out and redirected to the home screen. Come back anytime to keep building and sharing!`}
+            title={strings.logoutHeaderTitle}
+            description={strings.logoutHeaderDescription}
           />
         </nav>
       </header>
