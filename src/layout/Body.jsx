@@ -6,6 +6,7 @@ import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
 import ProjectGallery from "../components/ProjectGallery";
 import ProjectFormModal from "../components/modal/ProjectFormModal";
+import strings from "../utils/strings";
 
 const Body = () => {
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
@@ -126,8 +127,8 @@ const Body = () => {
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           onLogin={hanldeOnLogin}
-          title="Login to Add Project"
-          description="You need to be logged in to submit a project. Connect your GitHub account to showcase your work and contribute to the community."
+          title={strings.loginBodyTitle}
+          description={strings.loginBodyDescription}
         />
       )}
     </>
