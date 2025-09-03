@@ -1,20 +1,13 @@
-// components/forms/ProjectFormFields.jsx
 import { Controller } from "react-hook-form";
 import TextInputField from "../text-input-field";
 import ChipInputField from "../chip-input-field";
 
-const ProjectFormFields = ({
-  control,
-  errors,
-  reviewItem,
-  restoreItem,
-  statusValue,
-  activeTab,
-}) => {
-  const isReadOnly = reviewItem || restoreItem;
+const ProjectFormFields = ({ control, errors, statusValue, activeTab, isReview, isRestore }) => {
+  const isReadOnly = isReview || isRestore;
 
   return (
     <div className="space-y-4">
+      {/* Title & Description */}
       <div className="flex flex-row md:flex-col gap-4">
         <div className="flex-1">
           <Controller
@@ -49,6 +42,7 @@ const ProjectFormFields = ({
         </div>
       </div>
 
+      {/* Code & Live URLs */}
       <div className="flex flex-row md:flex-col gap-4">
         <div className="flex-1">
           <Controller
@@ -97,6 +91,7 @@ const ProjectFormFields = ({
         </div>
       </div>
 
+      {/* Tech Stack */}
       <div>
         <Controller
           name="techStack"
@@ -116,7 +111,8 @@ const ProjectFormFields = ({
         />
       </div>
 
-      {isReadOnly && (
+      {/* Review/Restore Fields */}
+      {(isReview || isRestore) && (
         <div className="flex flex-row md:flex-col gap-4">
           <div className="flex-1">
             <Controller
@@ -127,8 +123,10 @@ const ProjectFormFields = ({
                 <div className="relative">
                   <select
                     {...field}
-                    disabled={restoreItem}
-                    className={`w-full px-3 py-2 pr-10 border rounded-md text-sm appearance-none ${restoreItem ? "cursor-not-allowed" : "cursor-pointer"}`}
+                    disabled={isRestore}
+                    className={`w-full px-3 py-2 pr-10 border rounded-md text-sm appearance-none ${
+                      isRestore ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
                   >
                     <option value="approved">Approve</option>
                     <option value="rejected">Reject</option>
@@ -150,8 +148,9 @@ const ProjectFormFields = ({
             {errors.status && <p className="text-red-500 text-xs mt-1">{errors.status.message}</p>}
           </div>
 
-          {reviewItem ? (
-            <div className="flex-1">
+          {/* Reason Field */}
+          <div className="flex-1">
+            {isReview ? (
               <Controller
                 name="rejectionReason"
                 control={control}
@@ -165,14 +164,12 @@ const ProjectFormFields = ({
                   <TextInputField
                     field={field}
                     error={errors.rejectionReason}
-                    placeholder={`Reason for rejection`}
+                    placeholder="Reason for rejection"
                     disabled={statusValue === "approved"}
                   />
                 )}
               />
-            </div>
-          ) : (
-            <div className="flex-1">
+            ) : (
               <Controller
                 name="restoredReason"
                 control={control}
@@ -181,12 +178,12 @@ const ProjectFormFields = ({
                   <TextInputField
                     field={field}
                     error={errors.restoredReason}
-                    placeholder={"Reason for restoration"}
+                    placeholder="Reason for restoration"
                   />
                 )}
               />
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </div>

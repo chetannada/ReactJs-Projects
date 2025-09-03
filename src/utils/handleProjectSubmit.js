@@ -9,24 +9,27 @@ import toast from "react-hot-toast";
 const handleProjectSubmit = async ({
   data,
   user,
-  editItem,
-  reviewItem,
-  restoreItem,
+  selectedItem,
+  modalMode, // "add" | "edit" | "review" | "restore"
   activeTab,
   fetchProjects,
   handleClose,
 }) => {
+  const contributorInfo = {
+    contributorName: selectedItem?.contributorName || user.userName,
+    contributorId: selectedItem?.contributorId || user.userId,
+    contributorAvatarUrl: selectedItem?.contributorAvatarUrl || user.userAvatarUrl,
+    contributorGithubUrl: selectedItem?.contributorGithubUrl || user.userGithubUrl,
+    contributorRole: selectedItem?.contributorRole || user.userRole,
+  };
+
   let finalData = {
     ...data,
-    contributorName: editItem ? editItem.contributorName : user.userName,
-    contributorId: editItem ? editItem.contributorId : user.userId,
-    contributorAvatarUrl: editItem ? editItem.contributorAvatarUrl : user.userAvatarUrl,
-    contributorGithubUrl: editItem ? editItem.contributorGithubUrl : user.userGithubUrl,
-    contributorRole: editItem ? editItem.contributorRole : user.userRole,
+    ...contributorInfo,
   };
 
   try {
-    if (editItem) {
+    if (modalMode === "edit") {
       finalData = {
         ...finalData,
         updatedBy: user.userName,
@@ -35,26 +38,27 @@ const handleProjectSubmit = async ({
         rejectionReason: "",
         restoredReason: "",
       };
-      const res = await editGalleryProject(editItem._id, finalData, activeTab);
+      const res = await editGalleryProject(selectedItem._id, finalData, activeTab);
       toast.success(res.message);
-    } else if (reviewItem) {
+    } else if (modalMode === "review") {
       finalData = {
         ...finalData,
         status: data.status,
         rejectionReason: data.rejectionReason,
       };
-      const res = await reviewGalleryProject(reviewItem._id, finalData, activeTab);
+      const res = await reviewGalleryProject(selectedItem._id, finalData, activeTab);
       toast.success(res.message);
-    } else if (restoreItem) {
+    } else if (modalMode === "restore") {
       finalData = {
         ...finalData,
         status: "approved",
         rejectionReason: "",
         restoredReason: data.restoredReason,
       };
-      const res = await restoreGalleryProject(restoreItem._id, finalData, activeTab);
+      const res = await restoreGalleryProject(selectedItem._id, finalData, activeTab);
       toast.success(res.message);
     } else {
+      // "add"
       finalData = {
         ...finalData,
         status: "pending",

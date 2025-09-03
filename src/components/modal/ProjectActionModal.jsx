@@ -1,37 +1,32 @@
-import Modal from "../modal";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import Modal from "../modal";
 import useProjectForm from "../../hooks/useProjectForm";
 import handleProjectSubmit from "../../utils/handleProjectSubmit";
 import ProjectFormFields from "../form/ProjectFormFields";
-import { useState } from "react";
 import { projectFormTitle } from "../../utils/function";
 
 const ProjectActionModal = ({
   isOpen,
   onClose,
   fetchProjects,
-  editItem,
-  setEditItem,
-  reviewItem,
-  setReviewItem,
-  restoreItem,
-  setRestoreItem,
+  selectedItem,
+  setSelectedItem,
+  modalMode, // "add" | "edit" | "review" | "restore"
   activeTab,
 }) => {
   const { user } = useSelector(state => state.auth);
   const { control, handleSubmit, errors, reset, statusValue } = useProjectForm({
-    editItem,
-    reviewItem,
-    restoreItem,
+    selectedItem,
+    modalMode,
   });
+
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClose = () => {
     setIsDisabled(false);
     reset();
-    setEditItem(null);
-    setReviewItem(null);
-    setRestoreItem(null);
+    setSelectedItem(null);
     onClose();
   };
 
@@ -40,9 +35,8 @@ const ProjectActionModal = ({
     await handleProjectSubmit({
       data,
       user,
-      editItem,
-      reviewItem,
-      restoreItem,
+      selectedItem,
+      modalMode,
       activeTab,
       fetchProjects,
       handleClose,
@@ -50,19 +44,24 @@ const ProjectActionModal = ({
     setIsDisabled(false);
   };
 
+  const isReview = modalMode === "review";
+  const isRestore = modalMode === "restore";
+  const isEdit = modalMode === "edit";
+
   return (
     <Modal isOpen={isOpen} onClose={handleClose} width="w-180 md:w-128">
       <h2 className="text-xl font-semibold text-gray-700 mb-6 mr-8">
-        {projectFormTitle(activeTab, editItem, reviewItem, restoreItem)}
+        {projectFormTitle(activeTab, modalMode)}
       </h2>
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <ProjectFormFields
           control={control}
           errors={errors}
-          reviewItem={reviewItem}
-          restoreItem={restoreItem}
           statusValue={statusValue}
           activeTab={activeTab}
+          isReview={isReview}
+          isRestore={isRestore}
         />
 
         <div className="flex flex-row justify-center gap-4 pt-4">
@@ -76,11 +75,11 @@ const ProjectActionModal = ({
             type="submit"
             disabled={isDisabled}
             className={`flex justify-center items-center gap-2 text-sm px-5 py-2.5 font-medium rounded-lg
-      text-white bg-gradient-to-br from-teal-700 to-lime-600
-      hover:from-lime-600 hover:to-teal-700 focus:ring-4 focus:outline-none
-      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-teal-700 disabled:hover:to-lime-600 disabled:focus:ring-0`}
+              text-white bg-gradient-to-br from-teal-700 to-lime-600
+              hover:from-lime-600 hover:to-teal-700 focus:ring-4 focus:outline-none
+              disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-teal-700 disabled:hover:to-lime-600 disabled:focus:ring-0`}
           >
-            {editItem ? "Update" : "Submit"}
+            {isEdit ? "Update" : "Submit"}
           </button>
         </div>
       </form>

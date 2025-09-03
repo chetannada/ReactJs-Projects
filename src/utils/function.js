@@ -3,11 +3,11 @@ export const capitalizeWord = word => {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 };
 
-export const projectFormTitle = (activeTab, editItem, reviewItem, restoreItem) => {
+export const projectFormTitle = (activeTab, modalMode) => {
   const projectName = capitalizeWord(activeTab);
 
-  if (editItem) return `✏️ Update ${projectName} Project`;
-  if (reviewItem) return `🔍 Review ${projectName} Project`;
-  if (restoreItem) return `♻️ Restore ${projectName} Project`;
+  if (modalMode === "edit") return `✏️ Update ${projectName} Project`;
+  if (modalMode === "review") return `🔍 Review ${projectName} Project`;
+  if (modalMode === "restore") return `♻️ Restore ${projectName} Project`;
   return `🚀 Add a New ${projectName} Project`;
 };
