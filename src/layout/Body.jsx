@@ -5,8 +5,8 @@ import { fetchGalleryProjects } from "../services/projectService";
 import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
 import ProjectGallery from "../components/ProjectGallery";
-import ProjectFormModal from "../components/modal/ProjectFormModal";
 import strings from "../utils/strings";
+import ProjectActionModal from "../components/modal/ProjectActionModal";
 
 const Body = () => {
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
@@ -110,7 +110,7 @@ const Body = () => {
       />
 
       {isLoggedIn && user ? (
-        <ProjectFormModal
+        <ProjectActionModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           fetchProjects={fetchProjects}
