@@ -1,62 +1,41 @@
 import { useEffect, useRef, useState } from "react";
-import TabsPage from "../components/TabsPage";
 import { useSelector } from "react-redux";
-import { fetchGalleryProjects } from "../services/projectService";
-import LoginModal from "../components/modal/LoginModal";
 import toast from "react-hot-toast";
+import TabsPage from "../components/TabsPage";
 import ProjectGallery from "../components/ProjectGallery";
-import strings from "../utils/strings";
 import ProjectActionModal from "../components/modal/ProjectActionModal";
+import LoginModal from "../components/modal/LoginModal";
+import { fetchGalleryProjects } from "../services/projectService";
+import strings from "../utils/strings";
 
 const Body = () => {
   const { user, isLoggedIn, isAuthReady } = useSelector(state => state.auth);
 
   const [activeTab, setActiveTab] = useState("crafted");
   const [showModal, setShowModal] = useState(false);
+  const [modalMode, setModalMode] = useState("add"); // "add" | "edit" | "review" | "restore"
+  const [selectedItem, setSelectedItem] = useState(null);
   const [projectItems, setProjectItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [editItem, setEditItem] = useState(null);
-  const [reviewItem, setReviewItem] = useState(null);
-  const [restoreItem, setRestoreItem] = useState(null);
 
   const lastQueryRef = useRef(null);
   const debounceRef = useRef(null);
 
-  const handleTabs = tab => {
-    setActiveTab(tab);
-  };
+  const handleTabs = tab => setActiveTab(tab);
 
-  const handleAddModal = () => {
-    setReviewItem(null);
-    setRestoreItem(null);
-    setEditItem(null);
+  const openProjectModal = (mode, item = null) => {
+    setModalMode(mode);
+    setSelectedItem(item);
     setShowModal(true);
   };
 
-  const handleEditModal = item => {
-    setReviewItem(null);
-    setRestoreItem(null);
-    setEditItem(item);
-    setShowModal(true);
-  };
+  const handleAddModal = () => openProjectModal("add");
+  const handleEditModal = item => openProjectModal("edit", item);
+  const handleReviewModal = item => openProjectModal("review", item);
+  const handleRestoreModal = item => openProjectModal("restore", item);
 
-  const handleReviewModal = item => {
-    setEditItem(null);
-    setRestoreItem(null);
-    setReviewItem(item);
-    setShowModal(true);
-  };
-
-  const handleRestoreModal = item => {
-    setEditItem(null);
-    setReviewItem(null);
-    setRestoreItem(item);
-    setShowModal(true);
-  };
-
-  const hanldeOnLogin = () => {
+  const handleOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
-
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
@@ -97,7 +76,6 @@ const Body = () => {
     <>
       <TabsPage activeTab={activeTab} handleTabs={handleTabs} handleAddModal={handleAddModal} />
 
-      {/* Crafted and Curated Project Gallery */}
       <ProjectGallery
         activeTab={activeTab}
         projectItems={projectItems}
@@ -114,19 +92,16 @@ const Body = () => {
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           fetchProjects={fetchProjects}
-          editItem={editItem}
-          setEditItem={setEditItem}
-          reviewItem={reviewItem}
-          setReviewItem={setReviewItem}
-          restoreItem={restoreItem}
-          setRestoreItem={setRestoreItem}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          modalMode={modalMode}
           activeTab={activeTab}
         />
       ) : (
         <LoginModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
-          onLogin={hanldeOnLogin}
+          onLogin={handleOnLogin}
           title={strings.loginBodyTitle}
           description={strings.loginBodyDescription}
         />

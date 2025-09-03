@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { projectFormDefaultValues } from "../utils/constant";
 
-const useProjectForm = ({ editItem, reviewItem, restoreItem }) => {
+const useProjectForm = ({ selectedItem, modalMode }) => {
   const {
     control,
     handleSubmit,
@@ -20,25 +20,27 @@ const useProjectForm = ({ editItem, reviewItem, restoreItem }) => {
     if (statusValue === "approved") {
       setValue("rejectionReason", "");
     }
-  }, [statusValue]);
+  }, [statusValue, setValue]);
 
   useEffect(() => {
-    const item = editItem || reviewItem || restoreItem;
-    if (item) {
+    if (selectedItem) {
       reset({
-        projectTitle: item.projectTitle || "",
-        projectDescription: item.projectDescription || "",
-        githubCodeUrl: item.githubCodeUrl || "",
-        liveUrl: item.liveUrl || "",
-        techStack: item.techStack || ["React.js"],
-        status: reviewItem || restoreItem ? "approved" : item.status,
-        rejectionReason: item.rejectionReason || "",
-        restoredReason: item.restoredReason || "",
+        projectTitle: selectedItem.projectTitle || "",
+        projectDescription: selectedItem.projectDescription || "",
+        githubCodeUrl: selectedItem.githubCodeUrl || "",
+        liveUrl: selectedItem.liveUrl || "",
+        techStack: selectedItem.techStack || ["React.js"],
+        status:
+          modalMode === "review" || modalMode === "restore"
+            ? "approved"
+            : selectedItem.status || "pending",
+        rejectionReason: selectedItem.rejectionReason || "",
+        restoredReason: selectedItem.restoredReason || "",
       });
     } else {
       reset(projectFormDefaultValues);
     }
-  }, [editItem, reviewItem, restoreItem, reset]);
+  }, [selectedItem, modalMode, reset]);
 
   return { control, handleSubmit, errors, reset, statusValue };
 };
