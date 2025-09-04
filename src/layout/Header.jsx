@@ -10,6 +10,7 @@ import LoginModal from "../components/modal/LoginModal";
 import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 import LogoutModal from "../components/modal/LogoutModal";
 import strings from "../utils/strings";
+import ThemeToggle from "../components/theme/ThemeToggle";
 
 axios.defaults.withCredentials = true;
 
@@ -34,55 +35,54 @@ const Header = () => {
   }, [windowSize.width]);
 
   const handleSidebar = () => setSidebarOpen(!sidebarOpen);
-
   const handleLoginClick = () => setShowLoginModal(true);
 
   const handleOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
-
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
   const handleLogoutClick = () => setShowLogoutModal(true);
-
   const handleOnLogout = () => {
     setShowLogoutModal(false);
     setSidebarOpen(false);
     dispatch(logoutUser());
   };
 
-  // Render authentication UI based on login state
   const renderAuthUI = () => {
     if (!isAuthReady) return null;
 
-    if (isLoggedIn && user) {
-      return <UserMenu user={user} handleLogoutClick={handleLogoutClick} />;
-    }
-
     return (
-      <div className="block lg:hidden">
-        <button
-          onClick={handleLoginClick}
-          className="flex flex-row gap-2 items-center text-white bg-gradient-to-br from-green-500 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2"
-        >
-          <FiLogIn size={18} />
-          Login
-        </button>
-      </div>
+      <>
+        <ThemeToggle />
+        {isLoggedIn && user ? (
+          <UserMenu user={user} handleLogoutClick={handleLogoutClick} />
+        ) : (
+          <div className="block lg:hidden">
+            <button
+              onClick={handleLoginClick}
+              className="flex flex-row gap-2 items-center text-white bg-gradient-to-br from-green-500 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2"
+            >
+              <FiLogIn size={18} />
+              Login
+            </button>
+          </div>
+        )}
+      </>
     );
   };
 
   return (
     <>
-      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-primary shadow-lg border-b-4 border-b-secondary text-white">
+      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-lightPrimary text-lightText border-b-4 border-secondary dark:bg-primary dark:text-white dark:border-b-secondary transition-colors duration-300">
         <nav className="flex justify-between items-center h-full">
           <a href="/">
             <h1 className="text-2xl mob:text-xl xmob:text-base font-semibold">
-              <span className="text-purple-400">React.js</span> Projects
+              <span className="text-lightSecondary dark:text-secondary">React.js</span> Projects
             </h1>
           </a>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             {renderAuthUI()}
 
             <div
