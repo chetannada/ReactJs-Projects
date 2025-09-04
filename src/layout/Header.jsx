@@ -10,6 +10,7 @@ import LoginModal from "../components/modal/LoginModal";
 import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 import LogoutModal from "../components/modal/LogoutModal";
 import strings from "../utils/strings";
+import ThemeToggle from "../components/theme/ThemeToggle";
 
 axios.defaults.withCredentials = true;
 
@@ -55,20 +56,24 @@ const Header = () => {
   const renderAuthUI = () => {
     if (!isAuthReady) return null;
 
-    if (isLoggedIn && user) {
-      return <UserMenu user={user} handleLogoutClick={handleLogoutClick} />;
-    }
-
     return (
-      <div className="block lg:hidden">
-        <button
-          onClick={handleLoginClick}
-          className="flex flex-row gap-2 items-center text-white bg-gradient-to-br from-green-500 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2"
-        >
-          <FiLogIn size={18} />
-          Login
-        </button>
-      </div>
+      <>
+        <ThemeToggle />
+
+        {isLoggedIn && user ? (
+          <UserMenu user={user} handleLogoutClick={handleLogoutClick} />
+        ) : (
+          <div className="block lg:hidden">
+            <button
+              onClick={handleLoginClick}
+              className="flex flex-row gap-2 items-center text-white bg-gradient-to-br from-green-500 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2"
+            >
+              <FiLogIn size={18} />
+              Login
+            </button>
+          </div>
+        )}
+      </>
     );
   };
 
@@ -82,7 +87,7 @@ const Header = () => {
             </h1>
           </a>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             {renderAuthUI()}
 
             <div
