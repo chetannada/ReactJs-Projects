@@ -35,31 +35,26 @@ const Header = () => {
   }, [windowSize.width]);
 
   const handleSidebar = () => setSidebarOpen(!sidebarOpen);
-
   const handleLoginClick = () => setShowLoginModal(true);
 
   const handleOnLogin = () => {
     const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
-
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 
   const handleLogoutClick = () => setShowLogoutModal(true);
-
   const handleOnLogout = () => {
     setShowLogoutModal(false);
     setSidebarOpen(false);
     dispatch(logoutUser());
   };
 
-  // Render authentication UI based on login state
   const renderAuthUI = () => {
     if (!isAuthReady) return null;
 
     return (
       <>
         <ThemeToggle />
-
         {isLoggedIn && user ? (
           <UserMenu user={user} handleLogoutClick={handleLogoutClick} />
         ) : (
@@ -79,11 +74,11 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-primary shadow-lg border-b-4 border-b-secondary text-white">
+      <header className="fixed top-0 z-50 px-8 mob:px-4 h-14 w-full bg-lightPrimary text-lightText border-b-4 border-secondary dark:bg-primary dark:text-white dark:border-b-secondary transition-colors duration-300">
         <nav className="flex justify-between items-center h-full">
           <a href="/">
             <h1 className="text-2xl mob:text-xl xmob:text-base font-semibold">
-              <span className="text-purple-400">React.js</span> Projects
+              <span className="text-lightSecondary dark:text-secondary">React.js</span> Projects
             </h1>
           </a>
 
