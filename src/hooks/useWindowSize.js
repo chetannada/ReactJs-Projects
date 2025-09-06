@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// custom hook useWindowSize which measure window width and height
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,

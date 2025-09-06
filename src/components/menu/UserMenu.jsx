@@ -31,7 +31,7 @@ const UserMenu = ({ user, handleLogoutClick }) => {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-lg z-50 overflow-hidden border border-gray-200">
+        <div className="absolute right-0 mt-2 w-72 mob:w-52 bg-white rounded-xl shadow-lg z-50 overflow-hidden border border-gray-200">
           <div className="p-4 border-b">
             <div className="flex items-center gap-3">
               <img

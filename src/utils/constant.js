@@ -9,3 +9,14 @@ export const fieldLabels = {
   techstack: "tech stack",
   contributedBy: "contributed by",
 };
+
+export const projectFormDefaultValues = {
+  projectTitle: "",
+  projectDescription: "",
+  githubCodeUrl: "",
+  liveUrl: "",
+  techStack: ["React.js"],
+  status: "approved",
+  rejectionReason: "",
+  restoredReason: "",
+};

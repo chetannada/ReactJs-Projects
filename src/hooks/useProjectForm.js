@@ -1,0 +1,48 @@
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { projectFormDefaultValues } from "../utils/constant";
+
+const useProjectForm = ({ selectedItem, modalMode }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+    setValue,
+  } = useForm({
+    defaultValues: projectFormDefaultValues,
+  });
+
+  const statusValue = watch("status");
+
+  useEffect(() => {
+    if (statusValue === "approved") {
+      setValue("rejectionReason", "");
+    }
+  }, [statusValue, setValue]);
+
+  useEffect(() => {
+    if (selectedItem) {
+      reset({
+        projectTitle: selectedItem.projectTitle || "",
+        projectDescription: selectedItem.projectDescription || "",
+        githubCodeUrl: selectedItem.githubCodeUrl || "",
+        liveUrl: selectedItem.liveUrl || "",
+        techStack: selectedItem.techStack || ["React.js"],
+        status:
+          modalMode === "review" || modalMode === "restore"
+            ? "approved"
+            : selectedItem.status || "pending",
+        rejectionReason: selectedItem.rejectionReason || "",
+        restoredReason: selectedItem.restoredReason || "",
+      });
+    } else {
+      reset(projectFormDefaultValues);
+    }
+  }, [selectedItem, modalMode, reset]);
+
+  return { control, handleSubmit, errors, reset, statusValue };
+};
+
+export default useProjectForm;
