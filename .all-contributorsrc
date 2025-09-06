@@ -46,6 +46,17 @@
         "data",
         "review"
       ]
+    },
+    {
+      "login": "omjpatel586",
+      "name": "Om J Patel.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119939918?v=4",
+      "profile": "https://github.com/omjpatel586",
+      "contributions": [
+        "code",
+        "ideas",
+        "research"
+      ]
     }
   ],
   "repoType": "github",
