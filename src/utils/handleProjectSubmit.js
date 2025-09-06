@@ -1,10 +1,10 @@
-import {
-  submitProjectToGallery,
-  editGalleryProject,
-  reviewGalleryProject,
-  restoreGalleryProject,
-} from "../services/projectService";
 import toast from "react-hot-toast";
+import {
+  editGalleryProject,
+  restoreGalleryProject,
+  reviewGalleryProject,
+  submitProjectToGallery,
+} from "../services/projectService";
 
 const handleProjectSubmit = async ({
   data,
@@ -16,11 +16,11 @@ const handleProjectSubmit = async ({
   handleClose,
 }) => {
   const contributorInfo = {
-    contributorName: selectedItem?.contributorName || user.userName,
-    contributorId: selectedItem?.contributorId || user.userId,
-    contributorAvatarUrl: selectedItem?.contributorAvatarUrl || user.userAvatarUrl,
-    contributorGithubUrl: selectedItem?.contributorGithubUrl || user.userGithubUrl,
-    contributorRole: selectedItem?.contributorRole || user.userRole,
+    contributorName: selectedItem?.contributorName || user?.userName,
+    contributorId: selectedItem?.contributorId || user?.github?.id,
+    contributorAvatarUrl: selectedItem?.contributorAvatarUrl || user?.github?.avatarUrl,
+    contributorGithubUrl: selectedItem?.contributorGithubUrl || user?.github?.url,
+    contributorRole: selectedItem?.contributorRole || user?.userRole,  
   };
 
   let finalData = {
@@ -69,7 +69,7 @@ const handleProjectSubmit = async ({
       toast.success(res.message);
     }
 
-    fetchProjects({ query: "", field: "title" }, user.userId || null, activeTab);
+    fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
     handleClose();
   } catch (err) {
     const message = err.response?.data?.errorMessage || "Something went wrong!";
