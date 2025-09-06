@@ -13,7 +13,7 @@ const NoResults = ({
     setSearchBy("title");
     setSearchQuery({ query: "", field: "title" });
     setInputSearch("");
-    fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+    fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
   };
 
   return (

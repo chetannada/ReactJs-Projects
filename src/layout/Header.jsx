@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { IoMdMenu, IoMdClose } from "react-icons/io";
-import Sidebar from "./Sidebar";
-import useWindowSize from "../hooks/useWindowSize";
 import axios from "axios";
-import UserMenu from "../components/menu/UserMenu";
+import { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import UserMenu from "../components/menu/UserMenu";
 import LoginModal from "../components/modal/LoginModal";
-import { fetchUser, logoutUser } from "../store/reducers/authSlice";
 import LogoutModal from "../components/modal/LogoutModal";
-import strings from "../utils/strings";
 import ThemeToggle from "../components/theme/ThemeToggle";
+import useWindowSize from "../hooks/useWindowSize";
+import { fetchUser, logoutUser } from "../store/reducers/authSlice";
+import strings from "../utils/strings";
+import Sidebar from "./Sidebar";
 
 axios.defaults.withCredentials = true;
 
@@ -38,7 +38,9 @@ const Header = () => {
   const handleLoginClick = () => setShowLoginModal(true);
 
   const handleOnLogin = () => {
-    const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+    const API_VERSION_PREFIX = '/api';
+
+    const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL + API_VERSION_PREFIX; 
     window.location.href = `${API_BACKEND_URL}/auth/github`;
   };
 

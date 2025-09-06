@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import TabsPage from "../components/TabsPage";
-import ProjectGallery from "../components/ProjectGallery";
-import ProjectActionModal from "../components/modal/ProjectActionModal";
+import { useSelector } from "react-redux";
 import LoginModal from "../components/modal/LoginModal";
+import ProjectActionModal from "../components/modal/ProjectActionModal";
+import ProjectGallery from "../components/ProjectGallery";
+import TabsPage from "../components/TabsPage";
 import { fetchGalleryProjects } from "../services/projectService";
 import strings from "../utils/strings";
 
@@ -67,7 +67,7 @@ const Body = () => {
       setIsLoading(true);
       clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
-        fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+        fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
       }, 300);
     }
   }, [isAuthReady, user, activeTab]);

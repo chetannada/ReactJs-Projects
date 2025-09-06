@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
-import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
-import ProjectCard from "./ProjectCard";
-import NoResults from "./NoResults";
-import NoData from "./NoData";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { removeProjectFromGallery } from "../services/projectService";
-import toast from "react-hot-toast";
-import DeleteProjectModal from "./modal/DeleteProjectModal";
 import { capitalizeWord } from "../utils/function";
+import DeleteProjectModal from "./modal/DeleteProjectModal";
+import NoData from "./NoData";
+import NoResults from "./NoResults";
+import ProjectCard from "./ProjectCard";
+import SearchBar from "./SearchBar";
+import SkeletonProjectCard from "./skeleton/SkeletonProjectCard";
 
 const ProjectGallery = ({
   activeTab,
@@ -41,7 +41,7 @@ const ProjectGallery = ({
       if (formattedQuery === lastQueryRef.current) return;
 
       setSearchQuery({ query, field });
-      fetchProjects({ query, field }, user?.userId || null, activeTab);
+      fetchProjects({ query, field }, user?.github?.id || null, activeTab);
     },
     [fetchProjects, lastQueryRef]
   );
@@ -58,7 +58,7 @@ const ProjectGallery = ({
         projectId,
         {
           contributorName: user?.userName || null,
-          contributorId: user?.userId || null,
+          contributorId: user?.github?.id || null,
           userRole: user?.userRole || "contributor",
         },
         activeTab
@@ -66,7 +66,7 @@ const ProjectGallery = ({
 
       toast.success(res.message);
       handleClose();
-      fetchProjects({ query: "", field: "title" }, user?.userId || null, activeTab);
+      fetchProjects({ query: "", field: "title" }, user?.github?.id || null, activeTab);
     } catch (err) {
       const message = err.response?.data?.errorMessage || "Something went wrong!";
       console.error("Error:", message);
@@ -99,7 +99,7 @@ const ProjectGallery = ({
             <ProjectCard
               key={item._id}
               item={item}
-              userId={user?.userId}
+              userId={user?.github?.id}
               userRole={user?.userRole}
               handleRestoreModal={handleRestoreModal}
               handleEditModal={handleEditModal}
